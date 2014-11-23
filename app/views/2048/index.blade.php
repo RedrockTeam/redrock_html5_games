@@ -39,21 +39,23 @@
         </div>
       </div>
       <script type="text/template" id="list_template">
-      -<div class="list-container">
+      <div class="list-container">
           <table class="list-table">
               <thead>
                 <tr>
-                    <th>姓名</th>
+                    <th>电话</th>
                     <th>分数</th>
                     <th>排名</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                    <td><%= name %></td>
-                    <td><%= score %></td>
-                    <td><%= level %></td>
-                </tr>
+                <% list.forEach(function(value, index){ %>
+                    <tr>
+                        <td><%= value.telphone %></td>
+                        <td><%= value.score %></td>
+                        <td><%= index + 1 %></td>
+                    </tr>
+                <% }); %>
               </tbody>
           </table>
       </div>
@@ -93,6 +95,7 @@
     </div>
   </div>
   {{HTML::script("js/2048/js/jquery.min.js")}}
+  {{HTML::script("js/2048/js/underscore-min.js")}}
   {{HTML::script("js/2048/js/WeixinApi.js")}}
   {{HTML::script("js/2048/js/timer.js")}}
   {{HTML::script("js/2048/js/bind_polyfill.js")}}
