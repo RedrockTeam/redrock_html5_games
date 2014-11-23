@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>2048</title>
+  <title>拼拼价值观</title>
     {{HTML::style("css/2048/style/main.css")}}
 <!--    HTML::my($url, $rel, $media); -->
     {{HTML::my("favicon/2048/favicon.ico","shortcut icon")}}
@@ -18,9 +18,9 @@
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
-  <div class="container" data-token="{{$arr['_token']}}" data-app-id="123123" data-imgUrl="{{$arr['path']}}" data-link="{{$arr['url']}}" data-name="董天成">
+  <div class="container" data-token="{{$arr['_token']}}"  data-imgUrl="{{$arr['path']}}" data-link="{{$arr['url']}}">
     <div class="heading">
-      <h1 class="title">2048</h1>
+      <h1 class="title">拼拼价值观</h1>
       <div class="scores-container">
         <div class="score-container">0</div>
         <div class="best-container">0</div>
