@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
   <style>
      #Txtinput {
-                margin-top: 100px;
+                padding-top: 107px;
                 text-align: center;
             }
              #phone_input{
