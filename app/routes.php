@@ -14,6 +14,3 @@
 Route::get('/{game}', 'HomeController@start');
 
 Route::post('/post', 'HomeController@verify');
-
-
-Route::post('/p', 'HomeController@getPosition');

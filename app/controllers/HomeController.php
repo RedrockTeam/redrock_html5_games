@@ -58,13 +58,16 @@ class HomeController extends BaseController {
 
         public function verify()
         {
-           if(Request::ajax() && Request::isJson())
-            {
+           if(!Request::ajax() || !Request::isJson())
+           {
+               return Response::make('403', 403);
+           }
+
                 $arr = Input::all();
                 $session_token = Session::get('_token');
                 $_token = $arr['_token'];
 
-                if( ! isset($arr['time']) ||$arr['time'] == null)
+                if( ! isset($arr['time']) || $arr['time'] == null)
                 {
                     $arr['time'] = 0;
                 }
@@ -91,17 +94,13 @@ class HomeController extends BaseController {
                 {
                     return Response::make('403', 403);
                 }
-            }
-            else
-            {
-                return Response::make('403', 403);
-            }
+
         }
 
         private  function save($data, $type)
         {
-
-            if(DB::table($type)->insert($data))
+                $telphone = $data['telphone'];
+            if( DB::table($type)->where('telphone', '=', "$telphone")->update($data) || DB::table($type)->insert($data))
                 return true;
             else
                 return false;
