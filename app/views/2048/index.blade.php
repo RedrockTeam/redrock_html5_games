@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>2048</title>
-
-  <link href="style/main.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
-  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
-  <link rel="apple-touch-startup-image" href="meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
+    {{HTML::style("css/2048/style/main.css")}}
+  <link rel="shortcut icon" href="{{public_path()}}/favicon/2048/favicon.ico">
+  <link rel="apple-touch-icon" href="{{public_path()}}/meta/2048/meta/apple-touch-icon.png">
+  <link rel="apple-touch-startup-image" href="{{public_path()}}/meta/2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
+  <link rel="apple-touch-startup-image" href="{{public_path()}}/meta/2048/meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -98,19 +97,18 @@
       </div>
     </div>
   </div>
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/WeixinApi.js"></script>
-  <script src="js/timer.js"></script>
-  <script src="js/bind_polyfill.js"></script>
-  <script src="js/classlist_polyfill.js"></script>
-  <script src="js/animframe_polyfill.js"></script>
-  <script src="js/keyboard_input_manager.js"></script>
-  <script src="js/html_actuator.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/tile.js"></script>
-  <script src="js/local_storage_manager.js"></script>
-  <script src="js/game_manager.js"></script>
-  <script src="js/application.js"></script>
+  {{HTML::script("js/2048/js/jquery.min.js")}}
+  {{HTML::script("js/2048/js/WeixinApi.js")}}
+  {{HTML::script("js/2048/js/timer.js")}}
+  {{HTML::script("js/2048/js/bind_polyfill.js")}}
+  {{HTML::script("js/2048/js/classlist_polyfill.js")}}
+  {{HTML::script("js/2048/js/animframe_polyfill.js")}}
+  {{HTML::script("js/2048/js/keyboard_input_manager.js")}}
+  {{HTML::script("js/2048/js/html_actuator.js")}}
+  {{HTML::script("js/2048/js/grid.js")}}
+  {{HTML::script("js/2048/js/tile.js")}}
+  {{HTML::script("js/2048/js/local_storage_manager.js")}}
+  {{HTML::script("js/2048/js/game_manager.js")}}
+  {{HTML::script("js/2048/js/application.js")}}
 </body>
 </html>
