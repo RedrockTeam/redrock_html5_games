@@ -139,7 +139,7 @@ a {
 	color: #776e65;
 	font-weight: bold;
 	text-decoration: underline;
-	cursor: pointer;
+	
 }
 
 strong.important {
@@ -218,12 +218,6 @@ hr {
 	background: rgba(238, 228, 218, 0.5);
 	z-index: 100;
 	text-align: center;
-	-webkit-animation: fade-in 800ms ease 1200ms;
-	-moz-animation: fade-in 800ms ease 1200ms;
-	animation: fade-in 800ms ease 1200ms;
-	-webkit-animation-fill-mode: both;
-	-moz-animation-fill-mode: both;
-	animation-fill-mode: both;
 }
 .game-container .list-container{
     display: none;
@@ -235,12 +229,7 @@ hr {
     background: rgba(238, 228, 218, 0.8 );
     z-index: 100;
     text-align: center;
-    -webkit-animation: fade-in 800ms ease 1200ms;
-    -moz-animation: fade-in 800ms ease 1200ms;
-    animation: fade-in 800ms ease 1200ms;
-    -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    animation-fill-mode: both;
+
     padding: 25px;
 }
 
@@ -251,8 +240,8 @@ hr {
 }
 
 .list-table th, .list-table td{
-    padding: 10px;
-    font-size: 25px;
+    padding: 5px;
+    font-size: 16px;
 }
 
 .time-container{
@@ -274,7 +263,7 @@ hr {
 	margin-top: 122px;
 }
 
-.game-container input{
+ input{
 	display: block;
 	margin: 0 auto;
 	width: 60%;
@@ -303,7 +292,7 @@ hr {
 }
 
 .game-container .game-message.game-won {
-	background: rgba(237, 194, 46, 0.5);
+	background: rgba(237, 194, 46, 0.8);
 	color: #f9f6f2;
 }
 
@@ -829,36 +818,26 @@ hr {
         right: 0;
         bottom: 0;
         left: 0;
-        background: rgba(238, 228, 218, 0.5);
+        background: rgba(238, 228, 218, 0.8);
         z-index: 100;
         text-align: center;
-        -webkit-animation: fade-in 800ms ease 1200ms;
-        -moz-animation: fade-in 800ms ease 1200ms;
-        animation: fade-in 800ms ease 1200ms;
-        -webkit-animation-fill-mode: both;
-        -moz-animation-fill-mode: both;
-        animation-fill-mode: both;
+
     }
 
 	.game-container .game-message {
-		display: none;
+		/*display: none;*/
 		position: absolute;
 		top: 0;
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background: rgba(238, 228, 218, 0.5);
+		background: rgba(238, 228, 218, 0.8);
 		z-index: 100;
 		text-align: center;
-		-webkit-animation: fade-in 800ms ease 1200ms;
-		-moz-animation: fade-in 800ms ease 1200ms;
-		animation: fade-in 800ms ease 1200ms;
-		-webkit-animation-fill-mode: both;
-		-moz-animation-fill-mode: both;
-		animation-fill-mode: both;
+
 	}
 
-	.game-container input{
+	 input{
 		margin: 0 auto;
 		display: block;
 		width: 60%;

@@ -58,6 +58,7 @@ GameManager.prototype.tickAction = function(time){
 // Restart the game
 // 重启游戏
 GameManager.prototype.restart = function () {
+    $(".list-container").hide();
   this.timer.stop();
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
@@ -384,54 +385,50 @@ GameManager.prototype.positionsEqual = function (first, second) {
 
 GameManager.prototype.share = function(){
     var self = this;
-
+    
     WeixinApi.ready(function(Api) {
-        var time = self.timer.time,
-        score = self.score,
-        container = document.querySelector(".container"),
-        appid = container.dataset['appid'],
-        imgUrl  = container.dataset['imgurl'],
-        link  = container.dataset['link'],
-        name = container.dataset['name'],
-        token = container.dataset['token'],
-	    phone = $("#phone_number").val();
+        var container = document.querySelector(".container"),
+            appid = container.dataset['appid'],
+            imgUrl  = container.dataset['imgurl'],
+            link  = container.dataset['link'],
+            name = container.dataset['name'];
 
-          // 微信分享的数据
-          var wxData = {
-              "imgUrl" : imgUrl, // 二维码的地址
-              "link" : link,
-              "desc" : '2048大挑战: 哎呀, 我一不小心就玩到了..' + self.score + "."
-          };
+        // 微信分享的数据
+        var wxData = {
+            "imgUrl" : imgUrl, // 二维码的地址
+            "link" : link,
+            "desc" : '2048大挑战: 哎呀, 我一不小心就玩到了..' + self.score + "分"
+        };
 
-          // 分享的回调
-          var wxCallbacks = {
-              // 分享操作开始之前
-              ready : function() {
-                  // 你可以在这里对分享的数据进行重组
-
-              },
-              // 分享被用户自动取消
-              cancel : function(resp) {
-                  // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
-
-              },
-              // 分享失败了
-              fail : function(resp) {
-                  // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
-	              alert("哎呀, 分享失败了..");
-              },
-              // 分享成功
-              confirm : function(resp) {
-                  // 分享成功了，我们是不是可以做一些分享统计呢？
-                  alert("分享成功!");
-              },
-              // 整个分享过程结束
-              all : function(resp,shareTo) {
-                  // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
-                  //alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
-              }
-          };
-
+        alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/")
+        // alert(wxData);
+        // 分享的回调
+        var wxCallbacks = {
+            // 分享操作开始之前
+            ready : function() {
+                // 你可以在这里对分享的数据进行重组
+            },
+            // 分享被用户自动取消
+            cancel : function(resp) {
+                // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+                alert("o(>﹏<)o 为什么要取消呢？");
+            },
+            // 分享失败了
+            fail : function(resp) {
+                // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                alert("哎呀，o(>﹏<)o失败了");
+            },
+            // 分享成功
+            confirm : function(resp) {
+                // 分享成功了，我们是不是可以做一些分享统计呢？
+                alert("分享成功，<(￣▽￣)>");
+            },
+            // 整个分享过程结束
+            all : function(resp,shareTo) {
+                // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                // alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+            }
+        };
           // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
           Api.shareToFriend(wxData, wxCallbacks);
 
@@ -445,7 +442,6 @@ GameManager.prototype.share = function(){
           Api.generalShare(wxData,wxCallbacks);
 
   });
-
 };
 
 GameManager.prototype.list = function() {
@@ -460,19 +456,30 @@ GameManager.prototype.list = function() {
 		token = container.dataset['token'],
 		phone = $("#phone_number").val();
 
-	$.post("/post", {
-		_token: token,
-		name: name,
-		appid: appid,
-		score: score,
-		phone: phone,
-		type: 2048
-	}).fail(function () {
+	$.ajax({
+        url : "/game/public/post",
+        type : "post",
+        dataType : 'json',
+        contentType : "application/json",
+        data :JSON.stringify({
+            _token: token,
+            name: name,
+            appid: appid,
+            score: score,
+            phone: phone,
+            type: 2048
+        })
+    }).fail(function () {
 		alert("与服务器连接错误!");
 	}).complete(function (data) {
-		var template = _.template($("#list_template").html())({
-			list : data
+
+        var template = _.template($("#list_template").html())({
+			list : data.responseJSON
 		});
+
+        $(".list-container").html(template);
+        $(".game-message").hide();
+        $(".list-container").show();
 	});
 };
 
