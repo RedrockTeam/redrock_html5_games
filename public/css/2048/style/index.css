@@ -208,7 +208,7 @@ hr {
 	box-sizing: border-box;
 }
 .game-container .game-message {
-	display: block !important;
+	display: none;
 	position: absolute;
 	top: 0;
 	right: 0;
