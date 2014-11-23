@@ -418,6 +418,8 @@ GameManager.prototype.share = function(){
 		}).fail(function () {
 			alert("与服务器连接错误!");
 		}).complete(function (data) {
+            alert(1);
+
 			data = data.responseJSON;
 			var myPlace;
 
@@ -428,20 +430,21 @@ GameManager.prototype.share = function(){
 			});
 
 			myPlace = -1;
-
-			  WeixinApi.ready(function(Api) {
+            console.log(myPlace);
+			WeixinApi.ready(function(Api) {
 			      var container = document.querySelector(".container"),
 			          appid = container.dataset['appid'],
 			          imgUrl  = container.dataset['imgurl'],
 			          link  = container.dataset['link'],
 			          name = container.dataset['name'];
 
+                    myPlace = myPlace < 0 ? "N" : myPlace;
 			      // 微信分享的数据
 			      var wxData = {
 			          "appId": "2048", // 服务号可以填写appId
 			          "imgUrl" : imgUrl, // 二维码的地址
 			          "link" : link,
-			          "desc" : '我在“拼拼价值观”游戏中以' + time +  '时间，' + score + '积分取得了胜利，排名第' + myPlace < 0 ? "N" : myPlace,
+			          "desc" : "我在“拼拼价值观”游戏中以" + time +  "时间，" + score + '积分取得了胜利，排名第' + myPlace + "名",
 			          "title" : "拼拼价值观"
 			      };
 
