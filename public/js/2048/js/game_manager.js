@@ -398,7 +398,8 @@ GameManager.prototype.share = function(){
           _token : token,
           name : name,
           appid : appid,
-          score : score
+          score : score,
+	      type  : 2048
       }).fail(function(){
           alert("与服务器连接错误!");
       }).complete(function(){
