@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>拼拼价值观</title>
-    {{HTML::style("css/2048/style/main.css")}}
+    {{HTML::style("css/2048/style/index.css")}}
 <!--    HTML::my($url, $rel, $media); -->
     {{HTML::my("favicon/2048/favicon.ico","shortcut icon")}}
     {{HTML::my("meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
@@ -40,8 +40,10 @@
           <a class="share-button" style="display: none;">分享</a>
         </div>
       </div>
+        <div class="list-container">
+        </div>
       <script type="text/template" id="list_template">
-      <div class="list-container">
+
           <table class="list-table">
               <thead>
                 <tr>
@@ -113,22 +115,26 @@
 </body>
 <script>
 
- var input = $("#phone_number");
+var input = $("#phone_number");
 
-    input.on('change', function(){
-		var reg = /\d{11}/;
-
-		if(reg.test(this.value)){
-		    this.style.border = "1px solid #000";
-		    alert("手机号码填写正确, 现在点击分享按钮进行分享!");
-		    $(".list-button").show();
-		    $(".share-button").show();
-		}
-		else{
-		    this.style.border = "1px solid red";
+    input.on('touchstart', function(){
+        var value  = prompt("请输入手机号码");
+        var reg = /\d{11}/;
+        $("#phone_number").val(value);
+        if(reg.test(value)){
+            this.style.border = "1px solid #000";
+            $(".list-button").show();
+            $(".share-button").show();
+        }
+        else{
+            this.style.border = "1px solid red";
             $(".list-button").hide();
             $(".share-button").hide();
-		}
+        }
+    });
+
+    input.on('change', function(){
+
 	});
 
 </script>

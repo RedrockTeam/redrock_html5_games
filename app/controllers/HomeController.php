@@ -21,10 +21,10 @@ class HomeController extends BaseController {
 
 	  public function start($game)
       {
-          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
-          {
-              return Response::make("200", 200);
-          }
+//          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+//          {
+//              return Response::make("200", 200);
+//          }
 
           $_token = csrf_token();
           Session::put('_token',$_token);
