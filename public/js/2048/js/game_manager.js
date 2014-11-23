@@ -430,7 +430,6 @@ GameManager.prototype.share = function(){
 			});
 
 			myPlace = -1;
-            console.log(myPlace);
 			WeixinApi.ready(function(Api) {
 			      var container = document.querySelector(".container"),
 			          appid = container.dataset['appid'],
