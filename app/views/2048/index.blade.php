@@ -138,7 +138,7 @@
   <div id="share" style="display: none">
 
           <p id="Txtinput"><input type="text" placeholder="请输入手机号" id="phone_input"><span id="reply">提交</span></p>
-          <p class="copyright" style="margin-top: 170px;color: #333;">© 2014 红岩网校</p>
+          <p class="copyright" style="margin-top: 280px;color: #333;">© 2014 红岩网校</p>
   </div>
   {{HTML::script("js/2048/js/jquery.min.js")}}
   {{HTML::script("js/2048/js/underscore-min.js")}}

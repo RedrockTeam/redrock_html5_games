@@ -67,22 +67,23 @@ class HomeController extends BaseController {
                 $session_token = Session::get('_token');
                 $_token = $arr['_token'];
 
-                if( ! isset($arr['time']) || $arr['time'] == null)
-                {
-                    $arr['time'] = 0;
-                }
+//                if( !isset($arr['time']) || $arr['time'] == null)
+//                {
+//                    $arr['time'] = 0;
+//                }
 
                 if($session_token == $_token)
                 {
                     $data = array(
-                                    'telphone' => $arr['phone'],
+                                    'telphone' => trim($arr['phone']),
                                     'score'    => $arr['score'],
                                     'time'     => $arr['time'],
                                 );
                     $type = $arr['type'];
+                    $telphone = trim($arr['phone']);
                     if($this->save($data, $type))
                     {
-                        $position = $this->getPosition($type);
+                        $position = $this->getPosition($type, $telphone);
                         return Response::json($position);
                     }
                     else
@@ -107,15 +108,25 @@ class HomeController extends BaseController {
         }
 
 
-        private function getPosition($type ='2048')
+        private  function getPosition($type, $telphone)
         {
-            $data = DB::table($type)
-                    ->select('score', 'time', 'telphone')
-                    ->groupBy('telphone')
-                    ->orderBy('score', 'desc')
-                    ->take(5)
+
+            $score = DB::table($type)
+                    ->select('score','time')
+                    ->where('telphone', '=', $telphone)
+                     ->distinct()
                     ->get();
-            return $data;
+            $count = DB::table($type)
+                    ->where('score', '>', $score[0]->score)
+                    ->count();
+            $count1 = DB::table($type)
+                    ->where('score', '=', $score[0]->score)
+                    ->where('time', '<', $score[0]->time)
+                    ->count();
+
+            $data[0] = $count+1+$count1;
+
+         return $data;
         }
 
 

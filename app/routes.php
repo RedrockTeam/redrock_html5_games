@@ -25,3 +25,5 @@ Route::get("/{game}/2048_guide", function(){
 });
 
 Route::get("/{game}/2048_index", 'HomeController@start');
+
+
