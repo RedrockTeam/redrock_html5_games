@@ -34,28 +34,31 @@
 	        <a class="keep-playing-button">继续玩</a>
           <a class="retry-button">再来一次</a>
 
-          <a class="list-button">排行榜</a>
-          <a class="share-button">分享</a>
+          <a class="list-button" style="display: none;">排行榜</a>
+          <a class="share-button" style="display: none;">分享</a>
         </div>
       </div>
-      <!--<div class="list-container">-->
-          <!--<table class="list-table">-->
-              <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th>姓名</th>-->
-                    <!--<th>分数</th>-->
-                    <!--<th>排名</th>-->
-                <!--</tr>-->
-              <!--</thead>-->
-              <!--<tbody>-->
-                <!--<tr>-->
-                    <!--<td>董天成</td>-->
-                    <!--<td>23</td>-->
-                    <!--<td>1</td>-->
-                <!--</tr>-->
-              <!--</tbody>-->
-          <!--</table>-->
-      <!--</div>-->
+      <script type="text/template" id="list_template">
+      -<div class="list-container">
+          <table class="list-table">
+              <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>分数</th>
+                    <th>排名</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td><%= name %></td>
+                    <td><%= score %></td>
+                    <td><%= level %></td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+
+      </script>
      
       <div class="grid-container">
         <div class="grid-row">
@@ -103,4 +106,25 @@
   {{HTML::script("js/2048/js/game_manager.js")}}
   {{HTML::script("js/2048/js/application.js")}}
 </body>
+<script>
+
+ var input = $("#phone_number");
+
+    input.on('change', function(){
+		var reg = /\d{11}/;
+
+		if(reg.test(this.value)){
+		    this.style.border = "1px solid #000";
+		    alert("手机号码填写正确, 现在点击分享按钮进行分享!");
+		    $(".list-button").show();
+		    $(".share-button").show();
+		}
+		else{
+		    this.style.border = "1px solid red";
+            $(".list-button").hide();
+            $(".share-button").hide();
+		}
+	});
+
+</script>
 </html>
