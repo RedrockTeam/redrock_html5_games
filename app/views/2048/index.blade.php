@@ -136,7 +136,7 @@
     </div>
   </div>
   <div id="share" style="display: none">
-          <div id="reload">再来一次</div>
+
           <p id="Txtinput"><input type="text" placeholder="请输入手机号" id="phone_input"><span id="reply">提交</span></p>
           <p class="copyright" style="margin-top: 170px;color: #333;">© 2014 红岩网校</p>
   </div>
@@ -157,27 +157,7 @@
 </body>
 <script>
 
-    var input = $("#phone_number");
 
-    input.on('touchstart', function(){
-        var value  = prompt("请输入手机号码");
-        var reg = /\d{11}/;
-        $("#phone_number").val(value);
-        if(reg.test(value)){
-            this.style.border = "1px solid #000";
-            $(".list-button").show();
-            $(".share-button").show();
-        }
-        else{
-            this.style.border = "1px solid red";
-            $(".list-button").hide();
-            $(".share-button").hide();
-        }
-    });
-
-    input.on('change', function(){
-
-	});
 
 	$("#reload").on('click', function(){
 	    window.location.reload();

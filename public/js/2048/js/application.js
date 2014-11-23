@@ -12,6 +12,6 @@ window.requestAnimationFrame(function () {
   }
   // 开启微信API调试模式;
   WeixinApi.enableDebugMode();
-	new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, Timer);
+//	new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, Timer);
 
 });
