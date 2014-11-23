@@ -113,7 +113,7 @@ class HomeController extends BaseController {
                     ->select('score', 'time', 'telphone')
                     ->groupBy('telphone')
                     ->orderBy('score', 'desc')
-                    ->take(10)
+                    ->take(5)
                     ->get();
             return $data;
         }

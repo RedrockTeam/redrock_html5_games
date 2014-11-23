@@ -12,7 +12,7 @@ html{
 }
 
 .container .logo_container{
-	width: 21%;
+	width: 50%;
 	margin: 30px 0;
 }
 
@@ -35,14 +35,14 @@ html{
 }
 
 .container .content_container{
-	width: 95%;
+	width: 80%;
 	margin: 0 auto;
 	background: #fdefde;
-	height: 400px;
+	min-height: 300px;
 	padding: 15px;
 }
 
 .container .content_container p{
-	font-size: 28px;
+	font-size: 18px;
 	color: #716e6f;
 }

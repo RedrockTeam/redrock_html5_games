@@ -26,8 +26,8 @@
         </div>
 
         <div class="btn_container">
-            <a href="{{url("/start")}}"><img src="{{url("/images/start.png")}}" alt=""/></a>
-            <a href="{{url("/guide")}}"><img src="{{url("/images/guide.png")}}" alt=""/></a>
+            <a href="{{url("2048/2048_index")}}"><img src="{{url("/images/start.png")}}" alt=""/></a>
+            <a href="{{url("2048/2048_guide")}}"><img src="{{url("/images/guide.png")}}" alt=""/></a>
         </div>
 
 

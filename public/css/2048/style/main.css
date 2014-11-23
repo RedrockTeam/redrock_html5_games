@@ -2,7 +2,7 @@ body,
 html{
 	height: 100%;
 	background: #fdefde;
-	padding: 25px 0;
+	padding: 15px 0;
 }
 
 .container{
@@ -23,14 +23,19 @@ html{
 	margin-top: 50px;
 }
 
-.container .btn_container img{
+.container .btn_container a{
 	width: 100%;
-	margin: 25px;
+	margin: 25px 0;
+    display: block;
+}
+
+.container .btn_container a img{
+    width: 100%;
 }
 
 .container .logo_container{
-	width: 21%;
-	margin: 30px 0;
+	width: 50%;
+	margin: 20px 0;
 }
 
 .container .logo_container img{

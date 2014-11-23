@@ -395,12 +395,13 @@ GameManager.prototype.share = function(){
 
         // 微信分享的数据
         var wxData = {
+            "appId": "2048", // 服务号可以填写appId
             "imgUrl" : imgUrl, // 二维码的地址
             "link" : link,
-            "desc" : '2048大挑战: 哎呀, 我一不小心就玩到了..' + self.score + "分"
+            "desc" : '拼拼价值观: 哎呀, 我一不小心就玩到了..' + self.score + "分" ,
+            "title" : "拼拼价值观"
         };
 
-        alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/")
         // alert(wxData);
         // 分享的回调
         var wxCallbacks = {
@@ -440,7 +441,7 @@ GameManager.prototype.share = function(){
 
           // iOS上，可以直接调用这个API进行分享，一句话搞定
           Api.generalShare(wxData,wxCallbacks);
-
+        alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/");
   });
 };
 
