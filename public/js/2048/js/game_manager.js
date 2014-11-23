@@ -384,6 +384,7 @@ GameManager.prototype.positionsEqual = function (first, second) {
 
 GameManager.prototype.share = function(){
     var self = this;
+
     WeixinApi.ready(function(Api) {
         var time = self.timer.time,
         score = self.score,
@@ -392,13 +393,16 @@ GameManager.prototype.share = function(){
         imgUrl  = container.dataset['imgurl'],
         link  = container.dataset['link'],
         name = container.dataset['name'],
-        token = container.dataset['token'];
+        token = container.dataset['token'],
+	    phone = $("#phone_number").val();
+
 
       $.post("/post", {
           _token : token,
           name : name,
           appid : appid,
           score : score,
+	      phone : phone,
 	      type  : 2048
       }).fail(function(){
           alert("与服务器连接错误!");
