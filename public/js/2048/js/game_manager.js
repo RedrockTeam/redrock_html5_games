@@ -398,7 +398,7 @@ GameManager.prototype.share = function(){
           _token : token,
           name : name,
           appid : appid,
-          score : score
+          score : score,
       }).fail(function(){
           alert("与服务器连接错误!");
       }).complete(function(){
@@ -408,7 +408,7 @@ GameManager.prototype.share = function(){
               "appId": appid, // 服务号可以填写appId
               "imgUrl" : imgUrl, // 二维码的地址
               "link" : link,
-              "desc" : '2048大挑战: 哎呀, 我一不小心就玩到了..' + self.score + "." ,
+              "desc" : '拼拼价值观大挑战: 哎呀, 我一不小心就玩到了..' + self.score + "." ,
               "title" : "大家好，我是" + name + "."
           };
 

@@ -58,22 +58,66 @@ class HomeController extends BaseController {
 
         public function verify()
         {
-            if(Request::ajax())
+           if(Request::ajax() && Request::isJson())
             {
-                $value = Session::get('_token');
-                $_token = Input::get('_token');
-                if($value == $_token)
+                $arr = Input::all();
+                $session_token = Session::get('_token');
+                $_token = $arr['_token'];
+
+                if( ! isset($arr['time']) ||$arr['time'] == null)
                 {
-                    $this->
+                    $arr['time'] = 0;
+                }
+
+                if($session_token == $_token)
+                {
+                    $data = array(
+                                    'telphone' => $arr['phone'],
+                                    'score'    => $arr['score'],
+                                    'time'     => $arr['time'],
+                                );
+                    $type = $arr['type'];
+                    if($this->save($data, $type))
+                    {
+                        $position = $this->getPosition($type);
+                        return Response::json($position);
+                    }
+                    else
+                    {
+                        return Response::make('403', 403);
+                    }
+                }
+                else
+                {
+                    return Response::make('403', 403);
                 }
             }
             else
             {
-                return http_send_status(403);
+                return Response::make('403', 403);
             }
         }
 
+        private  function save($data, $type)
+        {
 
+            if(DB::table($type)->insert($data))
+                return true;
+            else
+                return false;
+        }
+
+
+        private function getPosition($type ='2048')
+        {
+            $data = DB::table($type)
+                    ->select('score', 'time', 'telphone')
+                    ->groupBy('telphone')
+                    ->orderBy('score', 'desc')
+                    ->take(10)
+                    ->get();
+            return $data;
+        }
 
 
 
