@@ -12,13 +12,14 @@ window.requestAnimationFrame(function () {
       }).fail(function(){
           alert('与服务器连接错误!');
       }).complete(function(){
-          new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, Timer);
+
       });
   }
   else{
-  	console.log("other browser");
+  	//alert("请用微信浏览器玩哦..");
   }
 
+	new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, Timer);
 
   // 开启微信API调试模式;
 //  WeixinApi.enableDebugMode();

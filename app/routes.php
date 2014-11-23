@@ -13,3 +13,14 @@
 
 Route::get('/{game}', 'HomeController@start');
 
+Route::get("/main", function(){
+	return View::make("2048.main");
+});
+
+Route::get("/", function(){
+	return View::make("2048.index");
+});
+
+Route::get("/guide", function(){
+	return View::make("2048.guide");
+});

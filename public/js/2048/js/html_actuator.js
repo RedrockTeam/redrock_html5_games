@@ -32,7 +32,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 
 		// 更新分数
 		self.updateScore(metadata.score);
-		self.updateBestScore(metadata.bestScore);
+		//self.updateBestScore(metadata.bestScore);
 
 
 		// 游戏结束
@@ -62,7 +62,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 HTMLActuator.prototype.nameArray = function(value){
 	var arr = ["富强","民主","文明","和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善"];
 
-	var index = parseInt(Math.log2(value));
+	var index = parseInt(Math.log(value) / Math.log(2));
 
 	if(index > arr.length){
 		return -1;
@@ -137,8 +137,6 @@ HTMLActuator.prototype.showTime = function(time){
 		minutes = parseInt(time / 60),
 		second = time % 60;
 
-	console.log(time);
-
 
 	var time = ( minutes >= 10 ? minutes : "0" + minutes ) + " : " + (second >= 10 ? second : "0" + second);
 
@@ -178,9 +176,9 @@ HTMLActuator.prototype.updateScore = function (score) {
 	}
 };
 
-HTMLActuator.prototype.updateBestScore = function (bestScore) {
-	this.bestContainer.textContent = bestScore;
-};
+//HTMLActuator.prototype.updateBestScore = function (bestScore) {
+//	this.bestContainer.textContent = bestScore;
+//};
 
 // 游戏结束后显示的信息
 HTMLActuator.prototype.message = function (won) {
