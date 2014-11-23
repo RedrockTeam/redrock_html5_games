@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <title>拼拼价值观</title>
     {{HTML::style("css/2048/style/index.css")}}
-<!--    HTML::my($url, $rel, $media); -->
     {{HTML::my("favicon/2048/favicon.ico","shortcut icon")}}
     {{HTML::my("meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
     {{ HTML::my("meta/2048/meta/apple-touch-startup-image-640x1096.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)") }}<!-- iPhone 5+ -->
@@ -16,6 +15,45 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <style>
+     #Txtinput {
+                margin-top: 100px;
+                text-align: center;
+            }
+             #phone_input{
+                background: url("st.png")left center no-repeat #ffffff;
+                display: inline-block;
+                padding-left: 25px;
+                box-shadow: 0 0 0 -5px #cccccc;
+                height: 30px;
+                width: 150px;
+                border-radius: 3px;
+                border: 0;
+            }
+            #reply{
+                display: inline-block;
+                margin-left: 10px;
+                width: 50px;
+                height: 25px;
+                line-height: 25px;
+                text-align: center;
+                color: #ffffff;
+                font-weight: 800;
+                cursor: pointer;
+                background: #ffba00;
+                border-radius: 5px;
+                border: 2px solid #ffe83f;
+            }
+            #share{
+                margin: 0 auto;
+                background: url("{{url("/images/share.jpg")}}") center;
+                width: 320px;
+                height: 480px;
+                /*display: none;*/
+                text-align: center;
+            }
+
+  </style>
 </head>
 <body>
   <div class="container" data-token="{{$arr['_token']}}"  data-imgUrl="{{$arr['path']}}" data-link="{{$arr['url']}}">
@@ -32,12 +70,11 @@
       <div class="game-message">
         <p>哎呀, 又输了</p>
         <div class="lower">
-           <input type="text" id="phone_number" value="" placeholder="填入手机号码即可分享"/>
 	        <a class="keep-playing-button">继续玩</a>
           <a class="retry-button">再来一次</a>
 
-          <a class="list-button" style="display: none;">排行榜</a>
-          <a class="share-button" style="display: none;">分享</a>
+          <a class="list-button">排行榜</a>
+          <a class="share-button">分享</a>
         </div>
       </div>
         <div class="list-container">
@@ -65,7 +102,7 @@
       </div>
 
       </script>
-     
+
       <div class="grid-container">
         <div class="grid-row">
           <div class="grid-cell"></div>
@@ -98,6 +135,11 @@
       </div>
     </div>
   </div>
+  <div id="share" style="display: none">
+          <div id="reload">再来一次</div>
+          <p id="Txtinput"><input type="text" placeholder="请输入手机号" id="phone_input"><span id="reply">提交</span></p>
+          <p class="copyright" style="margin-top: 170px;color: #333;">© 2014 红岩网校</p>
+  </div>
   {{HTML::script("js/2048/js/jquery.min.js")}}
   {{HTML::script("js/2048/js/underscore-min.js")}}
   {{HTML::script("js/2048/js/WeixinApi.js")}}
@@ -115,7 +157,7 @@
 </body>
 <script>
 
-var input = $("#phone_number");
+    var input = $("#phone_number");
 
     input.on('touchstart', function(){
         var value  = prompt("请输入手机号码");
@@ -135,6 +177,10 @@ var input = $("#phone_number");
 
     input.on('change', function(){
 
+	});
+
+	$("#reload").on('click', function(){
+	    window.location.reload();
 	});
 
 </script>
