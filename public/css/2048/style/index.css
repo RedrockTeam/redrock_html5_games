@@ -209,7 +209,7 @@ hr {
 }
 
 .game-container .game-message {
-	display: none;
+	display: block !important;
 	position: absolute;
 	top: 0;
 	right: 0;
