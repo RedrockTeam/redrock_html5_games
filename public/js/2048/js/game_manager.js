@@ -401,7 +401,6 @@ GameManager.prototype.share = function(){
 
 	$("#reply").on("click", function(){
 		var phone = $("#phone_input").val();
-
 		$.ajax({
 			url : "/game/public/post",
 			type : "post",
@@ -413,23 +412,23 @@ GameManager.prototype.share = function(){
 				appid: appid,
 				score: score,
 				phone: phone,
+                time : time,
 				type: 2048
 			})
 		}).fail(function () {
 			alert("与服务器连接错误!");
 		}).complete(function (data) {
-            alert(1);
-
+            console.log(data);
 			data = data.responseJSON;
 			var myPlace;
+//
+//			data.forEach(function(value, index){
+//				if(value.telphone == phone){
+//					myPlace = index + 1;
+//				}
+//			});
 
-			data.forEach(function(value, index){
-				if(value.telphone == phone){
-					myPlace = index + 1;
-				}
-			});
-
-			myPlace = -1;
+			myPlace = data[0];
 			WeixinApi.ready(function(Api) {
 			      var container = document.querySelector(".container"),
 			          appid = container.dataset['appid'],
@@ -437,7 +436,7 @@ GameManager.prototype.share = function(){
 			          link  = container.dataset['link'],
 			          name = container.dataset['name'];
 
-                    myPlace = myPlace < 0 ? "N" : myPlace;
+//                    myPlace = myPlace < 0 ? "N" : myPlace;
 			      // 微信分享的数据
 			      var wxData = {
 			          "appId": "2048", // 服务号可以填写appId
