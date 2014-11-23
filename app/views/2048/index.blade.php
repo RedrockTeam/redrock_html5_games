@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <title>2048</title>
     {{HTML::style("css/2048/style/main.css")}}
-  <link rel="shortcut icon" href="{{public_path()}}/favicon/2048/favicon.ico">
-  <link rel="apple-touch-icon" href="{{public_path()}}/meta/2048/meta/apple-touch-icon.png">
-  <link rel="apple-touch-startup-image" href="{{public_path()}}/meta/2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
-  <link rel="apple-touch-startup-image" href="{{public_path()}}/meta/2048/meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
+<!--    HTML::my($url, $rel, $media); -->
+    {{HTML::my("favicon/2048/favicon.ico","shortcut icon")}}
+    {{HTML::my("meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
+    {{ HTML::my("meta/2048/meta/apple-touch-startup-image-640x1096.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)") }}<!-- iPhone 5+ -->
+    {{HTML::my("meta/2048/meta/apple-touch-startup-image-640x920.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")}}
+ <!-- iPhone, retina -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -16,7 +18,7 @@
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
-  <div class="container" data-token="sdasdds" data-app-id="123123" data-imgUrl="http://www.baidufe.com/fe/blog/static/img/weixin-qrcode-2.jpg" data-link="http://baidu.com" data-name="董天成">
+  <div class="container" data-token="{{$arr['_token']}}" data-app-id="123123" data-imgUrl="{{$arr['path']}}" data-link="{{$arr['url']}}" data-name="董天成">
     <div class="heading">
       <h1 class="title">2048</h1>
       <div class="scores-container">

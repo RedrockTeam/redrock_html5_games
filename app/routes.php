@@ -13,3 +13,4 @@
 
 Route::get('/{game}', 'HomeController@start');
 
+Route::post('/post', 'HomeController@verify');

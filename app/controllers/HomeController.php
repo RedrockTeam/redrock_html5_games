@@ -21,40 +21,57 @@ class HomeController extends BaseController {
 
 	  public function start($game)
       {
+          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+          {
+              return Response::make("200", 200);
+          }
+
+          $_token = csrf_token();
+          Session::put('_token',$_token);
+
+          $arr = array(
+                        '_token' => $_token,
+                        'url'    => URL::current(),
+                        'path'   => URL::asset('pic/2048.png'),
+                      );
+
           switch($game)
           {
               case 'run':
                   return 'ok';
                   break;
+
               case 'sun':
                   return 'ok';
                   break;
+
               case '2048':
-                  return View::make('2048.index');
+                 return View::make('2048.index')->with("arr", $arr);
                   break;
+
               default:
                   return Response::make("Page not found", 404);
                   break;
           }
-           // http_send_status()
-          $_token = csrf_token();
 
-          Session::put('_token',$_token);
-
-          //return View::make()->with($arr);
       }
 
-
-    public function verify_browser()
-    {
-
-            if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+        public function verify()
+        {
+            if(Request::ajax())
             {
-                return true;
+                $value = Session::get('_token');
+                $_token = Input::get('_token');
+                if($value == $_token)
+                {
+                    $this->
+                }
             }
-                return false;
-
-    }
+            else
+            {
+                return http_send_status(403);
+            }
+        }
 
 
 
