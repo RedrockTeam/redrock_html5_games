@@ -23,49 +23,46 @@
       <h1 class="title">拼拼价值观</h1>
       <div class="scores-container">
         <div class="score-container">0</div>
-        <div class="best-container">0</div>
       </div>
         <div class="time-container">00 : 00</div>
         <a class="restart-button">新游戏</a>
-       
     </div>
 
     <div class="game-container">
       <div class="game-message">
-        <p></p>
+        <p>哎呀, 又输了</p>
         <div class="lower">
+           <input type="text" id="phone_number" value="" placeholder="填入手机号码即可分享"/>
 	        <a class="keep-playing-button">继续玩</a>
           <a class="retry-button">再来一次</a>
-            <a class="list-button">排行榜</a>
-         <a class="share-button">分享</a>
+
+          <a class="list-button" style="display: none;">排行榜</a>
+          <a class="share-button" style="display: none;">分享</a>
         </div>
       </div>
-        <!--<div class="game-info">-->
-            <!--<h2>游戏注意事项</h2>-->
-            <!--<p>啦啦啦, 2048玩玩玩</p>-->
-            <!--<div class="btn-container">-->
-            <!--<a class="start-button">开始</a>-->
-            <!--</div>-->
-        <!--</div>
-  -->
-      <!--<div class="list-container">-->
-          <!--<table class="list-table">-->
-              <!--<thead>-->
-                <!--<tr>-->
-                    <!--<th>姓名</th>-->
-                    <!--<th>分数</th>-->
-                    <!--<th>排名</th>-->
-                <!--</tr>-->
-              <!--</thead>-->
-              <!--<tbody>-->
-                <!--<tr>-->
-                    <!--<td>董天成</td>-->
-                    <!--<td>23</td>-->
-                    <!--<td>1</td>-->
-                <!--</tr>-->
-              <!--</tbody>-->
-          <!--</table>-->
-      <!--</div>-->
+      <script type="text/template" id="list_template">
+      <div class="list-container">
+          <table class="list-table">
+              <thead>
+                <tr>
+                    <th>电话</th>
+                    <th>分数</th>
+                    <th>排名</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% list.forEach(function(value, index){ %>
+                    <tr>
+                        <td><%= value.telphone %></td>
+                        <td><%= value.score %></td>
+                        <td><%= index + 1 %></td>
+                    </tr>
+                <% }); %>
+              </tbody>
+          </table>
+      </div>
+
+      </script>
      
       <div class="grid-container">
         <div class="grid-row">
@@ -100,6 +97,7 @@
     </div>
   </div>
   {{HTML::script("js/2048/js/jquery.min.js")}}
+  {{HTML::script("js/2048/js/underscore-min.js")}}
   {{HTML::script("js/2048/js/WeixinApi.js")}}
   {{HTML::script("js/2048/js/timer.js")}}
   {{HTML::script("js/2048/js/bind_polyfill.js")}}
@@ -113,4 +111,25 @@
   {{HTML::script("js/2048/js/game_manager.js")}}
   {{HTML::script("js/2048/js/application.js")}}
 </body>
+<script>
+
+ var input = $("#phone_number");
+
+    input.on('change', function(){
+		var reg = /\d{11}/;
+
+		if(reg.test(this.value)){
+		    this.style.border = "1px solid #000";
+		    alert("手机号码填写正确, 现在点击分享按钮进行分享!");
+		    $(".list-button").show();
+		    $(".share-button").show();
+		}
+		else{
+		    this.style.border = "1px solid red";
+            $(".list-button").hide();
+            $(".share-button").hide();
+		}
+	});
+
+</script>
 </html>
