@@ -72,37 +72,12 @@
         <div class="lower">
 	        <a class="keep-playing-button">继续玩</a>
           <a class="retry-button">再来一次</a>
-
-          <a class="list-button">排行榜</a>
           <a class="share-button">分享</a>
         </div>
       </div>
         <div class="list-container">
         </div>
-      <script type="text/template" id="list_template">
-
-          <table class="list-table">
-              <thead>
-                <tr>
-                    <th>电话</th>
-                    <th>分数</th>
-                    <th>排名</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% list.forEach(function(value, index){ %>
-                    <tr>
-                        <td><%= value.telphone %></td>
-                        <td><%= value.score %></td>
-                        <td><%= index + 1 %></td>
-                    </tr>
-                <% }); %>
-              </tbody>
-          </table>
-      </div>
-
-      </script>
-
+      
       <div class="grid-container">
         <div class="grid-row">
           <div class="grid-cell"></div>
