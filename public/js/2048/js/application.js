@@ -69,7 +69,6 @@ window.requestAnimationFrame(function () {
 
 		// iOS上，可以直接调用这个API进行分享，一句话搞定
 		Api.generalShare(wxData,wxCallbacks);
-		alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/");
 	});
 
 });
