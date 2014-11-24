@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>2048</title>
+  <title>欢迎使用践行＂社会主义核心价值观＂游戏----拼拼价值观</title>
     {{HTML::style("css/2048/style/main.css")}}
   <link rel="shortcut icon" href="{{url("/favicon/2048/favicon.ico")}}">
   <link rel="apple-touch-icon" href="{{url("/meta/2048/meta/apple-touch-icon.png")}}">
