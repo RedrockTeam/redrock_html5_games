@@ -6,7 +6,7 @@ function GameManager(size, InputManager, Actuator, StorageManager, Timer) {
   // 输入管理器
     this.inputManager   = new InputManager;
   // 存储管理器
-    this.storageManager = new StorageManager;
+  //  this.storageManager = new StorageManager;
   // 动作管理器
   this.actuator       = new Actuator;
 
@@ -29,23 +29,23 @@ function GameManager(size, InputManager, Actuator, StorageManager, Timer) {
 GameManager.prototype.timeup = function(){
   this.over = true;
     // 如果份得分大于最高分..那么就设置最高分
-  if (this.storageManager.getBestScore() < this.score) {
-    this.storageManager.setBestScore(this.score);
-  }
+  //if (this.storageManager.getBestScore() < this.score) {
+  //  this.storageManager.setBestScore(this.score);
+  //}
 
   // Clear the state when the game is over (game over only, not win)
     // 游戏结束,游戏状态
-  if (this.over) {
-    this.storageManager.clearGameState();
-  } else {
-    this.storageManager.setGameState(this.serialize());
-  }
+  //if (this.over) {
+  //  this.storageManager.clearGameState();
+  //} else {
+  //  this.storageManager.setGameState(this.serialize());
+  //}
 
   this.actuator.actuate(this.grid, {
     score:      this.score,
     over:       this.over,
     won:        this.won,
-    bestScore:  this.storageManager.getBestScore(),
+    //bestScore:  this.storageManager.getBestScore(),
     terminated: this.isGameTerminated()
   });
 };
@@ -60,7 +60,7 @@ GameManager.prototype.tickAction = function(time){
 GameManager.prototype.restart = function () {
     $(".list-container").hide();
   this.timer.stop();
-  this.storageManager.clearGameState();
+  //this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
 };
@@ -80,7 +80,7 @@ GameManager.prototype.isGameTerminated = function () {
 // 游戏初始化
 GameManager.prototype.setup = function () {
     // 上一次的游戏状态
-  var previousState = this.storageManager.getGameState();
+  //var previousState = this.storageManager.getGameState();
 
   // Reload the game from a previous game if present
     // 如果有上一次记录..那么就加载上一次保存的存档
@@ -129,25 +129,25 @@ GameManager.prototype.addRandomTile = function () {
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
     // 如果份得分大于最高分..那么就设置最高分
-  if (this.storageManager.getBestScore() < this.score) {
-    this.storageManager.setBestScore(this.score);
-  }
+  //if (this.storageManager.getBestScore() < this.score) {
+  //  this.storageManager.setBestScore(this.score);
+  //}
 
   // Clear the state when the game is over (game over only, not win)
     // 游戏结束,游戏状态
-  if (this.over) {
-
-    this.storageManager.clearGameState();
-  } else {
-    this.storageManager.setGameState(this.serialize());
-  }
+  //if (this.over) {
+  //
+  //  //this.storageManager.clearGameState();
+  //} else {
+  //  this.storageManager.setGameState(this.serialize());
+  //}
 
 
   this.actuator.actuate(this.grid, {
     score:      this.score,
     over:       this.over,
     won:        this.won,
-    bestScore:  this.storageManager.getBestScore(),
+    //bestScore:  this.storageManager.getBestScore(),
     terminated: this.isGameTerminated()
   });
 
