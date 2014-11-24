@@ -48,7 +48,7 @@
         			"appId": "2048", // 服务号可以填写appId
         			"imgUrl" : imgUrl, // 二维码的地址
         			"link" : link,
-        			"desc" : "我在“拼拼价值观”游戏中以" + time +  "秒时间，" + score + '积分取得了胜利',
+        			"desc" : "欢迎来到拼拼核心价值观",
         			"title" : "拼拼价值观"
         		};
 
