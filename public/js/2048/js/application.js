@@ -10,8 +10,10 @@ window.requestAnimationFrame(function () {
   else{
   	alert("请用微信浏览器玩哦..");
   }
+
+
   // 开启微信API调试模式;
-//  WeixinApi.enableDebugMode();
+  //  WeixinApi.enableDebugMode();
 
 	WeixinApi.ready(function(Api) {
 		var container = document.querySelector(".container"),
@@ -20,8 +22,9 @@ window.requestAnimationFrame(function () {
 			link  = container.dataset['link'],
 			name = container.dataset['name'];
 
-//                    myPlace = myPlace < 0 ? "N" : myPlace;
-		// 微信分享的数据
+  //    myPlace = myPlace < 0 ? "N" : myPlace;
+  //    微信分享的数据
+
 		var wxData = {
 			"appId": "2048", // 服务号可以填写appId
 			"imgUrl" : imgUrl, // 二维码的地址
