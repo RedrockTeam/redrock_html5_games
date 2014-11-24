@@ -6,7 +6,7 @@ function GameManager(size, InputManager, Actuator, StorageManager, Timer) {
   // 输入管理器
     this.inputManager   = new InputManager;
   // 存储管理器
-    this.storageManager = new StorageManager;
+  //  this.storageManager = new StorageManager;
   // 动作管理器
   this.actuator       = new Actuator;
 
@@ -29,23 +29,23 @@ function GameManager(size, InputManager, Actuator, StorageManager, Timer) {
 GameManager.prototype.timeup = function(){
   this.over = true;
     // 如果份得分大于最高分..那么就设置最高分
-  if (this.storageManager.getBestScore() < this.score) {
-    this.storageManager.setBestScore(this.score);
-  }
+  //if (this.storageManager.getBestScore() < this.score) {
+  //  this.storageManager.setBestScore(this.score);
+  //}
 
   // Clear the state when the game is over (game over only, not win)
     // 游戏结束,游戏状态
-  if (this.over) {
-    this.storageManager.clearGameState();
-  } else {
-    this.storageManager.setGameState(this.serialize());
-  }
+  //if (this.over) {
+  //  this.storageManager.clearGameState();
+  //} else {
+  //  this.storageManager.setGameState(this.serialize());
+  //}
 
   this.actuator.actuate(this.grid, {
     score:      this.score,
     over:       this.over,
     won:        this.won,
-    bestScore:  this.storageManager.getBestScore(),
+    //bestScore:  this.storageManager.getBestScore(),
     terminated: this.isGameTerminated()
   });
 };
@@ -58,8 +58,9 @@ GameManager.prototype.tickAction = function(time){
 // Restart the game
 // 重启游戏
 GameManager.prototype.restart = function () {
+    $(".list-container").hide();
   this.timer.stop();
-  this.storageManager.clearGameState();
+  //this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
 };
@@ -79,18 +80,18 @@ GameManager.prototype.isGameTerminated = function () {
 // 游戏初始化
 GameManager.prototype.setup = function () {
     // 上一次的游戏状态
-  var previousState = this.storageManager.getGameState();
+  //var previousState = this.storageManager.getGameState();
 
   // Reload the game from a previous game if present
     // 如果有上一次记录..那么就加载上一次保存的存档
-  if (previousState) {
-    this.grid        = new Grid(previousState.grid.size,
-                                previousState.grid.cells); // Reload grid
-    this.score       = previousState.score;
-    this.over        = previousState.over;
-    this.won         = previousState.won;
-    this.keepPlaying = previousState.keepPlaying;
-  } else {
+  //if (previousState) {
+  //  this.grid        = new Grid(previousState.grid.size,
+  //                              previousState.grid.cells); // Reload grid
+  //  this.score       = previousState.score;
+  //  this.over        = previousState.over;
+  //  this.won         = previousState.won;
+  //  this.keepPlaying = previousState.keepPlaying;
+  //} else {
     this.grid        = new Grid(this.size);
     this.score       = 0;
     this.over        = false;
@@ -99,7 +100,7 @@ GameManager.prototype.setup = function () {
 
     // Add the initial tiles
     this.addStartTiles();
-  }
+  //}
 
   // Update the actuator
   this.actuate();
@@ -128,25 +129,25 @@ GameManager.prototype.addRandomTile = function () {
 // Sends the updated grid to the actuator
 GameManager.prototype.actuate = function () {
     // 如果份得分大于最高分..那么就设置最高分
-  if (this.storageManager.getBestScore() < this.score) {
-    this.storageManager.setBestScore(this.score);
-  }
+  //if (this.storageManager.getBestScore() < this.score) {
+  //  this.storageManager.setBestScore(this.score);
+  //}
 
   // Clear the state when the game is over (game over only, not win)
     // 游戏结束,游戏状态
-  if (this.over) {
-
-    this.storageManager.clearGameState();
-  } else {
-    this.storageManager.setGameState(this.serialize());
-  }
+  //if (this.over) {
+  //
+  //  //this.storageManager.clearGameState();
+  //} else {
+  //  this.storageManager.setGameState(this.serialize());
+  //}
 
 
   this.actuator.actuate(this.grid, {
     score:      this.score,
     over:       this.over,
     won:        this.won,
-    bestScore:  this.storageManager.getBestScore(),
+    //bestScore:  this.storageManager.getBestScore(),
     terminated: this.isGameTerminated()
   });
 
@@ -383,82 +384,274 @@ GameManager.prototype.positionsEqual = function (first, second) {
 // 游戏分享
 
 GameManager.prototype.share = function(){
-    var self = this;
-    WeixinApi.ready(function(Api) {
-        var time = self.timer.time,
-        score = self.score,
-        container = document.querySelector(".container"),
-        appid = container.dataset['appid'],
-        imgUrl  = container.dataset['imgurl'],
-        link  = container.dataset['link'],
-        name = container.dataset['name'],
-        token = container.dataset['token'];
+    var self = this,
+	    time = self.timer.time,
+	    score = self.score,
+	    container = document.querySelector(".container"),
+	    appid = container.dataset['appid'],
+	    imgUrl = container.dataset['imgurl'],
+	    link = container.dataset['link'],
+	    name = container.dataset['name'],
+	    token = container.dataset['token'],
+	    phone = $("#phone_number").val();
 
-      $.post("/post", {
-          _token : token,
-          name : name,
-          appid : appid,
-          score : score
-      }).fail(function(){
-          alert("与服务器连接错误!");
-      }).complete(function(){
+	$(".container").hide();
+	$("#share").show();
 
-          // 微信分享的数据
-          var wxData = {
-              "appId": appid, // 服务号可以填写appId
-              "imgUrl" : imgUrl, // 二维码的地址
-              "link" : link,
-              "desc" : '2048大挑战: 哎呀, 我一不小心就玩到了..' + self.score + "." ,
-              "title" : "大家好，我是" + name + "."
-          };
+	WeixinApi.ready(function(Api) {
+		var container = document.querySelector(".container"),
+			appid = container.dataset['appid'],
+			imgUrl  = container.dataset['imgurl'],
+			link  = container.dataset['link'],
+			name = container.dataset['name'];
 
-          // 分享的回调
-          var wxCallbacks = {
-              // 分享操作开始之前
-              ready : function() {
-                  // 你可以在这里对分享的数据进行重组
-                  alert("准备分享");
-              },
-              // 分享被用户自动取消
-              cancel : function(resp) {
-                  // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
-                  alert("分享被取消，msg=" + resp.err_msg);
-              },
-              // 分享失败了
-              fail : function(resp) {
-                  // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
-                  alert("分享失败，msg=" + resp.err_msg);
-              },
-              // 分享成功
-              confirm : function(resp) {
-                  // 分享成功了，我们是不是可以做一些分享统计呢？
-                  alert("分享成功，msg=" + resp.err_msg);
-              },
-              // 整个分享过程结束
-              all : function(resp,shareTo) {
-                  // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
-                  alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
-              }
-          };
+//                    myPlace = myPlace < 0 ? "N" : myPlace;
+		// 微信分享的数据
+		var wxData = {
+			"appId": "2048", // 服务号可以填写appId
+			"imgUrl" : imgUrl, // 二维码的地址
+			"link" : link,
+			"desc" : "我在“拼拼价值观”游戏中以" + time +  "秒时间，" + score + '积分取得了胜利',
+			"title" : "拼拼价值观"
+		};
 
-          // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
-          Api.shareToFriend(wxData, wxCallbacks);
+		// alert(wxData);
+		// 分享的回调
+		var wxCallbacks = {
+			// 分享操作开始之前
+			ready : function() {
+				// 你可以在这里对分享的数据进行重组
+			},
+			// 分享被用户自动取消
+			cancel : function(resp) {
+				// 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+				alert("o(>﹏<)o 为什么要取消呢？");
+			},
+			// 分享失败了
+			fail : function(resp) {
+				// 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+				alert("哎呀，o(>﹏<)o失败了");
+			},
+			// 分享成功
+			confirm : function(resp) {
+				// 分享成功了，我们是不是可以做一些分享统计呢？
+				alert("分享成功，<(￣▽￣)>");
+			},
+			// 整个分享过程结束
+			all : function(resp,shareTo) {
+				// 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+				// alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+			}
+		};
+		// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+		Api.shareToFriend(wxData, wxCallbacks);
 
-          // 点击分享到朋友圈，会执行下面这个代码
-          Api.shareToTimeline(wxData, wxCallbacks);
+		// 点击分享到朋友圈，会执行下面这个代码
+		Api.shareToTimeline(wxData, wxCallbacks);
 
-          // 点击分享到腾讯微博，会执行下面这个代码
-          Api.shareToWeibo(wxData, wxCallbacks);
+		// 点击分享到腾讯微博，会执行下面这个代码
+		Api.shareToWeibo(wxData, wxCallbacks);
 
-          // iOS上，可以直接调用这个API进行分享，一句话搞定
-          Api.generalShare(wxData,wxCallbacks);
-      });
-  });
+		// iOS上，可以直接调用这个API进行分享，一句话搞定
+		Api.generalShare(wxData,wxCallbacks);
+		alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/");
+	});
+
+
+	$("#reply").on("click", function(){
+		var phone = $("#phone_input").val();
+
+		if(! phone){
+			WeixinApi.ready(function(Api) {
+				var container = document.querySelector(".container"),
+					appid = container.dataset['appid'],
+					imgUrl  = container.dataset['imgurl'],
+					link  = container.dataset['link'],
+					name = container.dataset['name'];
+
+//                    myPlace = myPlace < 0 ? "N" : myPlace;
+				// 微信分享的数据
+				var wxData = {
+					"appId": "2048", // 服务号可以填写appId
+					"imgUrl" : imgUrl, // 二维码的地址
+					"link" : link,
+					"desc" : "我在“拼拼价值观”游戏中以" + time +  "秒时间，" + score + '积分取得了胜利',
+					"title" : "拼拼价值观"
+				};
+
+				// alert(wxData);
+				// 分享的回调
+				var wxCallbacks = {
+					// 分享操作开始之前
+					ready : function() {
+						// 你可以在这里对分享的数据进行重组
+					},
+					// 分享被用户自动取消
+					cancel : function(resp) {
+						// 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+						alert("o(>﹏<)o 为什么要取消呢？");
+					},
+					// 分享失败了
+					fail : function(resp) {
+						// 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+						alert("哎呀，o(>﹏<)o失败了");
+					},
+					// 分享成功
+					confirm : function(resp) {
+						// 分享成功了，我们是不是可以做一些分享统计呢？
+						alert("分享成功，<(￣▽￣)>");
+					},
+					// 整个分享过程结束
+					all : function(resp,shareTo) {
+						// 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+						// alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+					}
+				};
+				// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+				Api.shareToFriend(wxData, wxCallbacks);
+
+				// 点击分享到朋友圈，会执行下面这个代码
+				Api.shareToTimeline(wxData, wxCallbacks);
+
+				// 点击分享到腾讯微博，会执行下面这个代码
+				Api.shareToWeibo(wxData, wxCallbacks);
+
+				// iOS上，可以直接调用这个API进行分享，一句话搞定
+				Api.generalShare(wxData,wxCallbacks);
+				alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/");
+			});
+		}
+		else{
+			$.ajax({
+				url : "/game/public/post",
+				type : "post",
+				dataType : 'json',
+				contentType : "application/json",
+				data :JSON.stringify({
+					_token: token,
+					name: name,
+					appid: appid,
+					score: score,
+					phone: phone,
+					time : time,
+					type: 2048
+				})
+			}).fail(function () {
+				alert("与服务器连接错误!");
+			}).complete(function (data) {
+				console.log(data);
+				data = data.responseJSON;
+				var myPlace;
+//
+//			data.forEach(function(value, index){
+//				if(value.telphone == phone){
+//					myPlace = index + 1;
+//				}
+//			});
+
+				myPlace = data[0];
+				WeixinApi.ready(function(Api) {
+					var container = document.querySelector(".container"),
+						appid = container.dataset['appid'],
+						imgUrl  = container.dataset['imgurl'],
+						link  = container.dataset['link'],
+						name = container.dataset['name'];
+
+//                    myPlace = myPlace < 0 ? "N" : myPlace;
+					// 微信分享的数据
+					var wxData = {
+						"appId": "2048", // 服务号可以填写appId
+						"imgUrl" : imgUrl, // 二维码的地址
+						"link" : link,
+						"desc" : "我在“拼拼价值观”游戏中以" + time +  "秒时间，" + score + '积分取得了胜利，排名第' + myPlace + "名",
+						"title" : "拼拼价值观"
+					};
+
+					// alert(wxData);
+					// 分享的回调
+					var wxCallbacks = {
+						// 分享操作开始之前
+						ready : function() {
+							// 你可以在这里对分享的数据进行重组
+						},
+						// 分享被用户自动取消
+						cancel : function(resp) {
+							// 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+							alert("o(>﹏<)o 为什么要取消呢？");
+						},
+						// 分享失败了
+						fail : function(resp) {
+							// 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+							alert("哎呀，o(>﹏<)o失败了");
+						},
+						// 分享成功
+						confirm : function(resp) {
+							// 分享成功了，我们是不是可以做一些分享统计呢？
+							alert("分享成功，<(￣▽￣)>");
+						},
+						// 整个分享过程结束
+						all : function(resp,shareTo) {
+							// 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+							// alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+						}
+					};
+					// 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+					Api.shareToFriend(wxData, wxCallbacks);
+
+					// 点击分享到朋友圈，会执行下面这个代码
+					Api.shareToTimeline(wxData, wxCallbacks);
+
+					// 点击分享到腾讯微博，会执行下面这个代码
+					Api.shareToWeibo(wxData, wxCallbacks);
+
+					// iOS上，可以直接调用这个API进行分享，一句话搞定
+					Api.generalShare(wxData,wxCallbacks);
+					alert("内容已经粘贴到粘贴板， 快点击右上角的按钮分享吧！(≧▽≦)/");
+				});
+			});
+		}
+	});
+
 
 };
 
-GameManager.prototype.list = function(){
-  console.log("list");
+GameManager.prototype.list = function() {
+	var self = this,
+		time = self.timer.time,
+		score = self.score,
+		container = document.querySelector(".container"),
+		appid = container.dataset['appid'],
+		imgUrl = container.dataset['imgurl'],
+		link = container.dataset['link'],
+		name = container.dataset['name'],
+		token = container.dataset['token'],
+		phone = $("#phone_number").val();
+
+	$.ajax({
+        url : "/game/public/post",
+        type : "post",
+        dataType : 'json',
+        contentType : "application/json",
+        data :JSON.stringify({
+            _token: token,
+            name: name,
+            appid: appid,
+            score: score,
+            phone: phone,
+            type: 2048
+        })
+    }).fail(function () {
+		alert("与服务器连接错误!");
+	}).complete(function (data) {
+
+        var template = _.template($("#list_template").html())({
+			list : data.responseJSON
+		});
+
+        $(".list-container").html(template);
+        $(".game-message").hide();
+        $(".list-container").show();
+	});
 };
 
 

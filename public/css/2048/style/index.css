@@ -9,12 +9,15 @@ html, body {
 	font-size: 18px;
 }
 
+
+
 body {
 	margin: 80px 0;
 }
 
 .heading{
 	position: relative;
+	margin-top: 15%;
 
 }
 .heading:after {
@@ -24,7 +27,8 @@ body {
 }
 
 h1.title {
-	font-size: 80px;
+	font-size: 45px;
+	line-height: 3;
 	font-weight: bold;
 	margin: 0;
 	display: block;
@@ -135,7 +139,7 @@ a {
 	color: #776e65;
 	font-weight: bold;
 	text-decoration: underline;
-	cursor: pointer;
+	
 }
 
 strong.important {
@@ -198,14 +202,13 @@ hr {
 	background: #bbada0;
 	border-radius: 6px;
 	width: 500px;
-	min-height: 500px;
+	height: 500px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
-
 .game-container .game-message {
-	display: block !important;
+	display: none;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -214,12 +217,6 @@ hr {
 	background: rgba(238, 228, 218, 0.5);
 	z-index: 100;
 	text-align: center;
-	-webkit-animation: fade-in 800ms ease 1200ms;
-	-moz-animation: fade-in 800ms ease 1200ms;
-	animation: fade-in 800ms ease 1200ms;
-	-webkit-animation-fill-mode: both;
-	-moz-animation-fill-mode: both;
-	animation-fill-mode: both;
 }
 .game-container .list-container{
     display: none;
@@ -231,12 +228,7 @@ hr {
     background: rgba(238, 228, 218, 0.8 );
     z-index: 100;
     text-align: center;
-    -webkit-animation: fade-in 800ms ease 1200ms;
-    -moz-animation: fade-in 800ms ease 1200ms;
-    animation: fade-in 800ms ease 1200ms;
-    -webkit-animation-fill-mode: both;
-    -moz-animation-fill-mode: both;
-    animation-fill-mode: both;
+
     padding: 25px;
 }
 
@@ -247,8 +239,8 @@ hr {
 }
 
 .list-table th, .list-table td{
-    padding: 10px;
-    font-size: 25px;
+    padding: 5px;
+    font-size: 16px;
 }
 
 .time-container{
@@ -265,14 +257,21 @@ hr {
 .game-container .game-message p {
 	font-size: 60px;
 	font-weight: bold;
-	height: 60px;
+
 	line-height: 60px;
-	margin-top: 222px;
+	margin-top: 122px;
+}
+
+ input{
+	display: block;
+	margin: 0 auto;
+	width: 60%;
+	font-size: 18px;
+	padding: 15px 10px;
 }
 
 .game-container .game-message .lower {
 	display: block;
-	margin-top: 59px;
 }
 
 .game-container .game-message a {
@@ -292,7 +291,7 @@ hr {
 }
 
 .game-container .game-message.game-won {
-	background: rgba(237, 194, 46, 0.5);
+	background: rgba(237, 194, 46, 0.8);
 	color: #f9f6f2;
 }
 
@@ -344,7 +343,7 @@ hr {
 .tile, .tile .tile-inner {
 	width: 107px;
 	height: 107px;
-	line-height: 48.25px;
+	line-height: 15.25px;
 }
 
 .tile.tile-position-1-1 {
@@ -459,7 +458,7 @@ hr {
 	text-align: center;
 	font-weight: bold;
 	z-index: 10;
-	font-size: 25px;
+	font-size: 15px;
 }
 
 .tile.tile-2 .tile-inner {
@@ -501,7 +500,7 @@ hr {
 
 @media screen and (max-width: 520px) {
 	.tile.tile-128 .tile-inner {
-		font-size: 25px;
+		font-size: 15px;
 	}
 }
 
@@ -509,12 +508,12 @@ hr {
 	color: #f9f6f2;
 	background: #edcc61;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
-	font-size: 32px;
+	font-size: 18px;
 }
 
 @media screen and (max-width: 520px) {
 	.tile.tile-256 .tile-inner {
-		font-size: 25px;
+		font-size: 15px;
 	}
 }
 
@@ -522,12 +521,12 @@ hr {
 	color: #f9f6f2;
 	background: #edc850;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
-	font-size: 35px;
+	font-size: 18px;
 }
 
 @media screen and (max-width: 520px) {
 	.tile.tile-512 .tile-inner {
-		font-size: 25px;
+		font-size: 15px;
 	}
 }
 
@@ -535,7 +534,7 @@ hr {
 	color: #f9f6f2;
 	background: #edc53f;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
-	font-size: 35px;
+	font-size: 18px;
 }
 
 @media screen and (max-width: 520px) {
@@ -548,7 +547,7 @@ hr {
 	color: #f9f6f2;
 	background: #edc22e;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
-	font-size: 35px;
+	font-size: 18px;
 }
 
 @media screen and (max-width: 520px) {
@@ -560,7 +559,7 @@ hr {
 .tile.tile-super .tile-inner {
 	color: #f9f6f2;
 	background: #3c3a32;
-	font-size: 30px;
+	font-size: 18px;
 }
 
 @media screen and (max-width: 520px) {
@@ -718,7 +717,7 @@ hr {
 	height: 40px;
 	line-height: 42px;
 	text-align: center;
-	right: 0;
+	right: 26%;
 	bottom: 10px;
 }
 .restart-button{
@@ -748,7 +747,8 @@ hr {
 
 	h1.title {
 		font-size: 27px;
-		margin-top: 15px;
+		line-height: 1.8;
+		margin-top: 5px;
 	}
 
 	.container {
@@ -773,8 +773,16 @@ hr {
 		line-height: 1.65;
 	}
 
+	.time-container {
+		position: absolute;
+		width: 100px;
+		right: 141px;
+		bottom: -12px;
+		font-size: 18px;
+	}
+
 	.restart-button {
-		width: 42%;
+		width: 22%;
 		padding: 0;
 		display: block;
 		box-sizing: border-box;
@@ -809,15 +817,10 @@ hr {
         right: 0;
         bottom: 0;
         left: 0;
-        background: rgba(238, 228, 218, 0.5);
+        background: rgba(238, 228, 218, 0.8);
         z-index: 100;
         text-align: center;
-        -webkit-animation: fade-in 800ms ease 1200ms;
-        -moz-animation: fade-in 800ms ease 1200ms;
-        animation: fade-in 800ms ease 1200ms;
-        -webkit-animation-fill-mode: both;
-        -moz-animation-fill-mode: both;
-        animation-fill-mode: both;
+
     }
 
 	.game-container .game-message {
@@ -827,40 +830,43 @@ hr {
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background: rgba(238, 228, 218, 0.5);
+		background: rgba(238, 228, 218, 0.8);
 		z-index: 100;
 		text-align: center;
-		-webkit-animation: fade-in 800ms ease 1200ms;
-		-moz-animation: fade-in 800ms ease 1200ms;
-		animation: fade-in 800ms ease 1200ms;
-		-webkit-animation-fill-mode: both;
-		-moz-animation-fill-mode: both;
-		animation-fill-mode: both;
+
+	}
+
+	 input{
+		margin: 0 auto;
+		display: block;
+		width: 60%;
+		font-size: 14px;
+		padding: 12px 8px;
 	}
 
 	.game-container .game-message p {
 		font-size: 60px;
 		font-weight: bold;
-		height: 60px;
+
 		line-height: 60px;
 		margin-top: 222px;
 	}
 
 	.game-container .game-message .lower {
 		display: block;
-		margin-top: 59px;
 	}
 
 	.game-container .game-message a {
 		display: inline-block;
 		background: #8f7a66;
 		border-radius: 3px;
-		padding: 0 20px;
+		padding: 0 10px;
 		text-decoration: none;
 		color: #f9f6f2;
 		height: 40px;
 		line-height: 42px;
 		margin-left: 9px;
+		margin-top: 30px;
 	}
 
 	.game-container .game-message a.keep-playing-button {
@@ -920,7 +926,7 @@ hr {
 	.tile, .tile .tile-inner {
 		width: 58px;
 		height: 58px;
-		line-height: 67.5px;
+		line-height: 25.5px;
 	}
 
 	.tile.tile-position-1-1 {
@@ -1019,15 +1025,11 @@ hr {
 		transform: translate(202px, 202px);
 	}
 
-	.tile .tile-inner {
-		font-size: 35px;
-	}
 
 	.game-message p {
 		font-size: 30px !important;
-		height: 30px !important;
 		line-height: 30px !important;
-		margin-top: 90px !important;
+		margin-top: 30px !important;
 	}
 
 	.game-message .lower {
