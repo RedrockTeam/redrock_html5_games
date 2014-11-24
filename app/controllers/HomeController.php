@@ -18,17 +18,20 @@ class HomeController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-
+        //获取游戏页面
 	  public function start($game)
       {
+          //检测微信浏览器
 //          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
 //          {
 //              return Response::make("200", 200);
 //          }
 
+          //_token验证
           $_token = csrf_token();
           Session::put('_token',$_token);
 
+           //分享数据和验证_token
           $arr = array(
                         '_token' => $_token,
                         'url'    => URL::current(),
@@ -56,6 +59,7 @@ class HomeController extends BaseController {
 
       }
 
+        //验证是否作弊
         public function verify()
         {
            if(!Request::ajax() || !Request::isJson())
@@ -98,16 +102,17 @@ class HomeController extends BaseController {
 
         }
 
+        //保存分数
         private  function save($data, $type)
         {
-                $telphone = $data['telphone'];
+            $telphone = $data['telphone'];
             if( DB::table($type)->where('telphone', '=', "$telphone")->update($data) || DB::table($type)->insert($data))
                 return true;
             else
                 return false;
         }
 
-
+        //获取排名
         private  function getPosition($type, $telphone)
         {
 
