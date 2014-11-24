@@ -45,7 +45,7 @@ class HomeController extends BaseController {
                   break;
 
               case 'sun':
-                  return 'ok';
+                  return View::make('sun.index')->with("arr", $arr);
                   break;
 
               case '2048':
@@ -121,15 +121,28 @@ class HomeController extends BaseController {
                     ->where('telphone', '=', $telphone)
                      ->distinct()
                     ->get();
+            if($type=='2048'){
             $count = DB::table($type)
                     ->where('score', '>', $score[0]->score)
                     ->count();
+            }
+            if($type=='sun'){
+            $count = DB::table($type)
+                ->where('score', '<', $score[0]->score)
+                ->count();
+            }
             $count1 = DB::table($type)
                     ->where('score', '=', $score[0]->score)
                     ->where('time', '<', $score[0]->time)
                     ->count();
-
+            if($type=='2048')
             $data[0] = $count+1+$count1;
+
+            if($type=='sun')
+            {
+                $data['rank'] = $count+1+$count1;
+                $data['status'] = 200;
+            }
 
          return $data;
         }
