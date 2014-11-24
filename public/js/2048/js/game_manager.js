@@ -92,14 +92,14 @@ GameManager.prototype.setup = function () {
   //  this.won         = previousState.won;
   //  this.keepPlaying = previousState.keepPlaying;
   //} else {
-  //  this.grid        = new Grid(this.size);
-  //  this.score       = 0;
-  //  this.over        = false;
-  //  this.won         = false;
-  //  this.keepPlaying = false;
-  //
-  //  // Add the initial tiles
-  //  this.addStartTiles();
+    this.grid        = new Grid(this.size);
+    this.score       = 0;
+    this.over        = false;
+    this.won         = false;
+    this.keepPlaying = false;
+
+    // Add the initial tiles
+    this.addStartTiles();
   //}
 
   // Update the actuator

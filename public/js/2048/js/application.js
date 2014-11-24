@@ -5,12 +5,12 @@ window.requestAnimationFrame(function () {
   var flag = WeixinApi.openInWeixin();
   if(flag){
       console.log("weixin broswer");
-      new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, Timer);
+
   }
   else{
   	alert("请用微信浏览器玩哦..");
   }
-
+	new GameManager(4, KeyboardInputManager, HTMLActuator, LocalStorageManager, Timer);
 
   // 开启微信API调试模式;
   //  WeixinApi.enableDebugMode();
