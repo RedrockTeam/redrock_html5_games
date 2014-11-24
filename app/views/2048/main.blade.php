@@ -48,8 +48,8 @@
         			"appId": "2048", // 服务号可以填写appId
         			"imgUrl" : imgUrl, // 二维码的地址
         			"link" : link,
-        			"desc" : "欢迎来到拼拼核心价值观",
-        			"title" : "拼拼价值观"
+        			"desc" : "欢迎使用践行＂社会主义核心价值观＂游戏----拼拼价值观",
+        			"title" : "拼拼价jiaj"
         		};
 
    		// alert(wxData);
