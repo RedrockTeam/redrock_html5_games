@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
-    <div class="container">
+    <div class="container" data-link="{{$arr['url']}}"  data-imgUrl="{{$arr['path']}}">
         <div class="logo_container">
             <img src="{{url("/images/redrock.png")}}" alt=""/>
         </div>
@@ -37,21 +37,20 @@
    <script>
    WeixinApi.ready(function(Api) {
    		var container = document.querySelector(".container"),
-   			appid = container.dataset['appid'],
-   			imgUrl  = container.dataset['imgurl'],
-   			link  = container.dataset['link'],
-   			name = container.dataset['name'];
+        			appid = container.dataset['appid'],
+        			imgUrl  = container.dataset['imgurl'],
+        			link  = container.dataset['link'],
+        			name = container.dataset['name'];
 
-     //    myPlace = myPlace < 0 ? "N" : myPlace;
-     //    微信分享的数据
-
-   		var wxData = {
-   			"appId": "2048", // 服务号可以填写appId
-   			"imgUrl" : imgUrl, // 二维码的地址
-   			"link" : link,
-   			"desc" : '欢迎来到拼拼核心价值观.',
-   			"title" : "拼拼价值观"
-   		};
+        //                    myPlace = myPlace < 0 ? "N" : myPlace;
+        		// 微信分享的数据
+        		var wxData = {
+        			"appId": "2048", // 服务号可以填写appId
+        			"imgUrl" : imgUrl, // 二维码的地址
+        			"link" : link,
+        			"desc" : "我在“拼拼价值观”游戏中以" + time +  "秒时间，" + score + '积分取得了胜利',
+        			"title" : "拼拼价值观"
+        		};
 
    		// alert(wxData);
    		// 分享的回调
