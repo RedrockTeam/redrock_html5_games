@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>欢迎来到拼拼核心价值观</title>
+  <title>核心价值观</title>
     {{HTML::style("css/2048/style/index.css")}}
     {{HTML::my("favicon/2048/favicon.ico","shortcut icon")}}
     {{HTML::my("meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
