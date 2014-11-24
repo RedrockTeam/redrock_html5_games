@@ -34,7 +34,7 @@ class HomeController extends BaseController {
            //分享数据和验证_token
           $arr = array(
                         '_token' => $_token,
-                        'url'    => 'http://202.202.43.41/game/public/2048/2048_main',
+                        'url'    => URL::current(),
                         'path'   => URL::asset('pic/2048.png'),
                       );
 
