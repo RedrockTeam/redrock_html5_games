@@ -37,7 +37,7 @@ class HomeController extends BaseController {
           $arr = array(
                         '_token' => $_token,
                         'url'    => "http://202.202.43.41/game/public/2048/2048_main",
-                        'path'   => URL::asset('pic/2048.png'),
+                        'path'   => URL::asset('asset/pic/2048.png'),
                       );
 
           switch($game)
