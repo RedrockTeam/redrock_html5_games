@@ -343,7 +343,8 @@ hr {
 .tile, .tile .tile-inner {
 	width: 107px;
 	height: 107px;
-	line-height: 15.25px;
+	line-height: 35.25px;
+	font-size: 28px;
 }
 
 .tile.tile-position-1-1 {
@@ -458,7 +459,6 @@ hr {
 	text-align: center;
 	font-weight: bold;
 	z-index: 10;
-	font-size: 15px;
 }
 
 .tile.tile-2 .tile-inner {
@@ -495,7 +495,7 @@ hr {
 	color: #f9f6f2;
 	background: #edcf72;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
-	font-size: 30px;
+	font-size: 20px;
 }
 
 @media screen and (max-width: 520px) {
@@ -508,7 +508,7 @@ hr {
 	color: #f9f6f2;
 	background: #edcc61;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
-	font-size: 18px;
+	font-size: 25px;
 }
 
 @media screen and (max-width: 520px) {
@@ -521,12 +521,12 @@ hr {
 	color: #f9f6f2;
 	background: #edc850;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
-	font-size: 18px;
+	font-size: 25px;
 }
 
 @media screen and (max-width: 520px) {
 	.tile.tile-512 .tile-inner {
-		font-size: 15px;
+		font-size: 20px;
 	}
 }
 
@@ -534,12 +534,12 @@ hr {
 	color: #f9f6f2;
 	background: #edc53f;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
-	font-size: 18px;
+	font-size: 28px;
 }
 
 @media screen and (max-width: 520px) {
 	.tile.tile-1024 .tile-inner {
-		font-size: 15px;
+		font-size: 20px;
 	}
 }
 
@@ -547,7 +547,7 @@ hr {
 	color: #f9f6f2;
 	background: #edc22e;
 	box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
-	font-size: 18px;
+	font-size: 28px;
 }
 
 @media screen and (max-width: 520px) {
@@ -559,7 +559,7 @@ hr {
 .tile.tile-super .tile-inner {
 	color: #f9f6f2;
 	background: #3c3a32;
-	font-size: 18px;
+	font-size: 28px;
 }
 
 @media screen and (max-width: 520px) {
@@ -926,6 +926,7 @@ hr {
 	.tile, .tile .tile-inner {
 		width: 58px;
 		height: 58px;
+		font-size: 18px;
 		line-height: 25.5px;
 	}
 
