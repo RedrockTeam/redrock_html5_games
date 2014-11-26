@@ -2,7 +2,9 @@
 
 /**
  * Class HomeController
- *
+ * 用于保存游戏分数, 获取游戏排名控制器
+ * 2014-11-26 16:28:29
+ * @Author Lich
  */
 class HomeController extends BaseController {
 
@@ -121,24 +123,26 @@ class HomeController extends BaseController {
                     ->where('telphone', '=', $telphone)
                      ->distinct()
                     ->get();
-            if($type=='2048'){
+
+            if($type == '2048' || $type == 'run'){
             $count = DB::table($type)
                     ->where('score', '>', $score[0]->score)
                     ->count();
             }
-            if($type=='sun'){
+            if($type == 'sun'){
             $count = DB::table($type)
                 ->where('score', '<', $score[0]->score)
                 ->count();
             }
+
             $count1 = DB::table($type)
                     ->where('score', '=', $score[0]->score)
                     ->where('time', '<', $score[0]->time)
                     ->count();
-            if($type=='2048')
+            if($type == '2048')
             $data[0] = $count+1+$count1;
 
-            if($type=='sun')
+            if($type == 'sun' || $type == 'run')
             {
                 $data['rank'] = $count+1+$count1;
                 $data['status'] = 200;
