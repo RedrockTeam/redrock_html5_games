@@ -411,7 +411,7 @@ GameManager.prototype.share = function(){
 			"appId": "2048", // 服务号可以填写appId
 			"imgUrl" : imgUrl, // 二维码的地址
 			"link" : link,
-			"desc" : "我在“拼拼价值观”中以" + time +  "秒时间，" + score + '积分取得了胜利',
+			"desc" : "我在拼拼价值观中以" + time +  "秒时间，" + score + '积分取得了胜利',
 			"title" : "拼拼价值观"
 		};
 
@@ -475,7 +475,7 @@ GameManager.prototype.share = function(){
 					"appId": "2048", // 服务号可以填写appId
 					"imgUrl" : imgUrl, // 二维码的地址
 					"link" : link,
-					"desc" : "我在“拼拼价值观”中以" + time +  "秒时间，" + score + '积分取得了胜利',
+					"desc" : "我在拼拼价值观中以" + time +  "秒时间，" + score + '积分取得了胜利',
 					"title" : "拼拼价值观"
 				};
 
@@ -563,7 +563,7 @@ GameManager.prototype.share = function(){
 						"appId": "2048", // 服务号可以填写appId
 						"imgUrl" : imgUrl, // 二维码的地址
 						"link" : link,
-						"desc" : "我在“拼拼价值观”中以" + time +  "秒时间，" + score + '积分取得了胜利，排名第' + myPlace + "名",
+						"desc" : "我在拼拼价值观中以" + time +  "秒时间，" + score + '积分取得了胜利，排名第' + myPlace + "名",
 						"title" : "拼拼价值观"
 					};
 
