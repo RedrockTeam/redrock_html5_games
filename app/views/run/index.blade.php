@@ -17,6 +17,7 @@
 </head>
 <body>
        <div id="a" class="container" data="{{$arr['_token']}}" data-link="{{$arr['url']}}">
+           <div id="container">
         <div id="score_list"><span class="scroe">当前得分<font id="ScoreNum"> 0 </font>分</span><span>当前时间<font id="time"> 0 </font>秒</span></div>
         <div id="loading">
             {{HTML::image("resource/run/images/loading.jpg")}}
