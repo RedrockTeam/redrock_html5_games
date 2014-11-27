@@ -23,13 +23,14 @@ class RankController extends BaseController {
                           '奔跑吧兄弟',
                         );
 
-        foreach($game as $k => $v)
+        foreach($game as $v)
         {
                   if($v == 'sun')
                   {
                       $info[] = DB::table($v)
                           ->select('telphone','score','time')
                           ->orderBy('score','asc')
+                          ->orderBy('time','asc')
                           ->groupBy('telphone')
                           ->take(20)
                           ->get();
