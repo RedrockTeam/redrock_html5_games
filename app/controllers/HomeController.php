@@ -43,7 +43,7 @@ class HomeController extends BaseController {
           switch($game)
           {
               case 'run':
-                  return 'ok';
+                  return View::make('run.index')->with("arr", $arr);
                   break;
 
               case 'sun':
