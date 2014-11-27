@@ -11,7 +11,7 @@
     <title>奔跑吧兄弟</title>
     {{HTML::script("resource/run/js/API.js")}}
 <!--    <script src="js/API.js"></script>-->
-    <script src="js/normal.js"></script>
+<!--    <script src="js/normal.js"></script>-->
     {{HTML::script("resource/run/js/normal.js")}}
 </head>
 <body>
