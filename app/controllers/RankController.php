@@ -23,21 +23,30 @@ class RankController extends BaseController {
                           '奔跑吧兄弟',
                         );
 
-        foreach($game as $v)
+        foreach($game as $k => $v)
         {
-                $info[] = DB::table($v)
+                  if($v == 'sun')
+                  {
+                      $info[] = DB::table($v)
+                          ->select('telphone','score','time')
+                          ->orderBy('score','asc')
+                          ->groupBy('telphone')
+                          ->take(20)
+                          ->get();
+                  }
+                  else{
+                      $info[] = DB::table($v)
                           ->select('telphone','score','time')
                           ->orderBy('score','desc')
                           ->groupBy('telphone')
                           ->take(20)
                           ->get();
+                  }
+
         }
 
         foreach($game as $v)
         {
-//                $num[] = DB::table($v)
-//                    ->distinct('telphone')
-//                    ->count();
             $num[] = DB::select("select COUNT(DISTINCT telphone) as num from `$v` ");
 
 
