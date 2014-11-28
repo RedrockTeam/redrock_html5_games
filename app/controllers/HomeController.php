@@ -70,7 +70,7 @@ class HomeController extends BaseController {
            }
 
                 $arr = Input::all();
-                $session_token = Session::get('_token');
+                $session_token = Session::get('real');
                 $_token = $arr['_token'];
 
 //                if( !isset($arr['time']) || $arr['time'] == null)
@@ -91,6 +91,13 @@ class HomeController extends BaseController {
                         $data['time'] = 0;
                     }
                     $telphone = trim($arr['phone']);
+                    $partten = "/1\d{10}/";
+                    if(preg_match($partten, $telphone))
+                    {}
+                    else
+                    {
+                        return Response::make('fuck', 403);
+                    }
                     if($this->save($data, $type))
                     {
                         $position = $this->getPosition($type, $telphone);
@@ -111,7 +118,7 @@ class HomeController extends BaseController {
         //保存分数
         private  function save($data, $type)
         {
-            $telphone = $data['telphone'];
+
             if( DB::table($type)->insert($data))
                 return true;
             else
@@ -156,5 +163,16 @@ class HomeController extends BaseController {
         }
 
 
+    private function encrypt()
+    {
+        $time = microtime();
+        $str = Hash::make($time);
+        $salt = base64_encode('baidu.com');
+        $real = $salt.$str;
+        $len = floor(0.7*strlen($real));
+        $real = substr($real, $len);
+        Session::put('real', $real);
+        return $str;
+    }
 
 }
