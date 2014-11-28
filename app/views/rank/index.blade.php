@@ -23,7 +23,14 @@
                                                     电话号码
                                                 </th>
                                                 <th>
-                                                    得分
+                                                    <?php
+                                                        if($v['title'] == '夸父追日')
+                                                        {
+                                                            echo "步数";
+                                                        }
+                                                        else
+                                                            echo "得分";
+                                                    ?>
                                                 </th>
                                                 <th>
                                                     花费时间
@@ -32,6 +39,13 @@
                                         </thead>
                                        <tbody>
                                        <?php
+                                            if($v['title'] == '夸父追日')
+                                            {
+                                                $a = "步";
+                                            }
+                                            else{
+                                                $a = "分";
+                                           }
                                             array_forget($v, 'title');
                                             array_forget($v, 'num');
                                        ?>
@@ -45,7 +59,7 @@
                                                {{$value[0]}}
                                             </td>
                                             <td>
-                                                {{$value[1]}}分
+                                                {{$value[1]}}{{$a}}
                                             </td>
                                             <td>
                                                 {{$value[2]}}秒
