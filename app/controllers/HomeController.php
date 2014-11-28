@@ -108,7 +108,7 @@ class HomeController extends BaseController {
         private  function save($data, $type)
         {
             $telphone = $data['telphone'];
-            if( DB::table($type)->where('telphone', '=', "$telphone")->update($data) || DB::table($type)->insert($data))
+            if( DB::table($type)->insert($data))
                 return true;
             else
                 return false;
