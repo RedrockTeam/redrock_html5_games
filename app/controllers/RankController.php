@@ -55,7 +55,17 @@ class RankController extends BaseController {
                 $data[$k][$key]= array($value->telphone, $value->score, $value->time,);
             }
             $data[$k]['title'] = $gamename[$k];
+            if($data[$k]['title'] == '奔跑吧兄弟')
+            {
+
+                $len = count($data[$k])-1;
+                for($i = 0;$i< $len; $i++){
+                    $data[$k][$i][2]= 240 - $data[$k][$i][2];
+                }
+
+            }
             $data[$k]['num'] = $num[$k][0]->num;
+
         }
 
 
