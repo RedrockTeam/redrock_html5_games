@@ -88,7 +88,7 @@ class HomeController extends BaseController {
                     $type = $arr['type'];
                     if($data['time']<0)
                     {
-                        $data['time'] == 0;
+                        $data['time'] = 0;
                     }
                     $telphone = trim($arr['phone']);
                     if($this->save($data, $type))
