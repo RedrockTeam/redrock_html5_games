@@ -86,6 +86,10 @@ class HomeController extends BaseController {
                                     'time'     => $arr['time'],
                                 );
                     $type = $arr['type'];
+                    if($data['time']<0)
+                    {
+                        $data['time'] == 0;
+                    }
                     $telphone = trim($arr['phone']);
                     if($this->save($data, $type))
                     {
