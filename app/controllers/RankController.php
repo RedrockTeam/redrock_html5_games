@@ -36,7 +36,7 @@ class RankController extends BaseController {
                           ->get();
                   }
                   else{
-                      $info[] = DB::select("select * from (select * from ( select * from $v order by score desc)a group by telphone)b order by score desc limit 20");
+                      $info[] = DB::select("select * from (select * from ( select * from `$v` order by score desc)a group by telphone)b order by score desc limit 20");
                   }
 
         }
