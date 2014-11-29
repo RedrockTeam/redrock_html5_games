@@ -1,6 +1,6 @@
 @extends('layout.rank')
 
-@section('table')
+    @section('table')
 <?php $c = array('','success','error','warning','info')?>
 @foreach($data as $k => $v)
 <div class="container-fluid">
