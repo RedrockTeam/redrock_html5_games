@@ -24,10 +24,10 @@ class HomeController extends BaseController {
 	  public function start($game)
       {
           //检测微信浏览器
-//          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
-//          {
-//              return Response::make("200", 200);
-//          }
+          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+          {
+              return Response::make("200", 200);
+          }
 
           //_token验证
           $_token = csrf_token();
@@ -66,11 +66,12 @@ class HomeController extends BaseController {
         {
            if(!Request::ajax() || !Request::isJson())
            {
-               return Response::make('403', 403);
+               return Response::make('...', 403);
            }
 
                 $arr = Input::all();
-                $session_token = Session::get('real');
+            $session_token = Session::get('_token');
+                //$session_token = Session::get('real');
                 $_token = $arr['_token'];
 
 //                if( !isset($arr['time']) || $arr['time'] == null)
@@ -105,12 +106,12 @@ class HomeController extends BaseController {
                     }
                     else
                     {
-                        return Response::make('403', 403);
+                        return Response::make('fuck!', 403);
                     }
                 }
                 else
                 {
-                    return Response::make('403', 403);
+                    return Response::make('403!', 403);
                 }
 
         }
@@ -163,16 +164,16 @@ class HomeController extends BaseController {
         }
 
 
-    private function encrypt()
-    {
-        $time = microtime();
-        $str = Hash::make($time);
-        $salt = base64_encode('baidu.com');
-        $real = $salt.$str;
-        $len = floor(0.7*strlen($real));
-        $real = substr($real, $len);
-        Session::put('real', $real);
-        return $str;
-    }
+//    private function encrypt()
+//    {
+//        $time = microtime();
+//        $str = Hash::make($time);
+//        $salt = base64_encode('baidu.com');
+//        $real = $salt.$str;
+//        $len = floor(0.7*strlen($real));
+//        $real = substr($real, $len);
+//        Session::put('real', $real);
+//        return $str;
+//    }
 
 }
