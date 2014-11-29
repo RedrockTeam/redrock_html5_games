@@ -26,9 +26,12 @@ class HomeController extends BaseController {
           //检测微信浏览器
           if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
           {
-              return Response::make("200", 200);
-          }
 
+          }
+            else
+            {
+                return Response::make('请使用微信浏览器~', 403);
+            }
           //_token验证
           $_token = csrf_token();
           Session::put('_token',$_token);
