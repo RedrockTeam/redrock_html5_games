@@ -27,7 +27,7 @@ class RankController extends BaseController {
         {
                   if($v == 'sun')
                   {
-                      $info[] = DB::select("select * from(select * from (select * from `$v` order by score,time desc)b  group by telphone)a order by score,time limit 20");
+                      $info[] = DB::select("select * from(select * from (SELECT * FROM `sun` ORDER BY `score`, `time`)b  group by telphone)a order by score, time limit 20");
                   }
                   else{
                       $info[] = DB::select("select * from (select * from ( select * from `$v` order by score desc)a group by telphone)b order by score desc limit 20");
