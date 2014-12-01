@@ -27,20 +27,13 @@ class RankController extends BaseController {
         {
                   if($v == 'sun')
                   {
-                      $info[] = DB::table($v)
-                          ->select('telphone','score','time')
-                          ->orderBy('score','asc')
-                          ->orderBy('time','asc')
-                          ->groupBy('telphone')
-                          ->take(20)
-                          ->get();
+                      $info[] = DB::select("select * from(select * from (select * from `$v` order by score,time desc)b  group by telphone)a order by score,time limit 20");
                   }
                   else{
                       $info[] = DB::select("select * from (select * from ( select * from `$v` order by score desc)a group by telphone)b order by score desc limit 20");
                   }
 
         }
-
         foreach($game as $v)
         {
             $num[] = DB::select("select COUNT(DISTINCT telphone) as num from `$v` ");
