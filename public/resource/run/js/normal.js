@@ -255,7 +255,7 @@ $(function () {
 
         setInterval(function () {
             P()
-        }, 5000);
+        }, 4000);
         var G = 120;
         var F = 340;
         z[0].addEventListener("touchstart", function (R) {
