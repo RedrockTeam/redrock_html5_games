@@ -2,7 +2,9 @@
 
 /**
  * Class HomeController
- *
+ * 用于保存游戏分数, 获取游戏排名控制器
+ * 2014-11-26 16:28:29
+ * @Author Lich
  */
 class HomeController extends BaseController {
 
@@ -22,11 +24,14 @@ class HomeController extends BaseController {
 	  public function start($game)
       {
           //检测微信浏览器
-//          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
-//          {
-//              return Response::make("200", 200);
-//          }
+          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+          {
 
+          }
+            else
+            {
+                return Response::make('请使用微信浏览器~', 403);
+            }
           //_token验证
           $_token = csrf_token();
           Session::put('_token',$_token);
@@ -34,14 +39,14 @@ class HomeController extends BaseController {
            //分享数据和验证_token
           $arr = array(
                         '_token' => $_token,
-                        'url'    => 'http://202.202.43.41/game/public/2048/2048_main',
-                        'path'   => URL::asset('pic/2048.png'),
+                        'url'    => "http://202.202.43.41/game/public/2048/2048_main",
+                        'path'   => URL::asset('asset/pic/2048.png'),
                       );
 
           switch($game)
           {
               case 'run':
-                  return 'ok';
+                  return View::make('run.index')->with("arr", $arr);
                   break;
 
               case 'sun':
@@ -64,11 +69,12 @@ class HomeController extends BaseController {
         {
            if(!Request::ajax() || !Request::isJson())
            {
-               return Response::make('403', 403);
+               return Response::make('...', 403);
            }
 
                 $arr = Input::all();
-                $session_token = Session::get('_token');
+            $session_token = Session::get('_token');
+                //$session_token = Session::get('real');
                 $_token = $arr['_token'];
 
 //                if( !isset($arr['time']) || $arr['time'] == null)
@@ -84,7 +90,18 @@ class HomeController extends BaseController {
                                     'time'     => $arr['time'],
                                 );
                     $type = $arr['type'];
+                    if($data['time']<0)
+                    {
+                        $data['time'] = 0;
+                    }
                     $telphone = trim($arr['phone']);
+                    $partten = "/1\d{10}/";
+                    if(preg_match($partten, $telphone))
+                    {}
+                    else
+                    {
+                        return Response::make('fuck', 403);
+                    }
                     if($this->save($data, $type))
                     {
                         $position = $this->getPosition($type, $telphone);
@@ -92,12 +109,12 @@ class HomeController extends BaseController {
                     }
                     else
                     {
-                        return Response::make('403', 403);
+                        return Response::make('fuck!', 403);
                     }
                 }
                 else
                 {
-                    return Response::make('403', 403);
+                    return Response::make('403!', 403);
                 }
 
         }
@@ -105,8 +122,8 @@ class HomeController extends BaseController {
         //保存分数
         private  function save($data, $type)
         {
-            $telphone = $data['telphone'];
-            if( DB::table($type)->where('telphone', '=', "$telphone")->update($data) || DB::table($type)->insert($data))
+
+            if( DB::table($type)->insert($data))
                 return true;
             else
                 return false;
@@ -121,32 +138,45 @@ class HomeController extends BaseController {
                     ->where('telphone', '=', $telphone)
                      ->distinct()
                     ->get();
-            if($type=='2048'){
+
+            if($type == '2048' || $type == 'run'){
             $count = DB::table($type)
                     ->where('score', '>', $score[0]->score)
                     ->count();
             }
-            if($type=='sun'){
+            if($type == 'sun'){
             $count = DB::table($type)
                 ->where('score', '<', $score[0]->score)
                 ->count();
             }
+
             $count1 = DB::table($type)
                     ->where('score', '=', $score[0]->score)
                     ->where('time', '<', $score[0]->time)
                     ->count();
-            if($type=='2048')
+            if($type == '2048')
             $data[0] = $count+1+$count1;
 
-            if($type=='sun')
+            if($type == 'sun' || $type == 'run')
             {
                 $data['rank'] = $count+1+$count1;
                 $data['status'] = 200;
             }
 
-         return $data;
+            return $data;
         }
 
 
+//    private function encrypt()
+//    {
+//        $time = microtime();
+//        $str = Hash::make($time);
+//        $salt = base64_encode('baidu.com');
+//        $real = $salt.$str;
+//        $len = floor(0.7*strlen($real));
+//        $real = substr($real, $len);
+//        Session::put('real', $real);
+//        return $str;
+//    }
 
 }

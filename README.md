@@ -10,9 +10,10 @@
 		  type : type,
 	      }).xxxxxxxxxxxxxxxxxxxxxxxxxxx
 `
-- 2048 type `2048`
-- 夸父追日 type `sun`
-- 奔跑吧~兄弟 type `run`
+
+- 2048 type =  `2048`
+- 夸父追日 type =`sun`
+- 奔跑吧~兄弟 type = `run`
 
 
 ###Ajax返回:
@@ -20,29 +21,27 @@
 	
 	[
 	    {
-	        "score": 110,
-	        "time": 56,
-	        "telphone": "333333333111"
-	    },
-
-	    {
-	        "score": 110,
-	        "time": 66,
-	        "telphone": "444444444111"
-	    },
-
-	    {
-	        "score": 100,
-	        "time": 12,
-	        "telphone": "1111111111111"
-	    },
-	    {
-	        "score": 100,
-	        "time": 13,
-	        "telphone": "222222222111"
+	        "rank": 110,
+	        "status": 56
+	      
 	    }
 	]
+
 `
+
+
+
+HomeController : 控制游戏页面输出的控制器;
+
+rankControler : 控制分数的控制器;
+
+
+夸父追日排名比较特殊, 分数越少的排越前面;
+
+HomeController : 有个验证算法, 暂时未启用;
+
+
 ##开源协议
 
 遵循  MIT 协议.
+

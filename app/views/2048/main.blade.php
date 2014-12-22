@@ -49,7 +49,7 @@
         			"imgUrl" : imgUrl, // 二维码的地址
         			"link" : link,
         			"desc" : "欢迎使用践行＂社会主义核心价值观＂游戏----拼拼价值观",
-        			"title" : "拼拼价jiaj"
+        			"title" : "拼拼价值观"
         		};
 
    		// alert(wxData);
@@ -94,5 +94,20 @@
    	});
 
    </script>
+   <!-- Piwik -->
+   <script type="text/javascript">
+     var _paq = _paq || [];
+	   _paq.push(["trackPageView"]);
+	     _paq.push(["enableLinkTracking"]);
+
+		   (function() {
+		       var u=(("https:" == document.location.protocol) ? "https" : "http") + "://202.202.43.41/piwik/";
+			       _paq.push(["setTrackerUrl", u+"piwik.php"]);
+				       _paq.push(["setSiteId", "11"]);
+					       var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+						       g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+							     })();
+								 </script>
+								 <!-- End Piwik Code -->
 </body>
 </html>
