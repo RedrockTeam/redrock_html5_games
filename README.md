@@ -30,6 +30,7 @@
 `
 
 
+
 HomeController : 控制游戏页面输出的控制器;
 
 rankControler : 控制分数的控制器;
@@ -38,4 +39,9 @@ rankControler : 控制分数的控制器;
 夸父追日排名比较特殊, 分数越少的排越前面;
 
 HomeController : 有个验证算法, 暂时未启用;
+
+
+##开源协议
+
+遵循  MIT 协议.
 
