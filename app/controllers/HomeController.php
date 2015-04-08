@@ -174,21 +174,27 @@ class HomeController extends BaseController {
         public function savexi(){
 
             $data = Input::all();
+            $data['openid'] = Session::get('openid')? $data['openid']:null;
+
             $save = array(
                 'openid' => $data['openid'],
                 'score' => $data['sub'],
                 'time' => $data['score']
             );
-            $num = Click::where('openid', '=', Session::get('openid'))->count();
-            if($num == 0){
-                $data['openid'] = Session::get('openid');
-                $id = Click::where('openid', '=', $data['openid'])->save($save);
+
+            if($data['openid'] != null){
+                $num = Click::where('openid', '=', $data['openid'])->count();
+                if($num != 0)
+                    $id = Click::where('openid', '=', $data['openid'])->update($save);
+                else
+                  return  $id = Click::create($save);
             }
             else{
-                $data['openid'] = null;
-                $id = Click::create($data);
+                $id = Click::create($save);
             }
-
+            $uid = $id['id'];
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+            return $paiming;
 
         }
 
