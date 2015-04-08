@@ -23,15 +23,17 @@ class HomeController extends BaseController {
         //获取游戏页面
 	  public function start($game)
       {
+          $openid = Input::get('openid')? Input::get('openid'):null;
+          Session::put('openid', $openid);
           //检测微信浏览器
-          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
-          {
-
-          }
-            else
-            {
-                return Response::make('请使用微信浏览器~', 403);
-            }
+//          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+//          {
+//
+//          }
+//            else
+//            {
+//                return Response::make('请使用微信浏览器~', 403);
+//            }
           //_token验证
           $_token = csrf_token();
           Session::put('_token',$_token);
@@ -57,6 +59,8 @@ class HomeController extends BaseController {
                  return View::make('2048.index')->with("arr", $arr);
                   break;
 
+              case 'praise-xi':
+                 return View::make('praise-xi.index');
               default:
                   return Response::make("Page not found", 404);
                   break;
@@ -166,6 +170,27 @@ class HomeController extends BaseController {
             return $data;
         }
 
+        //点赞习大大, 没时间就这么写了....
+        public function savexi(){
+
+            $data = Input::all();
+            $save = array(
+                'openid' => $data['openid'],
+                'score' => $data['sub'],
+                'time' => $data['score']
+            );
+            $num = Click::where('openid', '=', Session::get('openid'))->count();
+            if($num == 0){
+                $data['openid'] = Session::get('openid');
+                $id = Click::where('openid', '=', $data['openid'])->save($save);
+            }
+            else{
+                $data['openid'] = null;
+                $id = Click::create($data);
+            }
+
+
+        }
 
 //    private function encrypt()
 //    {
