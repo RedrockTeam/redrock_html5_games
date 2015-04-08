@@ -174,7 +174,7 @@ class HomeController extends BaseController {
         public function savexi(){
 
             $data = Input::all();
-            $data['openid'] = Session::get('openid')? $data['openid']:null;
+            $data['openid'] = Session::get('openid')? Session::get('openid'):null;
 
             $save = array(
                 'openid' => $data['openid'],
@@ -184,10 +184,27 @@ class HomeController extends BaseController {
 
             if($data['openid'] != null){
                 $num = Click::where('openid', '=', $data['openid'])->count();
-                if($num != 0)
-                    $id = Click::where('openid', '=', $data['openid'])->update($save);
-                else
-                  return  $id = Click::create($save);
+                if($num != 0){
+                    $info = Click::where('openid', '=', $data['openid'])->first();
+                    if($save['score'] > $info['score']) {
+                        Click::where('openid', '=', $data['openid'])->update($save);
+                        $id = Click::where('openid', '=', $data['openid'])->first();
+                    }
+                    elseif($save['score'] == $info['score'] && $save['time'] < $info['time'] ){
+                        Click::where('openid', '=', $data['openid'])->update($save);
+                        $id = Click::where('openid', '=', $data['openid'])->first();
+                    }
+                    else{
+                        $id = Click::create($save);
+                        $uid = $id['id'];
+                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+                        Click::destroy($uid);
+                        return $paiming;
+                    }
+                }
+                else {
+                    $id = Click::create($save);
+                }
             }
             else{
                 $id = Click::create($save);
