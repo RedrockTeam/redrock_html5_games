@@ -55,8 +55,9 @@
 	line-height: 22px;
 }
 .Xi-titile{
-	background:url("../../images/xi.png")center no-repeat #ffffff;
-	width: 55%;
+	background:center no-repeat #ffffff;
+	width: 160px;
+	height: 160px;
 	margin: 7% auto;
 	border-radius: 50%;
 }
@@ -185,6 +186,10 @@
 	font-size: 18px;
 	font-weight: 700;
 }
+.score>p span{
+	margin-left: 3px;
+	margin-right: 3px;
+}
 .over_star{
 	display: block;
 	margin: 20px auto;
@@ -200,4 +205,20 @@
 	background: yellow;
 	box-shadow:2px 3px 0px #ee6a0d ;
 	margin: 18px auto;
+}
+.sharePage{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #000;
+	opacity: 0.4;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.share_tips{
+	position: absolute;
+	z-index: -100000;
+	top: 15px;
+	left: 10px;
 }

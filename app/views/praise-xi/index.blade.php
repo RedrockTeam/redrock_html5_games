@@ -1,19 +1,19 @@
 <html>
 	<head>
-		<title>《学用典赞习大大》</title>
+		<title>我正在参与《学用典赞习大大》游戏</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<script src="{{URL::asset('js/praise-xi/ajax.js')}}"></script>
 		<script src="{{URL::asset('js/praise-xi/main.js')}}"></script>
+		<script src="{{URL::asset('js/praise-xi/API.js')}}"></script>
 		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css')}}">
 	</head>
-
 	<body>
 		<div class="game-back">
 			<div class="beginPage">
-				<img src="{{URL::asset('images/Xi-logo.png')}}" class="logo">
+				<img src="images/Xi-logo.png" class="logo">
 				<div class="slogan">
 					<p>坚定理想信念、练就过硬本领、</p>
 					<p>勇于创新创造、矢志艰苦奋斗、</p>
@@ -67,11 +67,13 @@
 				</div>
 			</div>
 			<div class="score" style="display: none">
-				<img src="{{URL::asset('images/over.png')}}" class="over_star">
+				<img src="images/sharePage.png" class="share_tips">
+				<img src="images/over.png" class="over_star">
 				<p>您在<span class="score_num">50</span>秒内</p><br>
 				<p>答对了<span class="sub_num">8</span>道题</p><br>
 				<p>排名第<span class="rank_num">1</span></p><br>
 				<span class="share">分享</span>
+				<div class="sharePage"></div>
 			</div>
 		</div>
 	</body>
