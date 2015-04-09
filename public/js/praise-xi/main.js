@@ -108,9 +108,9 @@ window.onload= function () {
 		rank = b;
 		console.log(rank);
 	}
-	//if(!isWeiXin()){
-	//	document.body.innerHTML='';
-	//}
+	if(!isWeiXin()){
+		document.body.innerHTML='';
+	}
 	reBegin.addEventListener('click',function(){
 		timer=setInterval(function(){
 			time++;
