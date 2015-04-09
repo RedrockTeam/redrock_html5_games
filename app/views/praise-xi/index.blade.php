@@ -15,9 +15,8 @@
 			<div class="beginPage">
 				<img src="images/Xi-logo.png" class="logo">
 				<div class="slogan">
-					<p>坚定理想信念、练就过硬本领、</p>
-					<p>勇于创新创造、矢志艰苦奋斗、</p>
-					<p>锤炼高尚品格</p>
+					<p>&nbsp;&nbsp;&nbsp;古典名句，是中华文化长河中历经砥砺的智慧结晶。习大大在讲话中多处引经据典，生动传神，寓意深邃，极具启迪意义。作为青年大学生应积极学习习大大的这些用典。
+                    </p>
 				</div>
 				<div class="begin_btn" id="begin">开始游戏</div>
 				<p class="copyright">©重庆邮电大学红岩网校工作站</p>

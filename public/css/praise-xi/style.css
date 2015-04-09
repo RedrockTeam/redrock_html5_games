@@ -28,11 +28,11 @@
 	margin: 7% auto;
 }
 .slogan{
-	width: 100%;
-	text-align: center;
+	width: 76%;
+    margin:0 auto;
 	line-height: 25px;
 	font-weight: 500;
-	font-size: 18px;
+	font-size: 14px;
 }
 .begin_btn{
 	width: 55%;
