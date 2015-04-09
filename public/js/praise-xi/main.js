@@ -8,11 +8,6 @@ var objQ=function(){
 	this.src;
 	this.w=[];
 };
-var wxData = {
-    "appId": "", // 服务号可以填写appId
-    "imgUrl" : '',//Xi-logo.png的路径,
-    "link" : 'http://hongyan.cqupt.edu.cn/game/public/praise-xi'
-};
 function isWeiXin(){
 	var ua = window.navigator.userAgent.toLowerCase();
 	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
