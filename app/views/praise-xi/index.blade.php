@@ -46,7 +46,8 @@
 					<li></li>
 				</ul>
 				<p class="gametour"><span class="warm">!</span>在最短的时间内完成所有题目</p>
-				<p class="gametour">(荐语时间不计算在内)</p>
+                <p class="gametour">(荐语阅读时间不计算在内)</p>
+				<p class="gametour">题目答对显示绿色,题目打错显示红色</p>
 			</div>
 			<div class="Xiwords" style="display: none;">
 				<h1 class="tips_title">
