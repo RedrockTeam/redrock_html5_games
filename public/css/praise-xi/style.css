@@ -12,9 +12,13 @@
 }
 .beginPage{
 	width: 100%;
-	height: 100%;
-	position: relative;
+	height: auto;
+	position: absolute;
 	color: #ffffff;
+	background:#f2911e ;
+	left: 0;
+	top: 0;
+	z-index: 2;
 }
 .copyright{
 	width: 100%;
@@ -22,17 +26,18 @@
 	text-align: center;
 	margin-top: 10px;
 	color: #ecefea;
+	margin-bottom: 12px;
 }
 .logo{
 	display: block;
 	margin: 7% auto;
 }
 .slogan{
-	width: 76%;
-    margin:0 auto;
+	width: 100%;
+	text-align: center;
 	line-height: 25px;
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 18px;
 }
 .begin_btn{
 	width: 55%;
@@ -48,8 +53,13 @@
 }
 .holder{
 	width: 100%;
-	height: 100%;
+	height: auto;
 	margin: 0 auto;
+	position: absolute;
+	background:#f2911e ;
+	z-index: 1;
+	top: 0;
+	left: 0;
 }
 .where{
 	line-height: 22px;
