@@ -61,6 +61,8 @@ class HomeController extends BaseController {
 
               case 'praise-xi':
                  return View::make('praise-xi.index');
+              case 'takephotos':
+                 return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
                   break;
@@ -214,7 +216,6 @@ class HomeController extends BaseController {
             return $paiming;
 
         }
-
 //    private function encrypt()
 //    {
 //        $time = microtime();
