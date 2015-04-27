@@ -17,7 +17,7 @@ $(function(){
 			oMask.css('z-index',-100);
 			var ogoal=$('.logoTuan');
 			ogoal.remove();
-			gameInit(oGame,center,oMask,oScoreBoard,oGuide);
+			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
 		});
 	});
 	oHolder.css('width',$(window).width()*2);
@@ -25,7 +25,7 @@ $(function(){
 	oC.css('height',$(window).height());
 	var center=($(window).height()*0.315);
 });
-function gameInit(obj,center,oMask,oScoreBoard,oGuide){
+function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	var r=2*Math.random();
 	var take=true;
 	if(r<=1){
@@ -69,10 +69,11 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide){
 	timer=setTimeout(function(){
 		draw();
 	},time);
-	function returnT(t){
-		return t;
-	}
-	oShut.click(function(){
+	oShut[0].addEventListener('touchstart', function (ev) {
+		if(m<$(window).height()*0.115){
+			return;
+		}
+		oCross.css('animation','Scales 0.3s');
 		clearTimeout(timer);
 		b=n%360-180;
 		if(b<0){
@@ -80,21 +81,27 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide){
 		}else{
 			b=180-b;
 		}
-		b=140/180*(180-b);
-		m=(center-Math.abs(m-center+25))*60/center;
-		sum=b+m;
+		b=120/180*(180-b);
+		p=(center-Math.abs(m-center+25))*80/center;
+		sum=b+p;
 		if(r=='tuanhui'){
-			sum*=1.05;
+			sum*=1.1;
 		}
 		sum=Math.round(sum*1000)/1000;
 		if(!take){
 			sum=0;
 		}
+		console.log(b,p);
 		setTimeout(function(){
 			$('.score-num').html(sum);
+			oCross.css('animation','null');
 			oMask.css('z-index',100);
 			oGuide.css('display','none');
 			oScoreBoard.css('display','block');
 		},1200);
+		ev.preventDefault();
 	});
+	//oShut.click(function(){
+	//
+	//});
 }
