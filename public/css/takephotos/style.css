@@ -1,169 +1,213 @@
 * {
-  padding: 0;
-  margin: 0;
-  color: #ffffff;
-  font-size: 12px;
-  font-family: 'Women';
+    padding: 0;
+    margin: 0;
+    color: #ffffff;
+    font-size: 12px;
+    font-family: 'Women';
 }
-/*声明 WebFont*/
+/*声明 WebFon*/
 @font-face {
-  font-family: 'Women';
-  src: url('../../../../TakePhotosForTuan/font/women.ttf');
-  src: url('../../../../TakePhotosForTuan/font/women.eot?#font-spider') format('embedded-opentype'), url('../../../../TakePhotosForTuan/font/women.woff') format('woff'), url('../../../../TakePhotosForTuan/font/women.ttf') format('truetype'), url('../../../../TakePhotosForTuan/font/women.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'Women';
+    src: url('../../resource/takephotos/font/women.ttf');
+    src: url('../../resource/takephotos/font/women.eot?#font-spider') format('embedded-opentype'), url('../../resource/takephotos/font/women.woff') format('woff'), url('../../resource/takephotos/font/women.ttf') format('truetype'), url('../../resource/takephotos/font/women.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@keyframes Scales {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-ms-keyframes Scales {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-moz-keyframes Scales {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@-webkit-keyframes Scales {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 .container {
-  width: auto;
-  position: relative;
-  overflow: hidden;
+    width: auto;
+    position: relative;
+    overflow: hidden;
 }
 .container > ul {
-  position: absolute;
-  left: 0;
-  transition: left 0.25s;
+    position: absolute;
+    left: 0;
+    transition: left 0.25s;
 }
 .container li {
-  width: 50%;
-  float: left;
+    width: 50%;
+    float: left;
 }
 .container .mask {
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -100;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -100;
 }
 .container .mask .non-opacity {
-  position: absolute;
-  top: 0;
-  opacity: 0.3;
-  width: 100%;
-  height: 100%;
-  background: #000;
+    position: absolute;
+    top: 0;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    background: #000;
 }
 .container .mask .guide {
-  width: 82.1875%;
-  height: 27.29%;
-  margin: 100px auto;
-  position: relative;
+    width: 82.1875%;
+    height: 27.29%;
+    margin: 100px auto;
+    position: relative;
 }
 .container .mask .guide .guide-img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: url("../../images/takephotos/guide.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url("../../images/takephotos/guide.png") no-repeat;
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .container .mask .guide .guide-words {
-  width: 85%;
-  margin: 0 auto;
-  padding: 11% 5px;
-  font-size: 17px;
-  color: #ff7800;
+    width: 85%;
+    margin: 0 auto;
+    padding: 11% 5px;
+    font-size: 17px;
+    color: #ff7800;
 }
 .container .mask .score-board {
-  width: 88.75%;
-  height: 44.58%;
-  margin: 60px auto;
-  position: relative;
-  display: none;
+    width: 88.75%;
+    height: 44.58%;
+    margin: 60px auto;
+    position: relative;
+    display: none;
 }
 .container .mask .score-board .score-img {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  position: absolute;
-  background: url("../../images/takephotos/score.png") no-repeat;
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+    background: url("../../images/takephotos/score.png") no-repeat;
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .container .mask .score-board .score-img * {
-  font-size: 28px;
-  color: #ff4200;
+    font-size: 28px;
+    color: #ff4200;
 }
 .container .mask .score-board .score-img p {
-  width: 100%;
-  position: absolute;
-  top: 40%;
+    width: 100%;
+    position: absolute;
+    top: 40%;
 }
 .container .beginPage {
-  background: url("../../images/takephotos/begin-bg.jpg");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
+    background: url("../../images/takephotos/begin-bg.jpg");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .container .beginPage .slogan {
-  margin: 0 auto;
-  background: url("../../images/takephotos/slogan.png");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
-  width: 89%;
-  height: 30.7%;
-  padding: 15px 12px;
-  position: relative;
-  top: 34%;
+    margin: 0 auto;
+    background: url("../../images/takephotos/slogan.png");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    width: 89%;
+    height: 30.7%;
+    padding: 15px 12px;
+    position: relative;
+    top: 34%;
 }
 .container .beginPage .play {
-  width: 45%;
-  height: 11%;
-  margin: 0 auto;
-  position: relative;
-  top: 40%;
-  background: url("../../images/takephotos/play.png");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
+    width: 45%;
+    height: 11%;
+    margin: 0 auto;
+    position: relative;
+    top: 40%;
+    background: url("../../images/takephotos/play.png");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .container .gamePage {
-  background: url("../../images/takephotos/game-bg.jpg");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
-  position: relative;
+    background: url("../../images/takephotos/game-bg.jpg");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: relative;
 }
 .container .gamePage .cross {
-  position: absolute;
-  top: 11%;
-  width: 72.5%;
-  height: 41%;
-  z-index: 2;
-  background: url("../../images/takephotos/cross.png");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
+    position: absolute;
+    top: 11%;
+    width: 72.5%;
+    height: 41%;
+    z-index: 2;
+    background: url("../../images/takephotos/cross.png");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .container .gamePage .logoTuan {
-  margin: 0 auto;
-  position: absolute;
-  width: 16.25%;
-  left: 0;
-  top: -320px;
+    margin: 0 auto;
+    position: absolute;
+    width: 16.25%;
+    left: 0;
+    top: -320px;
 }
 .container .gamePage .shutBox {
-  position: relative;
-  top: 69%;
-  width: 45%;
-  height: 11%;
-  margin: 0 auto;
+    position: relative;
+    top: 69%;
+    width: 45%;
+    height: 11%;
+    margin: 0 auto;
 }
 .container .gamePage .shutBox .shut {
-  width: 100%;
-  height: 100%;
-  background: url("../../images/takephotos/shut.png");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
-  position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("../../images/takephotos/shut.png");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: absolute;
 }
