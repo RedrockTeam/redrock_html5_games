@@ -8,8 +8,8 @@
 /*声明 WebFont*/
 @font-face {
   font-family: 'Women';
-  src: url('../font/women.ttf');
-  src: url('../font/women.eot?#font-spider') format('embedded-opentype'), url('../font/women.woff') format('woff'), url('../font/women.ttf') format('truetype'), url('../font/women.svg') format('svg');
+  src: url('../../resource/takephotos/font/women.ttf');
+  src: url('../../resource/takephotos/font/women.eot?#font-spider') format('embedded-opentype'), url('../../resource/takephotos/font/women.woff') format('woff'), url('../../resource/takephotos/font/women.ttf') format('truetype'), url('../../resource/takephotos/font/women.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -191,6 +191,7 @@
   height: 41%;
   z-index: 90;
   transition: box-shadow 1s;
+  -ms-transition: box-shadow 1s;
   -moz-transition: box-shadow 1s;
   -webkit-transition: box-shadow 1s;
 }
