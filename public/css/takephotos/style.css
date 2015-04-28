@@ -9,7 +9,7 @@
 @font-face {
   font-family: 'Women';
   src: url('../../resource/takephotos/font/women.ttf');
-  src: url('../../resource/takephotos/font/women/women.eot?#font-spider') format('embedded-opentype'), url('../font/women.woff') format('woff'), url('../font/women.ttf') format('truetype'), url('../font/women.svg') format('svg');
+  src: url('../../resource/takephotos/font/women.eot?#font-spider') format('embedded-opentype'), url('../../resource/takephotos/font/women.woff') format('woff'), url('../../resource/takephotos/font/women.ttf') format('truetype'), url('../../resource/takephotos/font/women.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -206,7 +206,7 @@
   background-size: 100% 100%;
 }
 .container .gamePage .photo-box {
-  box-shadow: 0 0 5px 12px #ffffff;
+  box-shadow: 0 0 2px 12px #ffffff;
 }
 .container .gamePage .logoTuan {
   margin: 0 auto;

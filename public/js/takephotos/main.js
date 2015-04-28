@@ -18,7 +18,6 @@ $(function(){
 			var ogoal=$('.logoTuan');
 			ogoal.remove();
 			oCross[0].className='cross-bg cross';
-			//$('.cross-photos').css('display','none');
 			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
 		});
 	});
@@ -71,7 +70,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	timer=setTimeout(function(){
 		draw();
 	},time);
-	function touchGo(ev){
+	oShut[0].addEventListener('touchstart', function (ev) {
 		if(m<$(window).height()*0.115){
 			return;
 		}
@@ -106,8 +105,5 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 			oScoreBoard.css('display','block');
 		},2000);
 		ev.preventDefault();
-	}
-	oShut[0].addEventListener('touchstart', function (ev) {
-		touchGo(ev);
 	});
 }

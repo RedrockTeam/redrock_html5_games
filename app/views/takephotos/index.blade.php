@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="{{URL::asset('css/takephotos/style.css')}}"/>
 </head>
 <body>
-	<img src="{{URL::asset('images/takephotos/begin-bg.jpg')}}" style="position: absolute;top: -1000px">
+	<img src="images/takephotos/begin-bg.jpg" style="position: absolute;top: -1000px">
 	<div class="container">
 		<ul>
 			<li class="mask">
@@ -42,11 +42,9 @@
 			</li>
 			<li class="gamePage">
 				<div class="cross cross-bg">
-					<img src="{{URL::asset('images/takephotos/tuanhui.png')}}" alt="" class="cross-photos"/>
 				</div>
 				<div class="shutBox">
 					<div class="shut">
-
 					</div>
 				</div>
 			</li>
