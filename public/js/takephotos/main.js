@@ -17,6 +17,8 @@ $(function(){
 			oMask.css('z-index',-100);
 			var ogoal=$('.logoTuan');
 			ogoal.remove();
+			oCross[0].className='cross-bg cross';
+			//$('.cross-photos').css('display','none');
 			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
 		});
 	});
@@ -30,16 +32,16 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	var take=true;
 	if(r<=1){
 		r='tuanqi';
-		deg=5;
-		speed=2;
-	}
-	else{
-		r='tuanhui';
 		deg=7;
 		speed=3;
 	}
+	else{
+		r='tuanhui';
+		deg=9;
+		speed=5;
+	}
 	function draw(){
-		var time=2;
+		var time=1000/60;
 		n+=deg;
 		m+=speed;
 		if(m>$(window).height()*0.52){
@@ -57,7 +59,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	}
 	$('<img />',{
 		class:'logoTuan',
-		src:'./images/takephotos/'+r+'.png'
+		src:'./images/takePhotos/'+r+'.png'
 	}).appendTo(obj);
 	var ogoal=$('.logoTuan');
 	var oShut=$('.shut');
@@ -69,20 +71,25 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	timer=setTimeout(function(){
 		draw();
 	},time);
-	oShut[0].addEventListener('touchstart', function (ev) {
+	function touchGo(ev){
 		if(m<$(window).height()*0.115){
 			return;
 		}
-		oCross.css('animation','Scales 0.3s');
 		clearTimeout(timer);
+		oCross.css({'-webkit-animation':'Scales 0.3s','-ms-animation':'Scales 0.3s','-moz-animation':'Scales 0.3s','animation':'Scales 0.3s'});
+		//var oPhoto=$('.cross-photos');
+		setTimeout(function(){
+			oCross.addClass('photo-box');
+			oCross.removeClass('cross-bg');
+		},400);
 		b=n%360-180;
 		if(b<0){
 			b+=180;
 		}else{
 			b=180-b;
 		}
-		b=120/180*(180-b);
-		p=(center-Math.abs(m-center+25))*80/center;
+		b=130/180*(180-b);
+		p=(center-Math.abs(m-center+25))*70/center;
 		sum=b+p;
 		if(r=='tuanhui'){
 			sum*=1.1;
@@ -91,17 +98,16 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		if(!take){
 			sum=0;
 		}
-		console.log(b,p);
 		setTimeout(function(){
 			$('.score-num').html(sum);
-			oCross.css('animation','null');
+			oCross.css({'-webkit-animation':'null','-ms-animation':'null','-moz-animation':'null','animation':'null'});
 			oMask.css('z-index',100);
 			oGuide.css('display','none');
 			oScoreBoard.css('display','block');
-		},1200);
+		},2000);
 		ev.preventDefault();
+	}
+	oShut[0].addEventListener('touchstart', function (ev) {
+		touchGo(ev);
 	});
-	//oShut.click(function(){
-	//
-	//});
 }
