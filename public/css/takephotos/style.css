@@ -190,10 +190,6 @@
   width: 72.5%;
   height: 41%;
   z-index: 90;
-  transition: box-shadow 1s;
-  -ms-transition: box-shadow 1s;
-  -moz-transition: box-shadow 1s;
-  -webkit-transition: box-shadow 1s;
 }
 .container .gamePage .cross .cross-photos {
   display: none;
@@ -211,7 +207,11 @@
   background-size: 100% 100%;
 }
 .container .gamePage .photo-box {
-  box-shadow: 0 0 2px 12px #ffffff;
+      transition: border 1s;
+      -moz-transition: border 1s;
+      -ms-transition: border 1s;
+      -webkit-transition: border 1s;
+      border: 10px solid #ffffff;
 }
 .container .gamePage .logoTuan {
   margin: 0 auto;
