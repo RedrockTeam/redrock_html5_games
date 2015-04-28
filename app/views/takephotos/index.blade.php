@@ -42,7 +42,7 @@
 			</li>
 			<li class="gamePage">
 				<div class="cross cross-bg">
-					<img src="{{URL::asset('images/takephotos/images/tuanhui.png')}}" alt="" class="cross-photos"/>
+					<img src="{{URL::asset('images/takephotos/tuanhui.png')}}" alt="" class="cross-photos"/>
 				</div>
 				<div class="shutBox">
 					<div class="shut">
