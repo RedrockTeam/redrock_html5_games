@@ -59,7 +59,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	}
 	$('<img />',{
 		class:'logoTuan',
-		src:'./images/takePhotos/'+r+'.png'
+		src:'./images/takephotos/'+r+'.png'
 	}).appendTo(obj);
 	var ogoal=$('.logoTuan');
 	var oShut=$('.shut');
