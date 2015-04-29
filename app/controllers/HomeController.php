@@ -59,6 +59,7 @@ class HomeController extends BaseController {
 
               case 'takephotos':
                   Redirect::to("www.baidu.com");
+                  return;
               case 'realtakephotos':
                   return $CODE;
                   return View::make('takephotos.index');
