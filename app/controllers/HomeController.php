@@ -59,8 +59,8 @@ class HomeController extends BaseController {
               case 'takephotos':
                   return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
               case 'realtakephotos':
-                  $data =  json_decode($this->getOpenId());
-                  Session::put('openid', $data->data->openid);
+//                  $data =  json_decode($this->getOpenId());
+//                  Session::put('openid', $data->data->openid);
                   return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
@@ -217,22 +217,23 @@ class HomeController extends BaseController {
 
         public function takephotos(){
             $open_id = Session::get('openid')? Session::get('openid'):null;
+            $open_id = 'dddddddddddddd';
             $data = Input::all();
             $save = array(
                 'openid' => $open_id,
                 'score' => $data['score'],
             );
             if($open_id != null){
-                $num = Takephotos::where('openid', '=', $data['openid'])->count();
+                $num = Takephotos::where('openid', '=', $open_id)->count();
                 if($num != 0){
-                    $info = Takephotos::where('openid', '=', $data['openid'])->first();
+                    $info = Takephotos::where('openid', '=', $open_id)->first();
                     if($save['score'] > $info['score']) {
-                        Takephotos::where('openid', '=', $data['openid'])->update($save);
-                        $id = Takephotos::where('openid', '=', $data['openid'])->first();
+                        Takephotos::where('openid', '=', $open_id)->update($save);
+                        $id = Takephotos::where('openid', '=', $open_id)->first();
                     }
                     elseif($save['score'] == $info['score']){
-                        Takephotos::where('openid', '=', $data['openid'])->update($save);
-                        $id = Takephotos::where('openid', '=', $data['openid'])->first();
+                        Takephotos::where('openid', '=', $open_id)->update($save);
+                        $id = Takephotos::where('openid', '=', $open_id)->first();
                     }
                     else{
                         $id = Takephotos::create($save);
