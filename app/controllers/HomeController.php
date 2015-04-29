@@ -58,8 +58,9 @@ class HomeController extends BaseController {
                  return View::make('praise-xi.index');
 
               case 'takephotos':
-                 header("location: https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect");
-                return;
+
+                  return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+                 return;
               case 'realtakephotos':
                   return $CODE;
                   return View::make('takephotos.index');
