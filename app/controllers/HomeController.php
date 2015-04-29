@@ -15,7 +15,7 @@ class HomeController extends BaseController {
 	  public function start($game)
       {
           $openid = Input::get('openid')? Input::get('openid'):null;
-          $CODE = Input::get('code')? Input::get('code'):null;
+          $CODE = Input::get('code')? Input::get('code'):'gg';
           $state = Input::get('state')? Input::get('state'):null;
           Session::put('openid', $openid);
           Session::put('code', $CODE);
