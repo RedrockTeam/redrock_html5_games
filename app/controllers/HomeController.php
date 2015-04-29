@@ -57,10 +57,6 @@ class HomeController extends BaseController {
                  return View::make('praise-xi.index');
 
               case 'takephotos':
-                  return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
-              case 'realtakephotos':
-                  $data =  json_decode($this->getOpenId());
-                  Session::put('openid', $data->data->openid);
                   return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
@@ -216,23 +212,22 @@ class HomeController extends BaseController {
         }
 
         public function takephotos(){
-            $open_id = Session::get('openid')? Session::get('openid'):null;
             $data = Input::all();
             $save = array(
-                'openid' => $open_id,
+                'openid' => trim($data['phone']),
                 'score' => $data['score'],
             );
-            if($open_id != null){
-                $num = Takephotos::where('openid', '=', $open_id)->count();
+            if($data['phone'] != null){
+                $num = Takephotos::where('openid', '=', $data['phone'])->count();
                 if($num != 0){
-                    $info = Takephotos::where('openid', '=', $open_id)->first();
+                    $info = Takephotos::where('openid', '=', $data['phone'])->first();
                     if($save['score'] > $info['score']) {
-                        Takephotos::where('openid', '=', $open_id)->update($save);
-                        $id = Takephotos::where('openid', '=', $open_id)->first();
+                        Takephotos::where('openid', '=', $data['phone'])->update($save);
+                        $id = Takephotos::where('openid', '=', $data['phone'])->first();
                     }
                     elseif($save['score'] == $info['score']){
-                        Takephotos::where('openid', '=', $open_id)->update($save);
-                        $id = Takephotos::where('openid', '=', $open_id)->first();
+                        Takephotos::where('openid', '=', $data['phone'])->update($save);
+                        $id = Takephotos::where('openid', '=', $data['phone'])->first();
                     }
                     else{
                         $id = Takephotos::create($save);
@@ -254,47 +249,47 @@ class HomeController extends BaseController {
             return $paiming;
         }
 
-        private function getOpenId () {
-            $code = Session::get('code');
-
-            $time=time();
-            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
-            $string='';
-            for($i=0;$i<16;$i++){
-                $num = mt_rand(0,61);
-                $string .= $str[$num];
-            }
-            $secret =sha1(sha1($time).md5($string)."redrock");
-            $t2 = array(
-                'timestamp'=>$time,
-                'string'=>$string,
-                'secret'=>$secret,
-                'token'=>$this->acess_token,
-                'code' => $code,
-            );
-
-            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
-            return json_encode($this->curl_api($url, $t2));
-        }
-
-
-
-
-        /*curl通用函数*/
-        private function curl_api($url, $data=''){
-            // 初始化一个curl对象
-            $ch = curl_init();
-            curl_setopt ( $ch, CURLOPT_URL, $url );
-            curl_setopt ( $ch, CURLOPT_POST, 1 );
-            curl_setopt ( $ch, CURLOPT_HEADER, 0 );
-            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
-            // 运行curl，获取网页。
-            $contents = json_decode(curl_exec($ch));
-            // 关闭请求
-            curl_close($ch);
-            return $contents;
-        }
+//        private function getOpenId () {
+//            $code = Session::get('code');
+//
+//            $time=time();
+//            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+//            $string='';
+//            for($i=0;$i<16;$i++){
+//                $num = mt_rand(0,61);
+//                $string .= $str[$num];
+//            }
+//            $secret =sha1(sha1($time).md5($string)."redrock");
+//            $t2 = array(
+//                'timestamp'=>$time,
+//                'string'=>$string,
+//                'secret'=>$secret,
+//                'token'=>$this->acess_token,
+//                'code' => $code,
+//            );
+//
+//            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
+//            return json_encode($this->curl_api($url, $t2));
+//        }
+//
+//
+//
+//
+//        /*curl通用函数*/
+//        private function curl_api($url, $data=''){
+//            // 初始化一个curl对象
+//            $ch = curl_init();
+//            curl_setopt ( $ch, CURLOPT_URL, $url );
+//            curl_setopt ( $ch, CURLOPT_POST, 1 );
+//            curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+//            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
+//            // 运行curl，获取网页。
+//            $contents = json_decode(curl_exec($ch));
+//            // 关闭请求
+//            curl_close($ch);
+//            return $contents;
+//        }
 //    private function encrypt()
 //    {
 //        $time = microtime();
