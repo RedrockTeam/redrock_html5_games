@@ -60,8 +60,8 @@ class HomeController extends BaseController {
                   return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
               case 'realtakephotos':
                   $data =  $this->getOpenId();
-                  Session::put('openid', $data->data->openid);
-                  return View::make('take$openidphotos.index');
+                  Session::put('openid', $data['data']['openid']);
+                  return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
                   break;
@@ -288,15 +288,16 @@ class HomeController extends BaseController {
 
             // 设置url
             curl_setopt($curl,CURLOPT_URL,$web);
-
+            url_setopt ($curl, CURLOPT_POST, 1 );
             // 设置参数，输出或否
+            curl_setopt ($curl, CURLOPT_HEADER, 0 );
             curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 
             //数据
             curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
 
             // 运行curl，获取网页。
-            $contents = curl_exec($curl);
+            $contents = json_decodecurl_exec(($curl));
             // 关闭请求
             curl_close($curl);
             return $contents;
