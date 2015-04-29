@@ -97,6 +97,22 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		if(!take){
 			sum=0;
 		}
+		$.ajax({
+			url: "takephotos",
+			type: "post",
+			dataType: 'json',
+			contentType: "application/json",
+			data: JSON.stringify({
+				score:sum
+			})
+		}).fail(function () {
+			alert("与服务器连接错误!");
+		}).complete(function (data) {
+			console.log(data);
+			data = data.responseJSON;
+			var rank = data.rank;
+			document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
+		});
 		setTimeout(function(){
 			$('.score-num').html(sum);
 			oCross.css({'-webkit-animation':'null','-ms-animation':'null','-moz-animation':'null','animation':'null'});
