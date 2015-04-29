@@ -59,7 +59,8 @@ class HomeController extends BaseController {
               case 'takephotos':
                   return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
               case 'realtakephotos':
-                  return $this->getOpenId();
+                  $data =  $this->getOpenId();
+                  Session::put('openid', $data['openid']);
                   return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
@@ -215,15 +216,11 @@ class HomeController extends BaseController {
         }
 
         public function takephotos(){
-            $result = $this->getOpenId();
-            return $result;
-            $data = Input::all();
-            $data['openid'] = Session::get('openid')? Session::get('openid'):null;
-
+            $open_id = Session::get('openid')? Session::get('openid'):null;
+            $data = input::all();
             $save = array(
-                'openid' => $data['openid'],
-                'score' => $data['sub'],
-                'time' => $data['score']
+                'openid' => $open_id,
+                'score' => $data['score'],
             );
 
             if($data['openid'] != null){
@@ -234,14 +231,14 @@ class HomeController extends BaseController {
                         Takephotos::where('openid', '=', $data['openid'])->update($save);
                         $id = Takephotos::where('openid', '=', $data['openid'])->first();
                     }
-                    elseif($save['score'] == $info['score'] && $save['time'] < $info['time'] ){
+                    elseif($save['score'] == $info['score']){
                         Takephotos::where('openid', '=', $data['openid'])->update($save);
                         $id = Takephotos::where('openid', '=', $data['openid'])->first();
                     }
                     else{
                         $id = Takephotos::create($save);
                         $uid = $id['id'];
-                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
                         Takephotos::destroy($uid);
                         return $paiming;
                     }
@@ -254,7 +251,7 @@ class HomeController extends BaseController {
                 $id = Click::create($save);
             }
             $uid = $id['id'];
-            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
             return $paiming;
         }
 
@@ -278,31 +275,10 @@ class HomeController extends BaseController {
             );
 
             $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
-            return $this->curl_api($url, $t2);;
+            return $this->curl_api($url, $t2);
         }
 
-        private function backUserInfo($openId){
-            $time=time();
-            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
-            $string='';
-            for($i=0;$i<16;$i++){
-                $num = mt_rand(0,61);
-                $string .= $str[$num];
-            }
-            $secret =sha1(sha1($time).md5($string)."redrock");
-            $web=$this->wx_url.'userInfo';
-            $data=array(
-                'timestamp'=>$time,
-                'string'=>$string,
-                'secret'=>$secret,
-                'token'=>$this->acess_token,
-                'openid'=>$openId,
-            );
-            $information=$this->curl_api($web,$data);
 
-            $tmp = json_decode($information,true);
-            return $tmp;
-        }
 
 
         /*curl通用函数*/
