@@ -9,6 +9,7 @@
 class HomeController extends BaseController {
 
     private $appid = 'wx81a4a4b77ec98ff4';
+    private $acess_token = 'gh_68f0a1ffc303';
     private $wx_url = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/';
         //获取游戏页面
 	  public function start($game)
@@ -259,6 +260,7 @@ class HomeController extends BaseController {
 
         private function getOpenId () {
             $code = Session::get('code');
+
             $time=time();
             $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
             $string='';
@@ -266,12 +268,17 @@ class HomeController extends BaseController {
                 $num = mt_rand(0,61);
                 $string .= $str[$num];
             }
-
             $secret =sha1(sha1($time).md5($string)."redrock");
-            $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$this->appid&secret=$secret&code=$code&grant_type=authorization_code";
-            $oa = json_decode($this->curl_api($url),true);//new
-//            $openId = $oa['data']['openid'];
-            return $oa;
+            $t2 = array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+                'code' => $code,
+            );
+
+            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
+            return $this->curl_api($url, $t2);;
         }
 
         private function backUserInfo($openId){
@@ -299,8 +306,7 @@ class HomeController extends BaseController {
 
 
         /*curl通用函数*/
-        private function curl_api($web){
-            header('Content-Type:application/json; charset=utf-8');
+        private function curl_api($web, $curlPost=''){
             // 初始化一个curl对象
             $curl = curl_init();
 
@@ -311,7 +317,7 @@ class HomeController extends BaseController {
             curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 
             //数据
-//            curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
+            curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
 
             // 运行curl，获取网页。
             $contents = curl_exec($curl);
