@@ -217,13 +217,12 @@ class HomeController extends BaseController {
 
         public function takephotos(){
             $open_id = Session::get('openid')? Session::get('openid'):null;
-            $data = input::all();
+            $data = Input::all();
             $save = array(
                 'openid' => $open_id,
                 'score' => $data['score'],
             );
-
-            if($data['openid'] != null){
+            if($open_id != null){
                 $num = Takephotos::where('openid', '=', $data['openid'])->count();
                 if($num != 0){
                     $info = Takephotos::where('openid', '=', $data['openid'])->first();
@@ -244,11 +243,11 @@ class HomeController extends BaseController {
                     }
                 }
                 else {
-                    $id = Click::create($save);
+                    $id = Takephotos::create($save);
                 }
             }
             else{
-                $id = Click::create($save);
+                $id = Takephotos::create($save);
             }
             $uid = $id['id'];
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
