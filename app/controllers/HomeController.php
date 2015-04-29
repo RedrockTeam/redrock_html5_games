@@ -13,12 +13,11 @@ class HomeController extends BaseController {
         //获取游戏页面
 	  public function start($game)
       {
+          Session::flush();
           $openid = Input::get('openid')? Input::get('openid'):null;
           $CODE = Input::get('code')? Input::get('code'):'gg';
-          $state = Input::get('state')? Input::get('state'):null;
           Session::put('openid', $openid);
-          Session::put('code', $CODE);
-          Session::put('state', $state);
+          Session::flash('code', $CODE);
           //检测微信浏览器
 //          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
 //          {
