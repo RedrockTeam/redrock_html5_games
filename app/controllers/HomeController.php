@@ -217,6 +217,7 @@ class HomeController extends BaseController {
 
         public function takephotos(){
             $open_id = Session::get('openid')? Session::get('openid'):null;
+            return $open_id;
             $data = Input::all();
             $save = array(
                 'openid' => $open_id,
