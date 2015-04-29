@@ -13,8 +13,6 @@
 
 Route::get('/{game}', 'HomeController@start');
 
-//我给团团拍张照
-Route::get('/takephotos', 'HomeController@takePhotos');
 
 Route::post('/post', 'HomeController@verify');
 Route::post('praise-xi-post', 'HomeController@savexi');
@@ -32,5 +30,6 @@ Route::get("/{game}/2048_index", 'HomeController@start');
 
 
 //view rank
-
 Route::get('/game/rank', 'RankController@index');
+
+Route::post('takephotos', 'HomeController@takephotos');
