@@ -282,24 +282,18 @@ class HomeController extends BaseController {
 
 
         /*curl通用函数*/
-        private function curl_api($web, $curlPost=''){
+        private function curl_api($url, $data=''){
             // 初始化一个curl对象
-            $curl = curl_init();
-
-            // 设置url
-            curl_setopt($curl,CURLOPT_URL,$web);
-            url_setopt ($curl, CURLOPT_POST, 1 );
-            // 设置参数，输出或否
-            curl_setopt ($curl, CURLOPT_HEADER, 0 );
-            curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
-
-            //数据
-            curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
-
+            $ch = curl_init();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, 1 );
+            curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
             // 运行curl，获取网页。
-            $contents = json_decodecurl_exec(($curl));
+            $contents = json_decode(curl_exec($ch));
             // 关闭请求
-            curl_close($curl);
+            curl_close($ch);
             return $contents;
         }
 //    private function encrypt()
