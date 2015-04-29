@@ -276,7 +276,7 @@ class HomeController extends BaseController {
             );
 
             $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
-            return $this->curl_api($url, $t2);
+            return json_encode($this->curl_api($url, $t2));
         }
 
 
