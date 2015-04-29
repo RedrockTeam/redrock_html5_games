@@ -54,6 +54,7 @@ $(function(){
 				data = data.responseJSON;
 				var rank = data[0].list;
 				document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
+				oPhone.val('');
 			});
 		}
 	});
