@@ -20,7 +20,6 @@
 				<div class="guide">
 					<div class="guide-img">
 						<div class="guide-words">
-							得分规则：共200分，旋转角度占得分65%，靠近焦点的程度占得分35%，拍到团徽会有一定的得分加成。点击屏幕开始游戏。
 						</div>
 					</div>
 				</div>
