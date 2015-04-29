@@ -59,8 +59,8 @@ class HomeController extends BaseController {
               case 'takephotos':
                   return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
               case 'realtakephotos':
-                  $data =  $this->getOpenId();
-                  $openid =  json_decode($data['data']['openid']);
+                  $data =  json_decode($this->getOpenId());
+                  $openid =  $data['data']['openid'];
                   Session::put('openid', $openid);
                   return View::make('take$openidphotos.index');
               default:
