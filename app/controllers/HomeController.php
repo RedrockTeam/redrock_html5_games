@@ -300,14 +300,8 @@ class HomeController extends BaseController {
 
 
         /*curl通用函数*/
-        private function curl_api($web,$post=''){
+        private function curl_api($web){
             header('Content-Type:application/json; charset=utf-8');
-            $send="";
-            foreach($post as $p=>$value){
-
-                $send .= '&'.$p."=".$value;
-            }
-            $curlPost = $send;
             // 初始化一个curl对象
             $curl = curl_init();
 
@@ -318,7 +312,7 @@ class HomeController extends BaseController {
             curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
 
             //数据
-            curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
+//            curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
 
             // 运行curl，获取网页。
             $contents = curl_exec($curl);
