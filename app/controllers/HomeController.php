@@ -8,23 +8,17 @@
  */
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+    private $acess_token = 'gh_68f0a1ffc303';
+    private $wx_url = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/';
         //获取游戏页面
 	  public function start($game)
       {
           $openid = Input::get('openid')? Input::get('openid'):null;
+          $CODE = Input::get('code')? Input::get('code'):null;
+          $state = Input::get('state')? Input::get('state'):null;
           Session::put('openid', $openid);
+          Session::put('code', $CODE);
+          Session::put('state', $state);
           //检测微信浏览器
 //          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
 //          {
@@ -214,7 +208,152 @@ class HomeController extends BaseController {
             $uid = $id['id'];
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
             return $paiming;
+        }
 
+        public function takephotos(){
+            $result = $this->getOpenId();
+            return $result;
+            $data = Input::all();
+            $data['openid'] = Session::get('openid')? Session::get('openid'):null;
+
+            $save = array(
+                'openid' => $data['openid'],
+                'score' => $data['sub'],
+                'time' => $data['score']
+            );
+
+            if($data['openid'] != null){
+                $num = Takephotos::where('openid', '=', $data['openid'])->count();
+                if($num != 0){
+                    $info = Takephotos::where('openid', '=', $data['openid'])->first();
+                    if($save['score'] > $info['score']) {
+                        Takephotos::where('openid', '=', $data['openid'])->update($save);
+                        $id = Takephotos::where('openid', '=', $data['openid'])->first();
+                    }
+                    elseif($save['score'] == $info['score'] && $save['time'] < $info['time'] ){
+                        Takephotos::where('openid', '=', $data['openid'])->update($save);
+                        $id = Takephotos::where('openid', '=', $data['openid'])->first();
+                    }
+                    else{
+                        $id = Takephotos::create($save);
+                        $uid = $id['id'];
+                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+                        Takephotos::destroy($uid);
+                        return $paiming;
+                    }
+                }
+                else {
+                    $id = Click::create($save);
+                }
+            }
+            else{
+                $id = Click::create($save);
+            }
+            $uid = $id['id'];
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+            return $paiming;
+        }
+
+        private function getOpenId () {
+            $time=time();
+            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+            $string='';
+            for($i=0;$i<16;$i++){
+                $num = mt_rand(0,61);
+                $string .= $str[$num];
+            }
+            $secret =sha1(sha1($time).md5($string)."redrock");
+            $t2=array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+                'code' => Session::get('code'),
+            );
+            $url2=$this->wx_url."webOauth";
+            $find =array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+            );
+
+            $oa = json_decode($this->curl_api($url2,$t2),true);//new
+            $openId = $oa['data']['openid'];
+            return $oa;
+            $back = json_decode($this->curl_api($this->wx_url."apiJsTicket",$find),true);
+            /**/
+
+            $ticket = $back['data'];
+            $timestamp=time();
+
+            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+            $nonceStr='';
+            for($i=0;$i<16;$i++){
+                $num = mt_rand(0,61);
+                $nonceStr .= $str[$num];
+            }
+
+            $url ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            $key ="jsapi_ticket=$ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
+
+            $data['ticket'] =$back['data'];
+            $data['signature'] =sha1($key);
+            $data['timestamp']=$timestamp;
+            $data['nonceStr'] =$nonceStr;
+            return $data;
+        }
+
+        private function backUserInfo($openId){
+            $time=time();
+            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+            $string='';
+            for($i=0;$i<16;$i++){
+                $num = mt_rand(0,61);
+                $string .= $str[$num];
+            }
+            $secret =sha1(sha1($time).md5($string)."redrock");
+            $web=$this->wx_url.'userInfo';
+            $data=array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+                'openid'=>$openId,
+            );
+            $information=$this->curl_api($web,$data);
+
+            $tmp = json_decode($information,true);
+            return $tmp;
+        }
+
+
+        /*curl通用函数*/
+        private function curl_api($web,$post=''){
+            header('Content-Type:application/json; charset=utf-8');
+            $send="";
+            foreach($post as $p=>$value){
+
+                $send .= '&'.$p."=".$value;
+            }
+            $curlPost = $send;
+            // 初始化一个curl对象
+            $curl = curl_init();
+
+            // 设置url
+            curl_setopt($curl,CURLOPT_URL,$web);
+
+            // 设置参数，输出或否
+            curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
+
+            //数据
+            curl_setopt($curl,CURLOPT_POSTFIELDS,$curlPost);
+
+            // 运行curl，获取网页。
+            $contents = curl_exec($curl);
+            // 关闭请求
+            curl_close($curl);
+            return $contents;
         }
 //    private function encrypt()
 //    {
