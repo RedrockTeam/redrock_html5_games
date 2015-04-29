@@ -284,6 +284,7 @@ class HomeController extends BaseController {
 
         /*curl通用函数*/
         private function curl_api($web, $curlPost=''){
+            header('Content-Type:application/json; charset=utf-8');
             // 初始化一个curl对象
             $curl = curl_init();
 
