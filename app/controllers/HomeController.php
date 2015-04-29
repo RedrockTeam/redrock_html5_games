@@ -8,7 +8,6 @@
  */
 class HomeController extends BaseController {
 
-    private $acess_token = 'gh_68f0a1ffc303';
     private $appid = 'wx81a4a4b77ec98ff4';
     private $wx_url = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/';
         //获取游戏页面
@@ -58,11 +57,9 @@ class HomeController extends BaseController {
                  return View::make('praise-xi.index');
 
               case 'takephotos':
-
                   return  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2frealtakephotos&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
-                 return;
               case 'realtakephotos':
-                  return $CODE;
+                  return $this->getOpenId();
                   return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
@@ -262,6 +259,7 @@ class HomeController extends BaseController {
         }
 
         private function getOpenId () {
+            $code = Session::get('code');
             $time=time();
             $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
             $string='';
@@ -269,46 +267,12 @@ class HomeController extends BaseController {
                 $num = mt_rand(0,61);
                 $string .= $str[$num];
             }
+
             $secret =sha1(sha1($time).md5($string)."redrock");
-            $t2=array(
-                'timestamp'=>$time,
-                'string'=>$string,
-                'secret'=>$secret,
-                'token'=>$this->acess_token,
-                'code' => Session::get('code'),
-            );
-            $url2=$this->wx_url."webOauth";
-            $find =array(
-                'timestamp'=>$time,
-                'string'=>$string,
-                'secret'=>$secret,
-                'token'=>$this->acess_token,
-            );
-
-            $oa = json_decode($this->curl_api($url2,$t2),true);//new
-            $openId = $oa['data']['openid'];
+            $url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=$this->appid&secret=$secret&code=$code&grant_type=authorization_code";
+            $oa = json_decode($this->curl_api($url),true);//new
+//            $openId = $oa['data']['openid'];
             return $oa;
-            $back = json_decode($this->curl_api($this->wx_url."apiJsTicket",$find),true);
-            /**/
-
-            $ticket = $back['data'];
-            $timestamp=time();
-
-            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
-            $nonceStr='';
-            for($i=0;$i<16;$i++){
-                $num = mt_rand(0,61);
-                $nonceStr .= $str[$num];
-            }
-
-            $url ="http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            $key ="jsapi_ticket=$ticket&noncestr=$nonceStr&timestamp=$timestamp&url=$url";
-
-            $data['ticket'] =$back['data'];
-            $data['signature'] =sha1($key);
-            $data['timestamp']=$timestamp;
-            $data['nonceStr'] =$nonceStr;
-            return $data;
         }
 
         private function backUserInfo($openId){
