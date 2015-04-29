@@ -61,6 +61,7 @@ class HomeController extends BaseController {
               case 'realtakephotos':
                   $data =  json_decode($this->getOpenId());
                   Session::put('openid', $data->data->openid);
+                  return Session::get('openid');
                   return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
