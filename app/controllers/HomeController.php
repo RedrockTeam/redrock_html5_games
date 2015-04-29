@@ -9,6 +9,7 @@
 class HomeController extends BaseController {
 
     private $acess_token = 'gh_68f0a1ffc303';
+    private $appid = 'wx81a4a4b77ec98ff4';
     private $wx_url = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/';
         //获取游戏页面
 	  public function start($game)
@@ -55,8 +56,12 @@ class HomeController extends BaseController {
 
               case 'praise-xi':
                  return View::make('praise-xi.index');
+
               case 'takephotos':
-                 return View::make('takephotos.index');
+                  Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http://hongyan.cqupt.edu.cn/game/public/realtakephotos&response_type=code&scope=snsapi_base&state=123#wechat_redirect");
+              case 'realtakephotos':
+                  return $CODE;
+                  return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
                   break;
