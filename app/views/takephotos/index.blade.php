@@ -20,7 +20,7 @@
 				<div class="guide">
 					<div class="guide-img">
 						<div class="guide-words">
-							
+							得分规则：共200分，旋转角度占得分65%，靠近焦点的程度占得分35%，拍到团徽会有一定的得分加成。点击屏幕开始游戏。
 						</div>
 					</div>
 				</div>
@@ -29,6 +29,8 @@
 						<p>
 							<span class="score-num"></span> <span>分</span>
 						</p>
+						<input type="text" placeholder="输入您的手机号码" class="phone-box">
+						<div class="apply-btn"></div>
 					</div>
 				</div>
 			</li>

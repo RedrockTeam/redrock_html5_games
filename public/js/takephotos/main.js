@@ -8,6 +8,9 @@ $(function(){
 	var oMask=$('.mask');
 	var oScoreBoard=$('.score-board');
 	var oGuide=$('.guide');
+	var oApply=$('.apply-btn');
+	var oPhone=$('.phone-box');
+	var oOpacity=$('.non-opacity');
 	oCross.css('left',$(window).width()*0.1375);
 	oPlay.bind('click',function(){
 		oHolder.css('left',-100+'%');
@@ -19,7 +22,40 @@ $(function(){
 			ogoal.remove();
 			oCross[0].className='cross-bg cross';
 			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
+			oMask.unbind("click");
+			oOpacity.click(function(){
+				oMask.css('z-index',-100);
+				var ogoal=$('.logoTuan');
+				ogoal.remove();
+				oCross[0].className='cross-bg cross';
+				gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
+			});
 		});
+	});
+	oApply.bind('click',function(){
+		phone=oPhone.val();
+		if(phone.length!=11||isNaN(phone)){
+			alert('请输入正确的手机号码！');
+		}
+		else{
+			$.ajax({
+				url: "takephotos",
+				type: "post",
+				dataType: 'json',
+				contentType: "application/json",
+				data: JSON.stringify({
+					phone:phone,
+					score:sum
+				})
+			}).fail(function () {
+				alert("与服务器连接错误!");
+			}).complete(function (data) {
+				console.log(data);
+				data = data.responseJSON;
+				var rank = data[0].list;
+				document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
+			});
+		}
 	});
 	oHolder.css('width',$(window).width()*2);
 	aPages.css('height',$(window).height());
@@ -76,7 +112,6 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		}
 		clearTimeout(timer);
 		oCross.css({'-webkit-animation':'Scales 0.3s','-ms-animation':'Scales 0.3s','-moz-animation':'Scales 0.3s','animation':'Scales 0.3s'});
-		//var oPhoto=$('.cross-photos');
 		setTimeout(function(){
 			oCross.addClass('photo-box');
 			oCross.removeClass('cross-bg');
@@ -97,22 +132,6 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		if(!take){
 			sum=0;
 		}
-		$.ajax({
-			url: "takephotos",
-			type: "post",
-			dataType: 'json',
-			contentType: "application/json",
-			data: JSON.stringify({
-				score:sum
-			})
-		}).fail(function () {
-			alert("与服务器连接错误!");
-		}).complete(function (data) {
-			console.log(data);
-			data = data.responseJSON;
-			var rank = data[0].list;
-			document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
-		});
 		setTimeout(function(){
 			$('.score-num').html(sum);
 			oCross.css({'-webkit-animation':'null','-ms-animation':'null','-moz-animation':'null','animation':'null'});
