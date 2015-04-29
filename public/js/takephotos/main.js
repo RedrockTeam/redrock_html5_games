@@ -22,8 +22,16 @@ $(function(){
 			ogoal.remove();
 			oCross[0].className='cross-bg cross';
 			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
+			oApply.bind('click',function(){
+					sendAjax();
+					oApply.unbind('click');
+			});
 			oMask.unbind("click");
 			oOpacity.click(function(){
+				oApply.bind('click',function(){
+					sendAjax();
+					oApply.unbind('click');
+				});
 				oMask.css('z-index',-100);
 				var ogoal=$('.logoTuan');
 				ogoal.remove();
@@ -32,7 +40,7 @@ $(function(){
 			});
 		});
 	});
-	oApply.bind('click',function(){
+	function sendAjax(){
 		phone=oPhone.val();
 		if(phone.length!=11||isNaN(phone)){
 			alert('请输入正确的手机号码！');
@@ -55,8 +63,13 @@ $(function(){
 				var rank = data[0].list;
 				document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
 				oPhone.val('');
+				sum=0;
 			});
 		}
+	}
+	oApply.bind('click',function(){
+			sendAjax();
+			oApply.unbind('click');
 	});
 	oHolder.css('width',$(window).width()*2);
 	aPages.css('height',$(window).height());
