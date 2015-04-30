@@ -28,10 +28,10 @@ $(function(){
 			});
 			oMask.unbind("click");
 			oOpacity.click(function(){
-				oApply.bind('click',function(){
-					sendAjax();
-					oApply.unbind('click');
-				});
+				// oApply.bind('click',function(){
+					// sendAjax();
+					// oApply.unbind('click');
+				// });
 				oMask.css('z-index',-100);
 				var ogoal=$('.logoTuan');
 				ogoal.remove();
@@ -67,10 +67,10 @@ $(function(){
 			});
 		}
 	}
-	oApply.bind('click',function(){
-			sendAjax();
-			oApply.unbind('click');
-	});
+	// oApply.bind('click',function(){
+			// sendAjax();
+			// oApply.unbind('click');
+	// });
 	oHolder.css('width',$(window).width()*2);
 	aPages.css('height',$(window).height());
 	oC.css('height',$(window).height());
