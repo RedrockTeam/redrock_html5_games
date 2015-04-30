@@ -1,4 +1,15 @@
+function isWeiXin(){
+	var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		return true;
+	}else{
+		return false;
+	}
+}
 $(function(){
+	if(!isWeiXin()){
+		window.location.href='http://hongyan.cqupt.edu.cn/';
+	}
 	var oC=$('.container');
 	var aPages=$('.container li');
 	var oHolder=$('.container>ul');
