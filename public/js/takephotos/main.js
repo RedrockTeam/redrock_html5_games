@@ -1,3 +1,5 @@
+window.phone=null;
+window.token=true;
 function isWeiXin(){
 	var ua = window.navigator.userAgent.toLowerCase();
 	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
@@ -7,9 +9,9 @@ function isWeiXin(){
 	}
 }
 $(function(){
-	if(!isWeiXin()){
-		window.location.href='http://hongyan.cqupt.edu.cn/';
-	}
+	//if(!isWeiXin()){
+	//	window.location.href='http://hongyan.cqupt.edu.cn/';
+	//}
 	var oC=$('.container');
 	var aPages=$('.container li');
 	var oHolder=$('.container>ul');
@@ -52,8 +54,11 @@ $(function(){
 		});
 	});
 	function sendAjax(){
+        if(!token){
+            return;
+        }
 		if (phone) {
-			if (!phone==oPhone.val()){
+			if (phone!=parseInt(oPhone.val())){
 				alert('为防止同一分数多次提交不同手机号，请输入与此前一致的手机号！')
 				return;
 			};
@@ -65,6 +70,7 @@ $(function(){
 			alert('请输入正确的手机号码！');
 		}
 		else{
+            token=false;
 			$.ajax({
 				url: "takephotos",
 				type: "post",
@@ -77,6 +83,7 @@ $(function(){
 			}).fail(function () {
 				alert("与服务器连接错误!");
 			}).complete(function (data) {
+                token=true;
 				alert('提交成功！分享到朋友圈看看自己的排名吧！')
 				data = data.responseJSON;
 				var rank = data[0].list;
