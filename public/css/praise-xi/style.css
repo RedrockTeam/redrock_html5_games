@@ -1,0 +1,233 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: '微软雅黑';
+}
+.game-back{
+	width: auto;
+	height: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	background: #f2911e;
+}
+.beginPage{
+	width: 100%;
+	height: auto;
+	position: absolute;
+	color: #ffffff;
+	background:#f2911e ;
+	left: 0;
+	top: 0;
+	z-index: 2;
+}
+.copyright{
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+	margin-top: 10px;
+	color: #ecefea;
+	margin-bottom: 12px;
+}
+.logo{
+	display: block;
+	margin: 7% auto;
+}
+.slogan{
+	width: 100%;
+	text-align: center;
+	line-height: 25px;
+	font-weight: 500;
+	font-size: 18px;
+}
+.begin_btn{
+	width: 55%;
+	height: 50px;
+	margin: 15px auto;
+	line-height: 50px;
+	text-align: center;
+	font-size: 26px;
+	text-shadow: 1px 1px 1px #333;
+	font-weight: 800;
+	background: yellow;
+	box-shadow:4px 5px 1px #ee6a0d ;
+}
+.holder{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	position: absolute;
+	background:#f2911e ;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+.where{
+	line-height: 22px;
+}
+.Xi-titile{
+	background:center no-repeat #ffffff;
+	width: 180px;
+	height: 180px;
+	margin: 7% auto;
+}
+.holder>p{
+	text-align: center;
+	font-size: 16px;
+}
+.wordsBox{
+	width: 70%;
+	display: block;
+	margin: 25px auto;
+	background: #ffffff;
+	overflow: hidden;
+	border-radius: 5px;
+	color: #666;
+}
+.wordsBox>li{
+	list-style: none;
+	width: 24.59%;
+	text-align: center;
+	float: left;
+	font-size: 23px;
+	font-weight: 800;
+	border-right: 1px solid #ccc;
+}
+.wordSelect{
+	width: 80%;
+	display: block;
+	margin: 15px auto;
+	overflow: hidden;
+	padding-left: 1px;
+}
+#sentence{
+	font-size: 14px;
+	color: #ffffff;
+}
+.wordSelect>li{
+	background: #ffffff;
+	margin-bottom: 8px;
+	border: none;
+	border-radius: 3px;
+	text-align: center;
+	list-style: none;
+	width: 15%;
+	float: left;
+	color: #666;
+	cursor: pointer;
+	font-weight: 500;
+	font-size: 18px;
+	box-shadow: 1px 2px 1px #e9620b;
+}
+.tips_title{
+	color: #ffffff;
+	text-align: center;
+	margin-top: 25px;
+	font-size: 27px;
+}
+.tips_title>.xi{
+	text-shadow: 2px 3px 0 #e9620b;
+}
+.tips_title>.line{
+	display: block;
+	width: 10%;
+	margin-top: 16px;
+	border-bottom: 2px solid #ffffff;
+}
+.Xiwords{
+	margin: 0 auto;
+	width: 90%;
+	height: auto;
+	padding: 15px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	background:#f2911e ;
+}
+.Xiaddress{
+	margin-top: 40px;
+	color: #ffdb6d;
+}
+.Xiaddress>span{
+	line-height: 22px;
+}
+.Xiaddress>.address{
+	font-size: 12px;
+}
+.wordsR{
+	color: #ffffff;
+	font-size: 17px;
+	font-weight: 800;
+}
+.tips{
+	margin-top: 15px;
+	font-size: 16px;
+	color: #ffffff;
+}
+.tips>.tipsWords{
+	font-size: 12px;
+	color:#ffdb6d;
+	line-height: 22px;
+}
+.beginAgain{
+	color: #ffffff;
+}
+.holder>.gametour{
+	color: #ffce3a;
+	font-size: 10px;
+}
+.gametour>.warm{
+	color: #ffffff;
+	display: inline-block;
+	margin-right: 4px;
+	width: 15px;
+	height: 15px;
+	line-height: 18px;
+	border-radius: 50%;
+	background: #ffce3a;
+}
+.score{
+	width: 100%;
+	height: 100%;
+}
+.score>p{
+	text-align: center;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 700;
+}
+.score>p span{
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.over_star{
+	display: block;
+	margin: 20px auto;
+}
+.share{
+	display: block;
+	width: 40%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #ffffff;
+	font-weight: 800;
+	background: yellow;
+	box-shadow:2px 3px 0px #ee6a0d ;
+	margin: 18px auto;
+}
+.sharePage{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: #000;
+	opacity: 0.4;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.share_tips{
+	position: absolute;
+	z-index: -100000;
+	top: 15px;
+	left: 10px;
+}
