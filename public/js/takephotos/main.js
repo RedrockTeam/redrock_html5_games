@@ -34,8 +34,8 @@ $(function(){
 			oCross[0].className='cross-bg cross';
 			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
 			oApply.bind('click',function(){
+					if (true) {};
 					sendAjax();
-					oApply.unbind('click');
 			});
 			oMask.unbind("click");
 			oOpacity.click(function(){
@@ -52,7 +52,15 @@ $(function(){
 		});
 	});
 	function sendAjax(){
-		phone=oPhone.val();
+		if (phone) {
+			if (!phone==oPhone.val()){
+				alert('为防止同一分数多次提交不同手机号，请输入与此前一致的手机号！')
+				return;
+			};
+		}
+		else{
+			phone=oPhone.val();
+		}
 		if(phone.length!=11||isNaN(phone)){
 			alert('请输入正确的手机号码！');
 		}
