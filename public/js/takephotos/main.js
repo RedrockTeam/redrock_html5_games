@@ -9,9 +9,9 @@ function isWeiXin(){
 	}
 }
 $(function(){
-	//if(!isWeiXin()){
-	//	window.location.href='http://hongyan.cqupt.edu.cn/';
-	//}
+	if(!isWeiXin()){
+		window.location.href='http://hongyan.cqupt.edu.cn/';
+	}
 	var oC=$('.container');
 	var aPages=$('.container li');
 	var oHolder=$('.container>ul');
