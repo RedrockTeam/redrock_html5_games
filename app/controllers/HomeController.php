@@ -8,30 +8,26 @@
  */
 class HomeController extends BaseController {
 
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
+    private $appid = 'wx81a4a4b77ec98ff4';
+    private $acess_token = 'gh_68f0a1ffc303';
+    private $wx_url = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/';
         //获取游戏页面
 	  public function start($game)
       {
+          Session::flush();
+          $openid = Input::get('openid')? Input::get('openid'):null;
+          $CODE = Input::get('code')? Input::get('code'):'gg';
+          Session::put('openid', $openid);
+          Session::flash('code', $CODE);
           //检测微信浏览器
-          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
-          {
-
-          }
-            else
-            {
-                return Response::make('请使用微信浏览器~', 403);
-            }
+//          if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false )
+//          {
+//
+//          }
+//            else
+//            {
+//                return Response::make('请使用微信浏览器~', 403);
+//            }
           //_token验证
           $_token = csrf_token();
           Session::put('_token',$_token);
@@ -57,6 +53,12 @@ class HomeController extends BaseController {
                  return View::make('2048.index')->with("arr", $arr);
                   break;
 
+              case 'praise-xi':
+                 return View::make('praise-xi.index');
+
+              case 'takephotos':
+                  DB::table('view')->where('id', '=', 1)->increment('view');
+                  return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
                   break;
@@ -166,7 +168,129 @@ class HomeController extends BaseController {
             return $data;
         }
 
+        //点赞习大大, 没时间就这么写了....
+        public function savexi(){
 
+            $data = Input::all();
+            $data['openid'] = Session::get('openid')? Session::get('openid'):null;
+
+            $save = array(
+                'openid' => $data['openid'],
+                'score' => $data['sub'],
+                'time' => $data['score']
+            );
+
+            if($data['openid'] != null){
+                $num = Click::where('openid', '=', $data['openid'])->count();
+                if($num != 0){
+                    $info = Click::where('openid', '=', $data['openid'])->first();
+                    if($save['score'] > $info['score']) {
+                        Click::where('openid', '=', $data['openid'])->update($save);
+                        $id = Click::where('openid', '=', $data['openid'])->first();
+                    }
+                    elseif($save['score'] == $info['score'] && $save['time'] < $info['time'] ){
+                        Click::where('openid', '=', $data['openid'])->update($save);
+                        $id = Click::where('openid', '=', $data['openid'])->first();
+                    }
+                    else{
+                        $id = Click::create($save);
+                        $uid = $id['id'];
+                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+                        Click::destroy($uid);
+                        return $paiming;
+                    }
+                }
+                else {
+                    $id = Click::create($save);
+                }
+            }
+            else{
+                $id = Click::create($save);
+            }
+            $uid = $id['id'];
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
+            return $paiming;
+        }
+
+        public function takephotos(){
+            $data = Input::all();
+            $save = array(
+                'openid' => trim($data['phone']),
+                'score' => $data['score'],
+            );
+            if($data['phone'] != null){
+                $num = Takephotos::where('openid', '=', $data['phone'])->count();
+                if($num != 0){
+                    $info = Takephotos::where('openid', '=', $data['phone'])->first();
+                    if($save['score'] > $info['score']) {
+                        Takephotos::where('openid', '=', $data['phone'])->update($save);
+                        $id = Takephotos::where('openid', '=', $data['phone'])->first();
+                    }
+                    elseif($save['score'] == $info['score']){
+                        Takephotos::where('openid', '=', $data['phone'])->update($save);
+                        $id = Takephotos::where('openid', '=', $data['phone'])->first();
+                    }
+                    else{
+                        $id = Takephotos::create($save);
+                        $uid = $id['id'];
+                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
+                        Takephotos::destroy($uid);
+                        return $paiming;
+                    }
+                }
+                else {
+                    $id = Takephotos::create($save);
+                }
+            }
+            else{
+                $id = Takephotos::create($save);
+            }
+            $uid = $id['id'];
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
+            return $paiming;
+        }
+
+//        private function getOpenId () {
+//            $code = Session::get('code');
+//
+//            $time=time();
+//            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+//            $string='';
+//            for($i=0;$i<16;$i++){
+//                $num = mt_rand(0,61);
+//                $string .= $str[$num];
+//            }
+//            $secret =sha1(sha1($time).md5($string)."redrock");
+//            $t2 = array(
+//                'timestamp'=>$time,
+//                'string'=>$string,
+//                'secret'=>$secret,
+//                'token'=>$this->acess_token,
+//                'code' => $code,
+//            );
+//
+//            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
+//            return json_encode($this->curl_api($url, $t2));
+//        }
+//
+//
+//
+//
+//        /*curl通用函数*/
+//        private function curl_api($url, $data=''){
+//            // 初始化一个curl对象
+//            $ch = curl_init();
+//            curl_setopt ( $ch, CURLOPT_URL, $url );
+//            curl_setopt ( $ch, CURLOPT_POST, 1 );
+//            curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+//            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+//            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
+//            // 运行curl，获取网页。
+//            $contents = json_decode(curl_exec($ch));
+//            // 关闭请求
+//            curl_close($ch);
+//            return $contents;
+//        }
 //    private function encrypt()
 //    {
 //        $time = microtime();

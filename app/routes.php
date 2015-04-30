@@ -13,7 +13,9 @@
 
 Route::get('/{game}', 'HomeController@start');
 
+
 Route::post('/post', 'HomeController@verify');
+Route::post('praise-xi-post', 'HomeController@savexi');
 
 // 2048 Index
 Route::get("/{game}/2048_main", function(){
@@ -28,5 +30,6 @@ Route::get("/{game}/2048_index", 'HomeController@start');
 
 
 //view rank
-
 Route::get('/game/rank', 'RankController@index');
+
+Route::post('takephotos', 'HomeController@takephotos');
