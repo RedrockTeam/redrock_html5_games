@@ -2,17 +2,78 @@
   padding: 0;
   margin: 0;
   font-size: 13px;
+  color: #ffffff;
   li{
     list-style: none;
   }
 }
 .container{
   width: auto;
-  height: 100%;
-  .begin_page{
+  position: relative;
+  overflow: hidden;
+  .game_holder{
     width: 100%;
     height: 100%;
+    position: absolute;
+  }
+  li{
+      width: 100%;
+      height: 100%;
+  }
+  .begin_page{
     background: url("../../images/goodcitizen/begin_back.jpg");
+    -webkit-background-size: 100% 100%;
+    -ms-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    background-size: 100% 100%;
+    position: relative;
+    .copyright{
+      position: absolute;
+      width: 100%;
+      top: 95%;
+      text-align: center;
+      color: #333333;
+      font-size: 15px;
+    }
+    .game_title{
+      width: 65%;
+      height: 28.126%;
+      position: absolute;
+      top: 15.3125%;
+      background: url("../../images/goodcitizen/title.png");
+      -webkit-background-size: 100% 100%;
+      -ms-background-size: 100% 100%;
+      -moz-background-size: 100% 100%;
+      background-size: 100% 100%;
+    }
+    .back_words{
+      width: 69.3725%;
+      color: #494804;
+      font-size: 18px;
+      position: absolute;
+      top: 46.25%;
+      line-height: 23px;
+    }
+    .game_start{
+      top: 70.3125%;
+      background: url("../../images/goodcitizen/begin_btn.png");
+    }
+    .game_guide{
+      top: 82.6%;
+      background: url("../../images/goodcitizen/guide_btn.png");
+    }
+    .game_btn{
+      width: 53.75%;
+      height: 10.21%;
+      position: absolute;
+      -webkit-background-size: 100% 100%;
+      -ms-background-size: 100% 100%;
+      -moz-background-size: 100% 100%;
+      background-size: 100% 100%;
+    }
+  }
+  .game_page{
+    background: url("../../images/goodcitizen/game_bg.jpg");
     -webkit-background-size: 100% 100%;
     -ms-background-size: 100% 100%;
     -moz-background-size: 100% 100%;

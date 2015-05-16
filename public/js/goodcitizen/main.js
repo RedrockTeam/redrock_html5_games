@@ -2,6 +2,9 @@
  * Created by truemenhale on 15/5/14.
  */
 //1.爱国;2.诚信;3.敬业;4.友善
+function setCenter(obj,m,c){
+	obj.css('left',m*c);
+}
 function ballInit(){
 	this.type;
 	this.src;
@@ -77,6 +80,18 @@ function gameInit(balls,boxs){
 var balls=[];
 var boxs=[];
 $(function(){
-	$('.container').css('height',$(window).height());
+	var W=$(window).width();
+	var H=$(window).height();
+	var startBtn=$('.game_start');
+	var guideBtn=$('.game_guide');
+	var oHolder=$('.game_holder');
+	$('.container').css('height',H);
+	setCenter($('.game_title'),W,0.178);
+	setCenter($('.back_words'),W,0.1531375);
+	setCenter(startBtn,W,0.23125);
+	setCenter(guideBtn,W,0.23125);
+	startBtn.click(function(){
+		oHolder.animate({'top':-H},400);
+	});
 	gameInit(balls,boxs);
 });
