@@ -12,6 +12,11 @@ ballInit.prototype.setType=function(a){
 ballInit.prototype.setSrc=function(src){
 	this.src=src;
 };
+ballInit.prototype.checkType=function(obj){
+	var result=null;
+	this.type==obj.type?result = true:result = false;
+	return result;
+};
 function boxInit(){
 	ballInit.call(this);
 }
@@ -57,9 +62,21 @@ function gameInit(balls,boxs){
 				alert('我要报警了！');
 		}
 	}
+	balls.sort(function(){ return 0.5 - Math.random() });
+	balls.sort(function(){ return 0.5 - Math.random() });
+	balls.sort(function(){ return 0.5 - Math.random() });
+	balls.sort(function(){ return 0.5 - Math.random() });
+	balls.sort(function(){ return 0.5 - Math.random() });
+	for(var i = 1;i<5;i++){
+		var b=new boxInit();
+		b.setSrc('../../images/goodcitizen/'+i+'.png');
+		b.setType(i);
+		boxs.push(b);
+	}
 }
 var balls=[];
 var boxs=[];
 $(function(){
+	$('.container').css('height',$(window).height());
 	gameInit(balls,boxs);
 });
