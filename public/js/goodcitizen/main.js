@@ -85,13 +85,30 @@ $(function(){
 	var startBtn=$('.game_start');
 	var guideBtn=$('.game_guide');
 	var oHolder=$('.game_holder');
+	var guideWords=$('.guide_words');
+	var closeBtn=$('.close_btn');
+	var aLi=$('.box_list')[0].getElementsByTagName('li');
+	var interval=(W*0.04);
+	for(var i = 0;i<aLi.length;i++){
+		aLi[i].style.left=(interval*(i+1)+W*0.2*i)+'px';
+	}
 	$('.container').css('height',H);
 	setCenter($('.game_title'),W,0.178);
 	setCenter($('.back_words'),W,0.1531375);
 	setCenter(startBtn,W,0.23125);
 	setCenter(guideBtn,W,0.23125);
-	startBtn.click(function(){
+	setCenter(guideWords,W,0.165625);
+	guideBtn[0].addEventListener('touchstart',function(ev){
+		guideWords.css('display','block');
+		ev.preventDefault();
+	});
+	closeBtn[0].addEventListener('touchstart',function(ev){
+		guideWords.css('display','none');
+		ev.preventDefault();
+	});
+	startBtn[0].addEventListener('touchstart',function(ev){
 		oHolder.animate({'top':-H},400);
+		ev.preventDefault();
 	});
 	gameInit(balls,boxs);
 });
