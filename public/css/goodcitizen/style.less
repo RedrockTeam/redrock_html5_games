@@ -80,6 +80,26 @@
   .game_page {
     background-image: url("../../images/goodcitizen/game_bg.jpg");
     position: relative;
+    .timer{
+      display: inline-block;
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      color: #f44545;
+      font-size: 70px;
+      top: 40%;
+      font-weight: 800;
+    }
+    .ball{
+      position: absolute;
+      width: 20.3125%;
+      top: 35%;
+    }
+    .animation{
+      animation: flyDown 0.5s;
+      -webkit-animation: flyDown 0.5s;
+      -moz-animation: flyDown 0.5s;
+    }
     .heart_list{
       width: 26.5%;
       height: 5%;
@@ -127,5 +147,37 @@
   .container .begin_page .back_words{
     font-size: 13px;
     line-height: 20px;
+  }
+}
+@keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}
+@-ms-keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}
+@-moz-keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}
+@-webkit-keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
   }
 }
