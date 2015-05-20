@@ -5,6 +5,18 @@
 function setCenter(obj,m,c){
 	obj.css('left',m*c);
 }
+function count(obj,flag){
+	var m=2;
+	var timer=setInterval(function(){
+		obj.html(m);
+		m--;
+		if(m<0){
+			obj.html("Go!");
+			clearInterval(timer);
+			flag=true;
+		}
+	},1000);
+}
 function ballInit(){
 	this.type;
 	this.src;
@@ -89,6 +101,8 @@ $(function(){
 	var closeBtn=$('.close_btn');
 	var aLi=$('.box_list')[0].getElementsByTagName('li');
 	var interval=(W*0.04);
+	var ball=$('.ball');
+	var countDown=$('.timer');
 	for(var i = 0;i<aLi.length;i++){
 		aLi[i].style.left=(interval*(i+1)+W*0.2*i)+'px';
 	}
@@ -98,6 +112,7 @@ $(function(){
 	setCenter(startBtn,W,0.23125);
 	setCenter(guideBtn,W,0.23125);
 	setCenter(guideWords,W,0.165625);
+	setCenter(ball,W,0.3984375);
 	guideBtn[0].addEventListener('touchstart',function(ev){
 		guideWords.css('display','block');
 		ev.preventDefault();
@@ -107,8 +122,14 @@ $(function(){
 		ev.preventDefault();
 	});
 	startBtn[0].addEventListener('touchstart',function(ev){
-		oHolder.animate({'top':-H},400);
+		oHolder.animate({'top':-H},400,function(){
+			count(countDown);
+			setTimeout(function(){
+				countDown.animate({'top':-100},300);
+			},3300)
+		});
+		gameInit(balls,boxs);
 		ev.preventDefault();
 	});
-	gameInit(balls,boxs);
+	//<img class="ball animation" src="../../../public/images/goodcitizen/1/1.png" alt="##"/>
 });
