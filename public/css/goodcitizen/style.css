@@ -7,6 +7,13 @@
 * li {
   list-style: none;
 }
+@font-face {
+  font-family: 'Huakang';
+  src: url('../../resource/goodcitizen/font/huakang.ttf');
+  src: url('resource/goodcitizen/font/huakang.eot?#font-spider') format('embedded-opentype'), url('../../resource/goodcitizen/font/huakang.woff') format('woff'), url('../../resource/goodcitizen/font/huakang.ttf') format('truetype'), url('../../resource/goodcitizen/font/huakang.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 .container {
   width: auto;
   position: relative;
@@ -17,7 +24,7 @@
   height: 100%;
   position: absolute;
 }
-.container li {
+.container .game_holder > li {
   width: 100%;
   height: 100%;
 }
@@ -47,6 +54,7 @@
   position: absolute;
   top: 46.25%;
   line-height: 23px;
+  font-family: 'Huakang';
 }
 .container .begin_page .game_start {
   top: 70.3125%;
@@ -81,6 +89,32 @@
   background-image: url("../../images/goodcitizen/game_bg.jpg");
   position: relative;
 }
+.container .game_page .timeCount {
+  font-family: 'Huakang';
+  width: 50%;
+  margin: 10px;
+  float: left;
+  height: 20px;
+}
+.container .game_page .timeCount li {
+  color: #2fc524;
+}
+.container .game_page .timeCount li .second {
+  width: 40%;
+  height: 20px;
+}
+.container .game_page .timeCount li > * {
+  color: #2fc524;
+}
+.container .game_page .timeCount * {
+  float: left;
+  font-size: 20px;
+  line-height: 30px;
+}
+.container .game_page .timeCount * .score {
+  color: red;
+  float: right;
+}
 .container .game_page .timer {
   display: inline-block;
   position: absolute;
@@ -88,6 +122,8 @@
   width: 100%;
   color: #f44545;
   font-size: 70px;
+  font-family: Huakang;
+  left: 0;
   top: 40%;
   font-weight: 800;
 }
@@ -125,7 +161,7 @@
 .container .game_page .box_list {
   width: 100%;
   height: 13.5%;
-  position: relative;
+  position: absolute;
   top: 80%;
 }
 .container .game_page .box_list li {
