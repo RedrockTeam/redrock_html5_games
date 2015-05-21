@@ -59,6 +59,9 @@ class HomeController extends BaseController {
               case 'takephotos':
                   DB::table('view')->where('id', '=', 1)->increment('view');
                   return View::make('takephotos.index');
+              case 'goodcitizen':
+                  DB::table('view')->where('id', '=', 2)->increment('view');
+                  return View::make('takephotos.index');
               default:
                   return Response::make("Page not found", 404);
                   break;
