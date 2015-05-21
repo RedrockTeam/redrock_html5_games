@@ -6,9 +6,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<title>我正在参与《中国好公民》游戏</title>
-	<script src="../../../public/js/goodcitizen/jquery.min.js"></script>
-	<script src="../../../public/js/goodcitizen/main.js"></script>
-	<link rel="stylesheet" href="../../../public/css/goodcitizen/style.css"/>
+	<script src="{{URL::asset('public/js/goodcitizen/jquery.min.js')}}"></script>
+	<script src="{{URL::asset('public/js/goodcitizen/main.js')}}"></script>
+	<link rel="stylesheet" href="{{URL::asset('public/css/goodcitizen/style.css')}}"/>
 </head>
 <body>
 	<div class="container">
