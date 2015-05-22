@@ -14,10 +14,97 @@
   font-weight: normal;
   font-style: normal;
 }
+.test {
+  font-family: Huakang;
+  position: absolute;
+  top: -1000px;
+}
 .container {
   width: auto;
   position: relative;
   overflow: hidden;
+}
+.container .share_page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 200%;
+  top: 0;
+  font-family: Huakang;
+}
+.container .share_page .score_bg {
+  width: 87.5%;
+  height: 76.67%;
+  margin: 20% auto;
+  position: relative;
+  background-image: url("../../images/goodcitizen/score_bg.png");
+}
+.container .share_page .score_bg .btn_holder {
+  width: 100%;
+  position: absolute;
+  top: 70%;
+  height: 11.3125%;
+}
+.container .share_page .score_bg .btn_holder * {
+  float: left;
+}
+.container .share_page .score_bg .btn_holder .replay {
+  height: 100%;
+  width: 20%;
+  margin-left: 16%;
+  background-image: url("../../images/goodcitizen/replay.png");
+}
+.container .share_page .score_bg .btn_holder .apply {
+  height: 100%;
+  width: 35.16%;
+  margin-left: 10%;
+  background-image: url("../../images/goodcitizen/apply.png");
+}
+.container .share_page .score_bg .phone_input {
+  display: block;
+  position: absolute;
+  top: 56%;
+  color: #d1c099;
+  width: 60%;
+  padding: 12px 8px;
+  border-radius: 7px;
+  box-shadow: -2px -2px 1px #e8e8e8;
+  border: none;
+}
+.container .share_page .score_bg h1 {
+  position: absolute;
+  color: #fe2c2c;
+  width: 100%;
+  top: 8%;
+  font-size: 18px;
+  text-align: center;
+}
+.container .share_page .score_bg p {
+  color: #cb9a25;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+}
+.container .share_page .score_bg .time_title {
+  top: 18%;
+  font-size: 14px;
+}
+.container .share_page .score_bg .time_line {
+  top: 25%;
+}
+.container .share_page .score_bg .rank_title {
+  top: 36%;
+}
+.container .share_page .score_bg .rank {
+  top: 43%;
+}
+.container .share_page .score_bg span {
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-size: 22px;
+  color: #ff5704;
 }
 .container .game_holder {
   width: 100%;
@@ -96,12 +183,11 @@
   float: left;
   height: 20px;
 }
+.container .game_page .timeCount .second {
+  height: 20px;
+}
 .container .game_page .timeCount li {
   color: #2fc524;
-}
-.container .game_page .timeCount li .second {
-  width: 40%;
-  height: 20px;
 }
 .container .game_page .timeCount li > * {
   color: #2fc524;
