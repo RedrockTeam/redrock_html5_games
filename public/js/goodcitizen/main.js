@@ -61,6 +61,7 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 	var result=time+'.'+msecond+''+minsecond;
 	clearInterval(timer);
 	share.animate({left:0},400);
+	$('.time_line').html(result+'秒');
 	$.ajax({
 		url: "goodcitizen",
 		type: "post",
@@ -75,9 +76,8 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 	}).complete(function (data) {
 		data = data.responseJSON;
 		rank = data[0].list;
+		$('.rank').html("第"+rank+"名");
 	});
-	$('.rank').html("第"+rank+"名");
-	$('.time_line').html(result+'秒');
 }
 function ballInit(){
 	this.type;
