@@ -68,4 +68,7 @@
 		</div>
 	</div>
 </body>
+<script>
+    var publicPath = "{{URL::asset('')}}";
+</script>
 </html>

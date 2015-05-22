@@ -106,7 +106,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<10 ; j++){
 					var a=new ballInit();
 					a.setType(i);
-					a.setSrc('../../../public/images/goodcitizen/'+i+'/'+j+'.png');
+					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
 					balls.push(a);
 				}
 				break;
@@ -114,7 +114,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<12 ; j++){
 					var a=new ballInit();
 					a.setType(i);
-					a.setSrc('../../../public/images/goodcitizen/'+i+'/'+j+'.png');
+					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
 					balls.push(a);
 				}
 				break;
@@ -122,7 +122,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<14 ; j++){
 					var a=new ballInit();
 					a.setType(i);
-					a.setSrc('../../../public/images/goodcitizen/'+i+'/'+j+'.png');
+					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
 					balls.push(a);
 				}
 				break;
@@ -130,7 +130,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<12 ; j++){
 					var a=new ballInit();
 					a.setType(i);
-					a.setSrc('../../../public/images/goodcitizen/'+i+'/'+j+'.png');
+					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
 					balls.push(a);
 				}
 				break;
@@ -145,7 +145,7 @@ function gameInit(balls,boxs){
 	balls.sort(function(){ return 0.5 - Math.random() });
 	for(var i = 1;i<5;i++){
 		var b=new boxInit();
-		b.setSrc('../../../public/images/goodcitizen/'+i+'.png');
+		b.setSrc(publicPath+'images/goodcitizen/'+i+'.png');
 		b.setType(i);
 		boxs.push(b);
 	}
