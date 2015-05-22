@@ -14,10 +14,97 @@
   font-weight: normal;
   font-style: normal;
 }
+.test{
+  font-family: Huakang;
+  position: absolute;
+  top: -1000px;
+}
 .container{
   width: auto;
   position: relative;
   overflow: hidden;
+  .share_page{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 200%;
+    top: 0;
+    font-family: Huakang;
+    .score_bg{
+      width: 87.5%;
+      height:76.67%;
+      margin: 20% auto;
+      position: relative;
+      background-image: url("../../images/goodcitizen/score_bg.png");
+      .btn_holder{
+        width: 100%;
+        position: absolute;
+        top: 70%;
+        height: 11.3125%;
+        *{
+          float: left;
+        }
+        .replay{
+          height: 100%;
+          width: 20%;
+          margin-left: 16%;
+          background-image: url("../../images/goodcitizen/replay.png");;
+        }
+        .apply{
+          height: 100%;
+          width: 35.16%;
+          margin-left: 10%;
+          background-image: url("../../images/goodcitizen/apply.png");;
+        }
+      }
+      .phone_input{
+        display: block;
+        position: absolute;
+        top: 56%;
+        color: #d1c099;
+        width: 60%;
+        padding: 12px 8px;
+        border-radius: 7px;
+        box-shadow: -2px -2px 1px #e8e8e8;
+        border: none;
+      }
+      h1{
+        position: absolute;
+        color: #fe2c2c;
+        width: 100%;
+        top: 8%;
+        font-size: 18px;
+        text-align: center;
+      }
+      p{
+        color: #cb9a25;
+        width: 100%;
+        text-align: center;
+        position: absolute;
+      }
+      .time_title{
+        top: 18%;
+        font-size: 14px;
+      }
+      .time_line{
+        top: 25%;
+      }
+      .rank_title{
+        top: 36%;
+      }
+      .rank{
+        top: 43%;
+      }
+      span{
+        display: inline-block;
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        font-size: 22px;
+        color: #ff5704;
+      }
+    }
+  }
   .game_holder{
     width: 100%;
     height: 100%;
@@ -93,11 +180,10 @@
       margin: 10px;
       float: left;
       height: 20px;
+      .second{
+        height:20px;
+      }
       li{
-        .second{
-          width: 40%;
-          height:20px;
-        }
         color: #2fc524;
         &>*{
           color: #2fc524;
