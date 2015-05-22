@@ -1,0 +1,16 @@
+{
+  "name": "goodcitizen",
+  "version": "1.0.0",
+  "description": "WechatGame",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Game",
+    "Hale",
+    "redrock"
+  ],
+  "author": "Hale",
+  "license": "ISC"
+}
