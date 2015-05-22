@@ -67,7 +67,6 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 		dataType: 'json',
 		contentType: "application/json",
 		data: JSON.stringify({
-			phone:phone,
 			score:score
 		})
 	}).fail(function () {
