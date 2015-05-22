@@ -67,7 +67,8 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 		dataType: 'json',
 		contentType: "application/json",
 		data: JSON.stringify({
-			score:score
+			score:score,
+			time:parseFloat(result)
 		})
 	}).fail(function () {
 		alert("与服务器连接错误!");
