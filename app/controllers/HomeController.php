@@ -214,7 +214,7 @@ class HomeController extends BaseController {
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
             return $paiming;
         }
-
+        //我给团团拍照
         public function takephotos(){
             $data = Input::all();
             $save = array(
@@ -252,6 +252,21 @@ class HomeController extends BaseController {
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
             return $paiming;
         }
+        //中国好公民
+        public function goodcitizen() {
+            $input = Input::all();
+            $data = array(
+                'time' => $input['time'],
+                'score'=> $input['score'],
+                'ip' => Request::getClientIp(),
+            );
+            $id = Goodcitizen::create($data);
+            $uid = $id['id'];
+            Session::flash('id', $uid);
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id, score, time, (@rowno:=@rowno+1) as rowno FROM `goodcitizen`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC)b WHERE id = $uid limit 1");
+            return $paiming;
+        }
+
 
 //        private function getOpenId () {
 //            $code = Session::get('code');
