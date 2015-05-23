@@ -260,7 +260,7 @@ class HomeController extends BaseController {
             $data = array(
                 'time' => $input['time'],
                 'score'=> $input['score'],
-                'ip' => Request::getClientIp(),
+                'ip' => Request::ip(),
             );
             $id = Goodcitizen::create($data);
             $uid = $id['id'];
