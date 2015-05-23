@@ -13,7 +13,7 @@
 <body>
 	<div class="test" data="{{$token}}">1234567890Go!</div>
 	<div class="container">
-		<span class="test">1234567890Go!</span>
+		<span class="test">1234567890Go第!</span>
 		<ul class="game_holder">
 			<li class="begin_page back_size">
 				<div class="game_title back_size"></div>
