@@ -18,6 +18,41 @@ function count(obj,flag){
 		}
 	},1000);
 }
+function sendPhone(phoneInput){
+	if(!token){
+		return;
+	}
+	if (phone) {
+		if (phone!=parseInt(phoneInput.val())){
+			alert('为防止同一分数多次提交不同手机号，请输入与此前一致的手机号！');
+			return;
+		}
+	}
+	else{
+		phone=oPhone.val();
+	}
+	if(phone.length!=11||isNaN(phone)){
+		alert('请输入正确的手机号码！');
+	}
+	else{
+		token=false;
+		$.ajax({
+			url: "goodcitizen",
+			type: "post",
+			dataType: 'json',
+			contentType: "application/json",
+			data: JSON.stringify({
+				phone:phone
+			})
+		}).fail(function () {
+			alert("与服务器连接错误!");
+		}).complete(function (data) {
+			token=true;
+			phoneInput.val('');
+			alert('提交成功！点击右上角的点把你的排名分享到朋友圈吧！');
+		});
+	}
+}
 function gameOver(score,timer,time,msecond,minsecond,share){
 	var result=time+'.'+msecond+''+minsecond;
 	clearInterval(timer);
@@ -38,6 +73,7 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 		data = data.responseJSON;
 		rank = data[0].list;
 		$('.rank').html("第"+rank+"名");
+		document.title = '我参与《中国好公民》游戏获得排名第' + rank + '名，快来一起参加吧！';
 	});
 }
 function ballInit(){
@@ -134,8 +170,12 @@ $(function(){
 	var blood=3;
 	var time=0;
 	var oRe=$('.replay');
+	var oApply=$('.apply');
 	oRe.click(function(){
 		location.reload();
+	});
+	oApply.click(function(){
+		sendPhone(phoneInput);
 	});
 	$('.container').css('height',H);
 	setCenter($('.game_title'),W,0.178);
