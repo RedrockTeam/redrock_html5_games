@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="{{URL::asset('css/goodcitizen/style.css')}}"/>
 </head>
 <body>
-	<div class="test">1234567890Go!</div>
+	<div class="test" data="{{$token}}">1234567890Go!</div>
 	<div class="container">
 		<span class="test">1234567890Go!</span>
 		<ul class="game_holder">
