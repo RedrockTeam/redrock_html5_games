@@ -18,45 +18,6 @@ function count(obj,flag){
 		}
 	},1000);
 }
-function sendAjax(){
-	if(!token){
-		return;
-	}
-	if (phone) {
-		if (phone!=parseInt(oPhone.val())){
-			alert('为防止同一分数多次提交不同手机号，请输入与此前一致的手机号！')
-			return;
-		};
-	}
-	else{
-		phone=oPhone.val();
-	}
-	if(phone.length!=11||isNaN(phone)){
-		alert('请输入正确的手机号码！');
-	}
-	else{
-		token=false;
-		$.ajax({
-			url: "takephotos",
-			type: "post",
-			dataType: 'json',
-			contentType: "application/json",
-			data: JSON.stringify({
-				phone:phone,
-				score:sum
-			})
-		}).fail(function () {
-			alert("与服务器连接错误!");
-		}).complete(function (data) {
-			token=true;
-			alert('提交成功！分享到朋友圈看看自己的排名吧！')
-			data = data.responseJSON;
-			var rank = data[0].list;
-			document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
-			oPhone.val('');
-		});
-	}
-}
 function gameOver(score,timer,time,msecond,minsecond,share){
 	var result=time+'.'+msecond+''+minsecond;
 	clearInterval(timer);
