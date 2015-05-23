@@ -109,7 +109,7 @@ function gameInit(balls,boxs){
 				}
 				break;
 			case 2:
-				for(var j=1 ; j<12 ; j++){
+				for(var j=1 ; j<14 ; j++){
 					var a=new ballInit();
 					a.setType(i);
 					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
@@ -117,7 +117,7 @@ function gameInit(balls,boxs){
 				}
 				break;
 			case 3:
-				for(var j=1 ; j<14 ; j++){
+				for(var j=1 ; j<12 ; j++){
 					var a=new ballInit();
 					a.setType(i);
 					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
