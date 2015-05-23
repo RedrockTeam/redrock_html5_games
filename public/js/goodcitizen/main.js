@@ -29,7 +29,7 @@ function sendPhone(phoneInput){
 		}
 	}
 	else{
-		phone=oPhone.val();
+		phone=phoneInput.val();
 	}
 	if(phone.length!=11||isNaN(phone)){
 		alert('请输入正确的手机号码！');
@@ -37,12 +37,13 @@ function sendPhone(phoneInput){
 	else{
 		token=false;
 		$.ajax({
-			url: "goodcitizen",
+			url: "goodcitizenphone",
 			type: "post",
 			dataType: 'json',
 			contentType: "application/json",
 			data: JSON.stringify({
-				phone:phone
+				phone:phone,
+                token:boolean
 			})
 		}).fail(function () {
 			alert("与服务器连接错误!");
@@ -171,7 +172,8 @@ $(function(){
 	var time=0;
 	var oRe=$('.replay');
 	var oApply=$('.apply');
-	oRe.click(function(){
+    window.boolean=$('.test').attr('data');
+    oRe.click(function(){
 		location.reload();
 	});
 	oApply.click(function(){
@@ -283,3 +285,4 @@ $(function(){
 		ev.preventDefault();
 	});
 });
+
