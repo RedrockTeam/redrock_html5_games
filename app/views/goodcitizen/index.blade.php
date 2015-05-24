@@ -52,6 +52,9 @@
 				<span class="timer">3</span>
 			</li>
 		</ul>
+		<div class='loading_page'>
+			<img src='{{URL::asset('images/goodcitizen/loading.jpg')}}' class='load'>
+		</div>
 		<div class="share_page">
 			<div class="score_bg back_size">
 				<h1>恭喜您完成了本轮游戏！</h1>

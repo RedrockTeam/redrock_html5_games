@@ -4,6 +4,7 @@
 //1.爱国;2.诚信;3.敬业;4.友善
 window.phone=null;
 window.token=true;
+window.num=0;
 function setCenter(obj,m,c){
 	obj.css('left',m*c);
 }
@@ -77,74 +78,88 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 		document.title = '我参与《中国好公民》游戏获得排名第' + rank + '名，快来一起参加吧！';
 	});
 }
-function ballInit(){
-	this.type;
-	this.src;
-	this.dom;
-}
-ballInit.prototype.setType=function(a){
-		this.type=a;
-};
-ballInit.prototype.setSrc=function(src){
-	this.src=src;
-};
-ballInit.prototype.setDom=function(dom){
-	this.dom=dom;
-};
-function boxInit(){
-	ballInit.call(this);
-}
-for(x in ballInit.prototype){
-	boxInit.prototype[x]=ballInit.prototype[x];
-}
+//function ballInit(){
+//	this.type;
+//	this.dom;
+//}
+//ballInit.prototype.setType=function(a){
+//		this.type=a;
+//};
+//ballInit.prototype.setDom=function(dom){
+//	this.dom=dom;
+//};
+//function boxInit(){
+//	ballInit.call(this);
+//}
+//for(x in ballInit.prototype){
+//	boxInit.prototype[x]=ballInit.prototype[x];
+//}
 function gameInit(balls,boxs){
 	for(var i=1 ; i<5 ; i++){
 		switch (i){
 			case 1:
 				for(var j=1 ; j<10 ; j++){
-					var a=new ballInit();
-					a.setType(i);
-					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
-					balls.push(a);
+					var img=new Image();
+					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
+					img.content=i;
+					img.className='ball animation';
+					img.onload=function(){
+						num++;
+						balls.push(img);
+					};
 				}
 				break;
 			case 2:
 				for(var j=1 ; j<14 ; j++){
-					var a=new ballInit();
-					a.setType(i);
-					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
-					balls.push(a);
+					var img=new Image();
+					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
+					img.content=i;
+					img.className='ball animation';
+					img.onload=function(){
+						num++;
+						balls.push(img);
+					};
 				}
 				break;
 			case 3:
 				for(var j=1 ; j<12 ; j++){
-					var a=new ballInit();
-					a.setType(i);
-					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
-					balls.push(a);
+					var img=new Image();
+					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
+					img.content=i;
+					img.className='ball animation';
+					img.onload=function(){
+						num++;
+						balls.push(img);
+					};
 				}
 				break;
 			case 4:
 				for(var j=1 ; j<12 ; j++){
-					var a=new ballInit();
-					a.setType(i);
-					a.setSrc(publicPath+'images/goodcitizen/'+i+'/'+j+'.png');
-					balls.push(a);
+					var img=new Image();
+					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
+					img.content=i;
+					img.className='ball animation';
+					img.onload=function(){
+						num++;
+						balls.push(img);
+					};
 				}
 				break;
 			default:
 				alert('我要报警了！');
 		}
+		$('.loading_page').css('z-index',-9999);
 	}
+	//44;
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
 	for(var i = 1;i<5;i++){
-		var b=new boxInit();
-		b.setSrc(publicPath+'images/goodcitizen/'+i+'.png');
-		b.setType(i);
+		var b=new Image();
+		b.src=publicPath+'images/goodcitizen/'+i+'.png';
+		b.content=i;
 		boxs.push(b);
 	}
 }
@@ -172,6 +187,7 @@ $(function(){
 	var time=0;
 	var oRe=$('.replay');
 	var oApply=$('.apply');
+	var oloadPage=$('.loading_page');
     window.boolean=$('.test').attr('data');
     oRe.click(function(){
 		location.reload();
@@ -194,16 +210,16 @@ $(function(){
 		guideWords.css('display','none');
 		ev.preventDefault();
 	});
+	balls=[];
+	boxs=[];
+	gameInit(balls,boxs,oloadPage);
 	startBtn[0].addEventListener('touchstart',function(ev){
-		balls=[];
-		boxs=[];
-		gameInit(balls,boxs);
 		for(var i = 0;i<4;i++){
-			boxList.append('<li class="back_size" content='+(i+1)+' style="background-image: url('+boxs[i].src+')"></li>');
+			boxList.append(boxs[i]);
 		}
-		var aLi = boxList[0].getElementsByTagName('li');
-		for(var i = 0;i<aLi.length;i++){
-			aLi[i].style.left=(interval*(i+1)+W*0.2*i)+'px';
+		var aBox = boxList[0].getElementsByTagName('img');
+		for(var i = 0;i<aBox.length;i++){
+			aBox[i].style.left=(interval*(i+1)+W*0.2*i)+'px';
 		}
 		oHolder.animate({'top':-H},400,function(){
 			count(countDown);
@@ -251,8 +267,8 @@ $(function(){
 						ominS.html(minsecond);
 					},10);
 					//生成dom.
-					for(var i = 0;i<aLi.length;i++){
-						aLi[i].addEventListener('touchstart',function(type){
+					for(var i = 0;i<aBox.length;i++){
+						aBox[i].addEventListener('touchstart',function(type){
 							var ball=$('.ball');
 							var a=parseInt(this.attributes['content'].value);
 							var b=parseInt(ball.attr('content'));
