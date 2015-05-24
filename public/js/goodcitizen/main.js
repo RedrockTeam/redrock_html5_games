@@ -291,7 +291,7 @@ $(function(){
 								gameOver(score*10,secondCount,time,msecond,minsecond,oShare);
 								return;
 							}
-							setBall(GameBack,ball[0],W);
+							setBall(GameBack,balls[0],W);
 						})
 					}
 					setBall(GameBack,balls[0],W);
