@@ -24,6 +24,19 @@
   position: relative;
   overflow: hidden;
 }
+.container .loading_page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  background: #ffffff;
+}
+.container .loading_page .load {
+  display: block;
+  margin: 100% auto;
+}
 .container .share_page {
   width: 100%;
   height: 100%;
@@ -250,7 +263,7 @@
   position: absolute;
   top: 80%;
 }
-.container .game_page .box_list li {
+.container .game_page .box_list img {
   width: 20%;
   height: 100%;
   position: absolute;
