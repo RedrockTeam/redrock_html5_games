@@ -159,14 +159,13 @@ function gameInit(balls,boxs){
 	for(var i = 1;i<5;i++){
 		var b=new Image();
 		b.src=publicPath+'images/goodcitizen/'+i+'.png';
-		b.content=i;
+		b.alt=i;
 		boxs.push(b);
 	}
 }
-function setBall(parent,arr,W){
-	parent.append("<img class=\"ball animation\" content="+arr[0].type+" src="+arr[0].src+">");
-	arr[0].setDom($('.ball'));
-	setCenter(arr[0].dom,W,0.3984375);
+function setBall(parent,obj,W){
+    parent.append(obj);
+	setCenter($('.ball'),W,0.3984375);
 }
 $(function(){
 	var W=$(window).width();
@@ -269,8 +268,9 @@ $(function(){
 					//生成dom.
 					for(var i = 0;i<aBox.length;i++){
 						aBox[i].addEventListener('touchstart',function(type){
+                            console.log(this);
 							var ball=$('.ball');
-							var a=parseInt(this.attributes['content'].value);
+							var a=parseInt(this.attributes['alt'].value);
 							var b=parseInt(ball.attr('content'));
 							if(a==b){
 								score++;
@@ -291,10 +291,10 @@ $(function(){
 								gameOver(score*10,secondCount,time,msecond,minsecond,oShare);
 								return;
 							}
-							setBall(GameBack,balls,W);
+							setBall(GameBack,ball[0],W);
 						})
 					}
-					setBall(GameBack,balls,W);
+					setBall(GameBack,balls[0],W);
 				});
 			},3300)
 		});
