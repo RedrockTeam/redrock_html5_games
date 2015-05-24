@@ -101,7 +101,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<10 ; j++){
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
-					img.content=i;
+					img.alt=i;
 					img.className='ball animation';
 					img.onload=function(){
 						num++;
@@ -113,7 +113,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<14 ; j++){
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
-					img.content=i;
+					img.alt=i;
 					img.className='ball animation';
 					img.onload=function(){
 						num++;
@@ -125,7 +125,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<12 ; j++){
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
-					img.content=i;
+					img.alt=i;
 					img.className='ball animation';
 					img.onload=function(){
 						num++;
@@ -137,7 +137,7 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<12 ; j++){
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
-					img.content=i;
+					img.alt=i;
 					img.className='ball animation';
 					img.onload=function(){
 						num++;
@@ -163,9 +163,10 @@ function gameInit(balls,boxs){
 		boxs.push(b);
 	}
 }
-function setBall(parent,obj,W){
-    parent.append(obj);
+function setBall(parent,objs,W){
+    parent.append(objs[0]);
 	setCenter($('.ball'),W,0.3984375);
+	objs.splice(0,1);
 }
 $(function(){
 	var W=$(window).width();
@@ -271,7 +272,7 @@ $(function(){
                             console.log(this);
 							var ball=$('.ball');
 							var a=parseInt(this.attributes['alt'].value);
-							var b=parseInt(ball.attr('content'));
+							var b=parseInt(ball.attr('alt'));
 							if(a==b){
 								score++;
 								oScore.html(score*10);
@@ -286,15 +287,14 @@ $(function(){
 								}
 							}
 							ball.remove();
-							balls.splice(0,1);
 							if(balls.length==0){
 								gameOver(score*10,secondCount,time,msecond,minsecond,oShare);
 								return;
 							}
-							setBall(GameBack,balls[0],W);
+							setBall(GameBack,balls,W);
 						})
 					}
-					setBall(GameBack,balls[0],W);
+					setBall(GameBack,balls,W);
 				});
 			},3300)
 		});
