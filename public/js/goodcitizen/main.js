@@ -78,10 +78,9 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 		document.title = '我参与《中国好公民》游戏获得排名第' + rank + '名，快来一起参加吧！';
 	});
 }
-function gameInit(balls,boxs,fnSuccess){
-	var num;
+function gameInit(balls,boxs,oloadPage){
+	var num=0;
 	for(var i=1 ; i<5 ; i++){
-        console.log(i);
 		switch (i){
 			case 1:
 				for(var j=1 ; j<10 ; j++){
@@ -124,15 +123,16 @@ function gameInit(balls,boxs,fnSuccess){
 			default:
 				alert('我要报警了！');
 		}
-		for(var i = 0;i<balls.length;i++){
-			balls[i].onload=function(){
-				num++;
-				if(num==balls.length){
-					fnSuccess();
-				}
-			}
-		}
 	}
+    for(var i = 0;i<balls.length;i++){
+        balls[i].onload=function(){
+            num++;
+            if(num==balls.length){
+                oloadPage.css('z-index',-9999);
+                console.log(balls);
+            }
+        }
+    }
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
@@ -148,9 +148,7 @@ function gameInit(balls,boxs,fnSuccess){
 function setBall(parent,objs,W){
     parent.append(objs[0]);
 	setCenter($('.ball'),W,0.3984375);
-    console.log(balls);
-	balls.splice(0,10);
-    console.log(balls[0]);
+	balls.splice(0,1);
 }
 $(function(){
 	var W=$(window).width();
@@ -196,9 +194,7 @@ $(function(){
 	});
 	balls=[];
 	boxs=[];
-	gameInit(balls,boxs,function(oloadPage){
-		oloadPage.css('z-index',-9999);
-	});
+	gameInit(balls,boxs,oloadPage);
 	startBtn[0].addEventListener('touchstart',function(ev){
 		for(var i = 0;i<4;i++){
 			boxList.append(boxs[i]);
