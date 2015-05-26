@@ -81,6 +81,7 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 function gameInit(balls,boxs,fnSuccess){
 	var num;
 	for(var i=1 ; i<5 ; i++){
+        console.log(i);
 		switch (i){
 			case 1:
 				for(var j=1 ; j<10 ; j++){
@@ -104,6 +105,7 @@ function gameInit(balls,boxs,fnSuccess){
 				for(var j=1 ; j<12 ; j++){
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
+
 					img.alt=i;
 					img.className='ball animation';
 					balls.push(img);
@@ -111,6 +113,7 @@ function gameInit(balls,boxs,fnSuccess){
 				break;
 			case 4:
 				for(var j=1 ; j<12 ; j++){
+                    //console.log(j);
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
 					img.alt=i;
@@ -145,7 +148,9 @@ function gameInit(balls,boxs,fnSuccess){
 function setBall(parent,objs,W){
     parent.append(objs[0]);
 	setCenter($('.ball'),W,0.3984375);
-	objs.splice(0,1);
+    console.log(balls);
+	balls.splice(0,10);
+    console.log(balls[0]);
 }
 $(function(){
 	var W=$(window).width();
@@ -250,7 +255,6 @@ $(function(){
 					//生成dom.
 					for(var i = 0;i<aBox.length;i++){
 						aBox[i].addEventListener('touchstart',function(type){
-                            console.log(this);
 							var ball=$('.ball');
 							var a=parseInt(this.attributes['alt'].value);
 							var b=parseInt(ball.attr('alt'));
