@@ -78,23 +78,8 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 		document.title = '我参与《中国好公民》游戏获得排名第' + rank + '名，快来一起参加吧！';
 	});
 }
-//function ballInit(){
-//	this.type;
-//	this.dom;
-//}
-//ballInit.prototype.setType=function(a){
-//		this.type=a;
-//};
-//ballInit.prototype.setDom=function(dom){
-//	this.dom=dom;
-//};
-//function boxInit(){
-//	ballInit.call(this);
-//}
-//for(x in ballInit.prototype){
-//	boxInit.prototype[x]=ballInit.prototype[x];
-//}
-function gameInit(balls,boxs,loading){
+function gameInit(balls,boxs,fnSuccess){
+	var num;
 	for(var i=1 ; i<5 ; i++){
         console.log(i);
 		switch (i){
@@ -104,10 +89,7 @@ function gameInit(balls,boxs,loading){
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
 					img.alt=i;
 					img.className='ball animation';
-					img.onload=function(){
-						num++;
-						balls.push(img);
-					};
+					balls.push(img);
 				}
 				break;
 			case 2:
@@ -116,10 +98,7 @@ function gameInit(balls,boxs,loading){
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
 					img.alt=i;
 					img.className='ball animation';
-					img.onload=function(){
-						num++;
-						balls.push(img);
-					};
+					balls.push(img);
 				}
 				break;
 			case 3:
@@ -129,12 +108,7 @@ function gameInit(balls,boxs,loading){
 
 					img.alt=i;
 					img.className='ball animation';
-					img.onload=function(){
-						num++;
-                        console.log(img.src);
-                        //console.log(img);
-						balls.push(img);
-					};
+					balls.push(img);
 				}
 				break;
 			case 4:
@@ -144,18 +118,21 @@ function gameInit(balls,boxs,loading){
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
 					img.alt=i;
 					img.className='ball animation';
-					img.onload=function(){
-						num++;
-						balls.push(img);
-					};
+					balls.push(img);
 				}
 				break;
 			default:
 				alert('我要报警了！');
 		}
-		loading.css('z-index',-9999);
+		for(var i = 0;i<balls.length;i++){
+			balls[i].onload=function(){
+				num++;
+				if(num==balls.length){
+					fnSuccess();
+				}
+			}
+		}
 	}
-	//44;
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
 	balls.sort(function(){ return 0.5 - Math.random() });
@@ -195,8 +172,8 @@ $(function(){
 	var oRe=$('.replay');
 	var oApply=$('.apply');
 	var oloadPage=$('.loading_page');
-    window.boolean=$('.test').attr('data');
-    oRe.click(function(){
+	window.boolean=$('.test').attr('data');
+	oRe.click(function(){
 		location.reload();
 	});
 	oApply.click(function(){
@@ -219,7 +196,9 @@ $(function(){
 	});
 	balls=[];
 	boxs=[];
-	gameInit(balls,boxs,oloadPage);
+	gameInit(balls,boxs,function(oloadPage){
+		oloadPage.css('z-index',-9999);
+	});
 	startBtn[0].addEventListener('touchstart',function(ev){
 		for(var i = 0;i<4;i++){
 			boxList.append(boxs[i]);
