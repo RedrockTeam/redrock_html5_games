@@ -94,8 +94,9 @@ function gameOver(score,timer,time,msecond,minsecond,share){
 //for(x in ballInit.prototype){
 //	boxInit.prototype[x]=ballInit.prototype[x];
 //}
-function gameInit(balls,boxs){
+function gameInit(balls,boxs,loading){
 	for(var i=1 ; i<5 ; i++){
+        console.log(i);
 		switch (i){
 			case 1:
 				for(var j=1 ; j<10 ; j++){
@@ -125,16 +126,20 @@ function gameInit(balls,boxs){
 				for(var j=1 ; j<12 ; j++){
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
+
 					img.alt=i;
 					img.className='ball animation';
 					img.onload=function(){
 						num++;
+                        console.log(img.src);
+                        //console.log(img);
 						balls.push(img);
 					};
 				}
 				break;
 			case 4:
 				for(var j=1 ; j<12 ; j++){
+                    //console.log(j);
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
 					img.alt=i;
@@ -148,7 +153,7 @@ function gameInit(balls,boxs){
 			default:
 				alert('我要报警了！');
 		}
-		$('.loading_page').css('z-index',-9999);
+		loading.css('z-index',-9999);
 	}
 	//44;
 	balls.sort(function(){ return 0.5 - Math.random() });
@@ -166,7 +171,9 @@ function gameInit(balls,boxs){
 function setBall(parent,objs,W){
     parent.append(objs[0]);
 	setCenter($('.ball'),W,0.3984375);
-	objs.splice(0,1);
+    console.log(balls);
+	balls.splice(0,10);
+    console.log(balls[0]);
 }
 $(function(){
 	var W=$(window).width();
@@ -269,7 +276,6 @@ $(function(){
 					//生成dom.
 					for(var i = 0;i<aBox.length;i++){
 						aBox[i].addEventListener('touchstart',function(type){
-                            console.log(this);
 							var ball=$('.ball');
 							var a=parseInt(this.attributes['alt'].value);
 							var b=parseInt(ball.attr('alt'));

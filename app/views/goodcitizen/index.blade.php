@@ -52,7 +52,7 @@
 				<span class="timer">3</span>
 			</li>
 		</ul>
-		<div class='loading_page'>
+		<div class='loading_page' style="z-index:9999">
 			<img src='{{URL::asset('images/goodcitizen/loading.jpg')}}' class='load'>
 		</div>
 		<div class="share_page">
