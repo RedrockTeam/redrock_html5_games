@@ -62,7 +62,7 @@ class HomeController extends BaseController {
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
-                  Session::flash('token', $token);
+                  Session::put('token', $token);
                   return View::make('goodcitizen.index')->with('token', $token);
               default:
                   return Response::make("Page not found", 404);
@@ -275,6 +275,7 @@ class HomeController extends BaseController {
                 $data = array('error'=>'Fuck your mother, why do you cheat?', 'status'=>403);
                 return $data;
             }
+            Session::forget('token');
             return Goodcitizen::where('id', '=', Session::get('id'))->update(array('telephone'=>$input['phone']));
         }
 

@@ -8,3 +8,4 @@ Thumbs.db
 .idea/
 app/config/database.php
 app/config/app.php
+/vendor
