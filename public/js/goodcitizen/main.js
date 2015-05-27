@@ -5,6 +5,14 @@
 window.phone=null;
 window.token=true;
 window.num=0;
+function isWeiXin(){
+	var ua = window.navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+		return true;
+	}else{
+		return false;
+	}
+}
 function setCenter(obj,m,c){
 	obj.css('left',m*c);
 }
@@ -151,6 +159,9 @@ function setBall(parent,objs,W){
 	balls.splice(0,1);
 }
 $(function(){
+	if(!isWeiXin()){
+		window.location.href='http://hongyan.cqupt.edu.cn/';
+	}
 	var W=$(window).width();
 	var H=$(window).height();
 	var startBtn=$('.game_start');
