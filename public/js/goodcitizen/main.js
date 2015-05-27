@@ -120,7 +120,6 @@ function gameInit(balls,boxs,oloadPage){
 				break;
 			case 4:
 				for(var j=1 ; j<12 ; j++){
-                    //console.log(j);
 					var img=new Image();
 					img.src=publicPath+'images/goodcitizen/'+i+'/'+j+'.png';
 					img.alt=i;
@@ -137,7 +136,6 @@ function gameInit(balls,boxs,oloadPage){
             num++;
             if(num==balls.length){
                 oloadPage.css('z-index',-9999);
-                console.log(balls);
             }
         }
     }

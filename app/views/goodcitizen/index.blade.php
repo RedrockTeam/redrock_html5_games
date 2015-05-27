@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="{{URL::asset('css/goodcitizen/style.css')}}"/>
 </head>
 <body>
-	<div class="test" data="{{$token}}">1234567890Go!</div>
+	<img src="{{URL::asset('images/goodcitizen/share.jpg')}}" class="test" data="{{$token}}">
 	<div class="container">
 		<span class="test">1234567890Go第!</span>
 		<ul class="game_holder">
