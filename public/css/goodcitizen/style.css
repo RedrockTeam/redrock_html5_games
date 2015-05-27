@@ -1,0 +1,320 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: #ffffff;
+}
+* li {
+  list-style: none;
+}
+@font-face {
+  font-family: 'Huakang';
+  src: url('../../resource/goodcitizen/font/huakang.ttf');
+  src: url('resource/goodcitizen/font/huakang.eot?#font-spider') format('embedded-opentype'), url('../../resource/goodcitizen/font/huakang.woff') format('woff'), url('../../resource/goodcitizen/font/huakang.ttf') format('truetype'), url('../../resource/goodcitizen/font/huakang.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.test {
+  font-family: Huakang;
+  position: absolute;
+  top: -1000px;
+}
+.container {
+  width: auto;
+  position: relative;
+  overflow: hidden;
+}
+.container .loading_page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  background: #ffffff;
+}
+.container .loading_page .load {
+  display: block;
+  margin: 50% auto;
+}
+.container .share_page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 200%;
+  top: 0;
+  font-family: Huakang;
+}
+.container .share_page .score_bg {
+  width: 87.5%;
+  height: 76.67%;
+  margin: 20% auto;
+  position: relative;
+  background-image: url("../../images/goodcitizen/score_bg.png");
+}
+.container .share_page .score_bg .btn_holder {
+  width: 100%;
+  position: absolute;
+  top: 70%;
+  height: 11.3125%;
+}
+.container .share_page .score_bg .btn_holder * {
+  float: left;
+}
+.container .share_page .score_bg .btn_holder .replay {
+  height: 100%;
+  width: 20%;
+  margin-left: 16%;
+  background-image: url("../../images/goodcitizen/replay.png");
+}
+.container .share_page .score_bg .btn_holder .apply {
+  height: 100%;
+  width: 35.16%;
+  margin-left: 10%;
+  background-image: url("../../images/goodcitizen/apply.png");
+}
+.container .share_page .score_bg .phone_input {
+  display: block;
+  position: absolute;
+  top: 56%;
+  color: #d1c099;
+  width: 60%;
+  padding: 12px 8px;
+  border-radius: 7px;
+  box-shadow: -2px -2px 1px #e8e8e8;
+  border: none;
+}
+.container .share_page .score_bg h1 {
+  position: absolute;
+  color: #fe2c2c;
+  width: 100%;
+  top: 8%;
+  font-size: 18px;
+  text-align: center;
+}
+.container .share_page .score_bg p {
+  color: #cb9a25;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+}
+.container .share_page .score_bg .time_title {
+  top: 18%;
+  font-size: 14px;
+}
+.container .share_page .score_bg .time_line {
+  top: 25%;
+}
+.container .share_page .score_bg .rank_title {
+  top: 36%;
+}
+.container .share_page .score_bg .rank {
+  top: 43%;
+}
+.container .share_page .score_bg span {
+  display: inline-block;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  font-size: 22px;
+  color: #ff5704;
+}
+.container .game_holder {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.container .game_holder > li {
+  width: 100%;
+  height: 100%;
+}
+.container .begin_page {
+  background-image: url("../../images/goodcitizen/begin_back.jpg");
+  position: relative;
+}
+.container .begin_page .copyright {
+  position: absolute;
+  width: 100%;
+  top: 95%;
+  text-align: center;
+  color: #333333;
+  font-size: 15px;
+}
+.container .begin_page .game_title {
+  width: 65%;
+  height: 28.126%;
+  position: absolute;
+  top: 15.3125%;
+  background-image: url("../../images/goodcitizen/title.png");
+}
+.container .begin_page .back_words {
+  width: 69.3725%;
+  color: #494804;
+  font-size: 18px;
+  position: absolute;
+  top: 46.25%;
+  line-height: 23px;
+  font-family: 'Huakang';
+}
+.container .begin_page .game_start {
+  top: 70.3125%;
+  background-image: url("../../images/goodcitizen/begin_btn.png");
+}
+.container .begin_page .game_guide {
+  top: 82.6%;
+  background-image: url("../../images/goodcitizen/guide_btn.png");
+}
+.container .begin_page .guide_words {
+  position: absolute;
+  background-image: url("../../images/goodcitizen/guide_words.png");
+  top: 14.583%;
+  height: 28.75%;
+  width: 66.875%;
+  display: none;
+}
+.container .begin_page .guide_words .close_btn {
+  float: left;
+  background-image: url("../../images/goodcitizen/close.png");
+  width: 11%;
+  height: 16.363%;
+  margin: 15px;
+  float: right;
+}
+.container .begin_page .game_btn {
+  width: 53.75%;
+  height: 10.21%;
+  position: absolute;
+}
+.container .game_page {
+  background-image: url("../../images/goodcitizen/game_bg.jpg");
+  position: relative;
+}
+.container .game_page .timeCount {
+  font-family: 'Huakang';
+  width: 50%;
+  margin: 10px;
+  float: left;
+  height: 20px;
+}
+.container .game_page .timeCount .second {
+  height: 20px;
+}
+.container .game_page .timeCount li {
+  color: #2fc524;
+}
+.container .game_page .timeCount li > * {
+  color: #2fc524;
+}
+.container .game_page .timeCount * {
+  float: left;
+  font-size: 20px;
+  line-height: 30px;
+}
+.container .game_page .timeCount * .score {
+  color: red;
+  float: right;
+}
+.container .game_page .timer {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: #f44545;
+  font-size: 70px;
+  font-family: Huakang;
+  left: 0;
+  top: 40%;
+  font-weight: 800;
+}
+.container .game_page .ball {
+  position: absolute;
+  width: 20.3125%;
+  top: 35%;
+}
+.container .game_page .animation {
+  animation: flyDown 0.5s;
+  -webkit-animation: flyDown 0.5s;
+  -moz-animation: flyDown 0.5s;
+}
+.container .game_page .heart_list {
+  width: 26.5%;
+  height: 5%;
+  float: right;
+  margin: 10px;
+}
+.container .game_page .heart_list li {
+  width: 32%;
+  height: 100%;
+  -webkit-background-size: 100% 100%;
+  -ms-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+  float: left;
+}
+.container .game_page .heart_list .felled {
+  background-image: url("../../images/goodcitizen/felled.png");
+}
+.container .game_page .heart_list .empty {
+  background-image: url("../../images/goodcitizen/empty.png");
+}
+.container .game_page .box_list {
+  width: 100%;
+  height: 13.5%;
+  position: absolute;
+  top: 80%;
+}
+.container .game_page .box_list img {
+  width: 20%;
+  height: 100%;
+  position: absolute;
+}
+.back_size {
+  -webkit-background-size: 100% 100%;
+  -ms-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: 100% 100%;
+}
+@media (max-height: 480px) {
+  .container .begin_page .back_words {
+    font-size: 8px;
+    line-height: 20px;
+  }
+}
+@media (min-height: 480px) and (max-height: 600px) {
+  .container .begin_page .back_words {
+    font-size: 13px;
+    line-height: 20px;
+  }
+}
+@keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}
+@-ms-keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}
+@-moz-keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}
+@-webkit-keyframes flyDown {
+  0% {
+    top: -10%;
+  }
+  100% {
+    top: 35%;
+  }
+}

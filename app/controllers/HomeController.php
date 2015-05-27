@@ -59,6 +59,11 @@ class HomeController extends BaseController {
               case 'takephotos':
                   DB::table('view')->where('id', '=', 1)->increment('view');
                   return View::make('takephotos.index');
+              case 'goodcitizen':
+                  DB::table('view')->where('id', '=', 2)->increment('view');
+                  $token = sha1(time().sha1('redrock'));
+                  Session::flash('token', $token);
+                  return View::make('goodcitizen.index')->with('token', $token);
               default:
                   return Response::make("Page not found", 404);
                   break;
@@ -211,7 +216,7 @@ class HomeController extends BaseController {
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
             return $paiming;
         }
-
+        //我给团团拍照
         public function takephotos(){
             $data = Input::all();
             $save = array(
@@ -248,6 +253,29 @@ class HomeController extends BaseController {
             $uid = $id['id'];
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
             return $paiming;
+        }
+        //中国好公民
+        public function goodcitizen() {
+            $input = Input::all();
+            $data = array(
+                'time' => $input['time'],
+                'score'=> $input['score'],
+                'ip' => Request::getClientIp(),
+            );
+            $id = Goodcitizen::create($data);
+            $uid = $id['id'];
+            Session::flash('id', $uid);
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id, score, time, (@rowno:=@rowno+1) as rowno FROM `goodcitizen`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC)b WHERE id = $uid limit 1");
+            return $paiming;
+        }
+        //中国好公民提交手机号
+        public function goodcitizenTelephone() {
+            $input = Input::all();
+            if (!isset($input['token']) || $input['token'] != Session::get('token')){
+                $data = array('error'=>'Fuck your mother, why do you cheat?', 'status'=>403);
+                return $data;
+            }
+            return Goodcitizen::where('id', '=', Session::get('id'))->update(array('telephone'=>$input['phone']));
         }
 
 //        private function getOpenId () {
