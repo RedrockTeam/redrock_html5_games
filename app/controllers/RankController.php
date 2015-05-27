@@ -15,12 +15,14 @@ class RankController extends BaseController {
                         '0' => '2048',
                         '1' => 'sun',
                         '2' => 'run',
+                        '3' => 'goodcitizen'
                     );
         //游戏名
         $gamename = array(
                           '拼拼价值观',
                           '夸父追日',
                           '奔跑吧兄弟',
+                          '中国好公民'
                         );
 
         foreach($game as $v)
@@ -29,6 +31,9 @@ class RankController extends BaseController {
                   {
                       $info[] = DB::select("select * from(select * from (SELECT * FROM `sun` ORDER BY `score`, `time`)b  group by telphone)a order by score, time limit 20");
                   }
+                  elseif($v == 'goodcitizen'){
+                      $info[] = DB::select("select telephone as telphone, score, time from (select * from ( select * from `$v` WHERE telephone IS NOT NULL order by score desc)a group by telephone)b order by score desc, time asc limit 20");
+                  }
                   else{
                       $info[] = DB::select("select * from (select * from ( select * from `$v` order by score desc)a group by telphone)b order by score desc limit 20");
                   }
@@ -36,6 +41,9 @@ class RankController extends BaseController {
         }
         foreach($game as $v)
         {
+            if($v == 'goodcitizen')
+                $num[] = DB::select("select COUNT(DISTINCT telephone) as num from `$v` ");
+            else
             $num[] = DB::select("select COUNT(DISTINCT telphone) as num from `$v` ");
 
 
