@@ -1,4 +1,4 @@
-/bootstrap/compiled.php
+bootstrap/compiled.php
 composer.phar
 composer.lock
 .env.*.php
@@ -6,4 +6,5 @@ composer.lock
 .DS_Store
 Thumbs.db
 .idea/
-/app/config/database.php
+app/config/database.php
+app/config/app.php
