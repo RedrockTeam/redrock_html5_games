@@ -54,6 +54,8 @@ class HomeController extends BaseController {
                   break;
 
               case 'praise-xi':
+                  $token = sha1(time().sha1('redrock'));
+                  Session::put('click_token', $token);
                  return View::make('praise-xi.index');
 
               case 'takephotos':
@@ -72,8 +74,7 @@ class HomeController extends BaseController {
       }
 
         //验证是否作弊
-        public function verify()
-        {
+        public function verify() {
            if(!Request::ajax() || !Request::isJson())
            {
                return Response::make('...', 403);
@@ -127,8 +128,7 @@ class HomeController extends BaseController {
         }
 
         //保存分数
-        private  function save($data, $type)
-        {
+        private  function save($data, $type) {
 
             if( DB::table($type)->insert($data))
                 return true;
@@ -137,8 +137,7 @@ class HomeController extends BaseController {
         }
 
         //获取排名
-        private  function getPosition($type, $telphone)
-        {
+        private  function getPosition($type, $telphone) {
 
             $score = DB::table($type)
                     ->select('score','time')
@@ -146,12 +145,12 @@ class HomeController extends BaseController {
                      ->distinct()
                     ->get();
 
-            if($type == '2048' || $type == 'run'){
+            if($type == '2048' || $type == 'run') {
             $count = DB::table($type)
                     ->where('score', '>', $score[0]->score)
                     ->count();
             }
-            if($type == 'sun'){
+            if($type == 'sun') {
             $count = DB::table($type)
                 ->where('score', '<', $score[0]->score)
                 ->count();
@@ -164,8 +163,7 @@ class HomeController extends BaseController {
             if($type == '2048')
             $data[0] = $count+1+$count1;
 
-            if($type == 'sun' || $type == 'run')
-            {
+            if($type == 'sun' || $type == 'run') {
                 $data['rank'] = $count+1+$count1;
                 $data['status'] = 200;
             }
@@ -187,7 +185,7 @@ class HomeController extends BaseController {
 
             if($data['openid'] != null){
                 $num = Click::where('openid', '=', $data['openid'])->count();
-                if($num != 0){
+                if($num != 0) {
                     $info = Click::where('openid', '=', $data['openid'])->first();
                     if($save['score'] > $info['score']) {
                         Click::where('openid', '=', $data['openid'])->update($save);
@@ -213,8 +211,19 @@ class HomeController extends BaseController {
                 $id = Click::create($save);
             }
             $uid = $id['id'];
+            Session::put('click_uid', $uid);
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,time,(@rowno:=@rowno+1) as rowno FROM `click`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC )b WHERE id = $uid limit 1");
             return $paiming;
+        }
+        //点赞习大大手机号
+        public function clickTelephone (){
+            $input = Input::all();
+            if (!isset($input['click_token']) || $input['click_token'] != Session::get('click_token')) {
+                $data = array('error'=>'Fuck your mother, why do you cheat?', 'status'=>403);
+                return $data;
+            }
+            $id = Session::get('click_uid');
+            return DB::table('click')->where('id', '=', $id)->update(['openid'=>$input['telephone']]);
         }
         //我给团团拍照
         public function takephotos(){
