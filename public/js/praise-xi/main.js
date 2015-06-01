@@ -108,6 +108,9 @@ function GameInit(arr,aw){
 	return GamesObjs;
 }
 window.onload= function () {
+	if(!isWeiXin()){
+		window.location.href='http://hongyan.cqupt.edu.cn/';
+	}
 	var oLogo=document.querySelector('.logo');
 	var oBack=document.querySelector('.game-back');
 	var oFrontpage=document.querySelector('.beginPage');
