@@ -11,6 +11,7 @@
 		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css')}}">
 	</head>
 	<body>
+        <div class="data" data="{{$token}}"></div>
 		<div class="game-back">
 			<div class="beginPage">
 				<img src="images/Xi-logo.png" class="logo">
@@ -72,7 +73,9 @@
 				<p>您在<span class="score_num">50</span>秒内</p><br>
 				<p>答对了<span class="sub_num">8</span>道题</p><br>
 				<p>排名第<span class="rank_num">1</span></p><br>
-				<span class="share">分享</span>
+                <input type="text" placeholder="请输入手机号参与比赛" class="phone_input">
+                <span class="apply share_btn">提交</span>
+				<span class="share share_btn">分享</span>
 				<div class="sharePage"></div>
 			</div>
 		</div>

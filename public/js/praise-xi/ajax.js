@@ -5,7 +5,9 @@ function ajax(url, json, fnsuccess) {
 		if (oAjax.readyState === 4 && oAjax.status === 200) {
 			var a=parseInt(oAjax.responseText.indexOf("}"));
 			var r=oAjax.responseText.substring(9,a);
-			fnsuccess (r);
+            if(fnsuccess){
+                fnsuccess (r);
+            }
 		}
 	}
 
