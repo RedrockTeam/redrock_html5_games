@@ -56,7 +56,7 @@ class HomeController extends BaseController {
               case 'praise-xi':
                   $token = sha1(time().sha1('redrock'));
                   Session::put('click_token', $token);
-                 return View::make('praise-xi.index');
+                 return View::make('praise-xi.index')->with('token', $token);
 
               case 'takephotos':
                   DB::table('view')->where('id', '=', 1)->increment('view');
@@ -218,12 +218,12 @@ class HomeController extends BaseController {
         //点赞习大大手机号
         public function clickTelephone (){
             $input = Input::all();
-            if (!isset($input['click_token']) || $input['click_token'] != Session::get('click_token')) {
+            if ($input['click_token'] != Session::get('click_token')) {
                 $data = array('error'=>'Fuck your mother, why do you cheat?', 'status'=>403);
                 return $data;
             }
             $id = Session::get('click_uid');
-            return DB::table('click')->where('id', '=', $id)->update(['openid'=>$input['telephone']]);
+            return DB::table('click')->where('id', '=', $id)->update(['openid'=>$input['phone']]);
         }
         //我给团团拍照
         public function takephotos(){
