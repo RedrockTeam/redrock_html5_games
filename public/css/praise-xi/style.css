@@ -203,17 +203,25 @@
 	display: block;
 	margin: 20px auto;
 }
-.share{
+.share_btn{
 	display: block;
 	width: 40%;
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
-	color: #ffffff;
+	color: #333;
 	font-weight: 800;
 	background: yellow;
-	box-shadow:2px 3px 0px #ee6a0d ;
+	box-shadow:1px 2px 1px #ee6a0d ;
 	margin: 18px auto;
+}
+.phone_input{
+    display: block;
+    margin: 0 auto;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 7px;
+    width: 55%;
 }
 .sharePage{
 	width: 100%;
