@@ -16,6 +16,7 @@ Route::get('/{game}', 'HomeController@start');
 
 Route::post('/post', 'HomeController@verify');
 Route::post('praise-xi-post', 'HomeController@savexi');
+Route::post('praise-xi-telephone-post', 'HomeController@clickTelephone');
 Route::post('goodcitizen', 'HomeController@goodcitizen');
 Route::post('goodcitizenphone', 'HomeController@goodcitizenTelephone');
 
