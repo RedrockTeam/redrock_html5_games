@@ -74,5 +74,5 @@
     </div>
 </div>
 @endforeach
-{{dd($data)}}
+{{dd($data[5])}}
 @stop
