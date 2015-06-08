@@ -54,7 +54,7 @@ class RankController extends BaseController {
             if($v == 'goodcitizen')
                 $num[] = DB::select("select COUNT(DISTINCT telephone) as num from `$v` ");
             elseif($v == 'click'){
-                $num[] = DB::connection('mysql125')->select("select COUNT(DISTINCT wx_id) as num from `$v`.`wx_user` ");
+                $num[] = DB::connection('mysql125')->select("select COUNT(DISTINCT wx_id) as num from `cqupt_question`.`wx_user` ");
             }
             elseif($v == 'cqupt_question'){
                 $num[] = DB::select("select COUNT(DISTINCT openid) as num from `$v` ");
