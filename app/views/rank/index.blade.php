@@ -74,5 +74,5 @@
     </div>
 </div>
 @endforeach
-
+{{dd($data)}}
 @stop
