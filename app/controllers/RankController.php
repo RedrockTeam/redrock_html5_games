@@ -42,7 +42,7 @@ class RankController extends BaseController {
                       $info[] = DB::select("select openid as telphone, score, time from (select * from ( select * from `$v` WHERE openid IS NOT NULL order by score desc)a group by openid)b order by score desc, time asc limit 40");
                   }
                   elseif($v == 'cqupt_question'){
-                      $info[] = DB::connection('mysql125')->select("SELECT tel as telphone, avgGrade as score, avgGrade as time FROM $v.`wx_user` ORDER BY `avgGrade` DESC LIMIT 20");
+                      $info[] = DB::connection('mysql125')->select("SELECT tel as telphone, avgGrade as score, avgGrade as time FROM `wx_user` ORDER BY `avgGrade` DESC LIMIT 20");
                   }
                   else{
                       $info[] = DB::select("select * from (select * from ( select * from `$v` order by score desc)a group by telphone)b order by score desc limit 20");
@@ -85,7 +85,6 @@ class RankController extends BaseController {
 
         }
 
-        return $info;
 
         return View::make('rank.index')->with('data',$data);
 

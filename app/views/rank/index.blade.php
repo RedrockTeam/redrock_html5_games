@@ -74,5 +74,4 @@
     </div>
 </div>
 @endforeach
-{{dd($data[5])}}
 @stop
