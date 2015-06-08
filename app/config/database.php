@@ -62,7 +62,16 @@ return array(
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
 		),
-
+        'mysql125' => array(
+            'driver'    => 'mysql',
+            'host'      => '202.202.43.125',
+            'database'  => 'cqupt_question',
+            'username'  => 'root',
+            'password'  => '',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_general_ci',
+            'prefix'    => '',
+        ),
 		'pgsql' => array(
 			'driver'   => 'pgsql',
 			'host'     => 'localhost',
