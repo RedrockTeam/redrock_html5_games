@@ -37,7 +37,7 @@ class RankController extends BaseController {
                       $info[] = DB::select("select telephone as telphone, score, time from (select * from ( select * from `$v` WHERE telephone IS NOT NULL order by score desc)a group by telephone)b order by score desc, time asc limit 20");
                   }
                   elseif($v == 'click'){
-                      $info[] = DB::select("select openid as telphone, score, time from (select * from ( select * from `$v` WHERE openid IS NOT NULL order by score desc)a group by openid)b order by score desc, time asc limit 20");
+                      $info[] = DB::select("select openid as telphone, score, time from (select * from ( select * from `$v` WHERE openid IS NOT NULL order by score desc)a group by openid)b order by score desc, time asc limit 40");
                   }
                   else{
                       $info[] = DB::select("select * from (select * from ( select * from `$v` order by score desc)a group by telphone)b order by score desc limit 20");
