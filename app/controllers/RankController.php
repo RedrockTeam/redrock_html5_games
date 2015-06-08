@@ -85,6 +85,7 @@ class RankController extends BaseController {
 
         }
 
+        return $info;
 
         return View::make('rank.index')->with('data',$data);
 
