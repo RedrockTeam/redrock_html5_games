@@ -7,7 +7,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<title>我正在参与《我给团团拍张照》游戏</title>
 	<script>
-		var avatar = ''//头像地址
+		var avatar = "{{$avatar}}"//头像地址
 	</script>
 	<script src="{{URL::asset('js/cqupt/jquery.min.js')}}"></script>
 	<script src="{{URL::asset('js/cqupt/main.js')}}"></script>
