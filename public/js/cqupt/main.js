@@ -9,11 +9,11 @@ function isWeiXin(){
 	}
 }
 $(function(){
-	if(!isWeiXin()){
-		window.location.href='http://hongyan.cqupt.edu.cn/';
-	}
+	//if(!isWeiXin()){
+	//	window.location.href='http://hongyan.cqupt.edu.cn/';
+	//}
 	var oC=$('.container');
-	var aPages=$('.container li');
+	var aPages=$('.container li');ß
 	var oHolder=$('.container>ul');
 	var oPlay=$('.play');
 	var oCross=$('.cross');
