@@ -62,6 +62,18 @@ class HomeController extends BaseController {
                   DB::table('view')->where('id', '=', 1)->increment('view');
                   return View::make('takephotos.index');
               case 'cqupt-group-photo':
+                  $img = Session::get('img');
+                  if(!$img) {
+                      $code = Input::get('code');
+                      if(!$code) {
+                          $qs = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING']:$_SERVER['QUERY_STRING'];
+                          $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].$qs);
+                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=$baseUrl&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+                      }
+                      Session::put('code', $code);
+                      $info = $this->getOpenId();
+                  }
+                  return $info;
                   return View::make('cqupt-group-photo.index');
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
@@ -265,6 +277,7 @@ class HomeController extends BaseController {
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `takephotos`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
             return $paiming;
         }
+
         //中国好公民
         public function goodcitizen() {
             $input = Input::all();
@@ -279,6 +292,7 @@ class HomeController extends BaseController {
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id, score, time, (@rowno:=@rowno+1) as rowno FROM `goodcitizen`, (SELECT (@rowno:=0)) a ORDER BY score DESC, time ASC)b WHERE id = $uid limit 1");
             return $paiming;
         }
+
         //中国好公民提交手机号
         public function goodcitizenTelephone() {
             $input = Input::all();
@@ -290,57 +304,54 @@ class HomeController extends BaseController {
             return Goodcitizen::where('id', '=', Session::get('id'))->update(array('telephone'=>$input['phone']));
         }
 
-//        private function getOpenId () {
-//            $code = Session::get('code');
-//
-//            $time=time();
-//            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
-//            $string='';
-//            for($i=0;$i<16;$i++){
-//                $num = mt_rand(0,61);
-//                $string .= $str[$num];
-//            }
-//            $secret =sha1(sha1($time).md5($string)."redrock");
-//            $t2 = array(
-//                'timestamp'=>$time,
-//                'string'=>$string,
-//                'secret'=>$secret,
-//                'token'=>$this->acess_token,
-//                'code' => $code,
-//            );
-//
-//            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
-//            return json_encode($this->curl_api($url, $t2));
-//        }
-//
-//
-//
-//
-//        /*curl通用函数*/
-//        private function curl_api($url, $data=''){
-//            // 初始化一个curl对象
-//            $ch = curl_init();
-//            curl_setopt ( $ch, CURLOPT_URL, $url );
-//            curl_setopt ( $ch, CURLOPT_POST, 1 );
-//            curl_setopt ( $ch, CURLOPT_HEADER, 0 );
-//            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
-//            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
-//            // 运行curl，获取网页。
-//            $contents = json_decode(curl_exec($ch));
-//            // 关闭请求
-//            curl_close($ch);
-//            return $contents;
-//        }
-//    private function encrypt()
-//    {
-//        $time = microtime();
-//        $str = Hash::make($time);
-//        $salt = base64_encode('baidu.com');
-//        $real = $salt.$str;
-//        $len = floor(0.7*strlen($real));
-//        $real = substr($real, $len);
-//        Session::put('real', $real);
-//        return $str;
-//    }
+        //获取openid
+        public function getOpenId () {
+            $code = Session::get('code');
+            $time=time();
+            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+            $string='';
+            for($i=0;$i<16;$i++){
+                $num = mt_rand(0,61);
+                $string .= $str[$num];
+            }
+            $secret =sha1(sha1($time).md5($string)."redrock");
+            $t2 = array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+                'code' => $code,
+            );
+
+            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
+            return json_encode($this->curl_api($url, $t2));
+        }
+
+        /*curl通用函数*/
+        private function curl_api($url, $data=''){
+            // 初始化一个curl对象
+            $ch = curl_init();
+            curl_setopt ( $ch, CURLOPT_URL, $url );
+            curl_setopt ( $ch, CURLOPT_POST, 1 );
+            curl_setopt ( $ch, CURLOPT_HEADER, 0 );
+            curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
+            curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
+            // 运行curl，获取网页。
+            $contents = json_decode(curl_exec($ch));
+            // 关闭请求
+            curl_close($ch);
+            return $contents;
+        }
+    private function encrypt()
+    {
+        $time = microtime();
+        $str = Hash::make($time);
+        $salt = base64_encode('baidu.com');
+        $real = $salt.$str;
+        $len = floor(0.7*strlen($real));
+        $real = substr($real, $len);
+        Session::put('real', $real);
+        return $str;
+    }
 
 }
