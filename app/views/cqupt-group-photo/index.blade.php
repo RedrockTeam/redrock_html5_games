@@ -8,6 +8,7 @@
 	<title>我正在参与《我给团团拍张照》游戏</title>
 	<script>
 		var avatar = ''//头像地址
+		var rank_path = ''//获取排名的地址
 	</script>
 	<script src="{{URL::asset('js/cqupt/jquery.min.js')}}"></script>
 	<script src="{{URL::asset('js/cqupt/main.js')}}"></script>
@@ -27,8 +28,11 @@
 				</div>
 				<div class="score-board">
 					<div class="score-img">
-						<p>
-							<span class="score-num"></span> <span>分</span>
+						<p class="rank">
+							<span class="score-rank" style = "font-weight:700;">200</span> <span style = "font-size:20px;">名</span>
+						</p>
+						<p class="score-num">
+
 						</p>
 						<input type="text" placeholder="输入您的手机号码" class="phone-box">
 						<div class="apply-btn"></div>
