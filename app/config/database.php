@@ -54,7 +54,7 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => '202.202.43.41',
+			'host'      => 'localhost',
 			'database'  => 'game',
 			'username'  => 'redrock',
 			'password'  => 'hongyanredrock',
