@@ -66,9 +66,7 @@ class HomeController extends BaseController {
                   if(!$img) {
                       $code = Input::get('code');
                       if(!$code) {
-                          $qs = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING']:$_SERVER['QUERY_STRING'];
-                          $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].$qs);
-                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=$baseUrl&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2fcqupt-group-photo&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
                       }
                       Session::put('code', $code);
                       $info = $this->getOpenId();
