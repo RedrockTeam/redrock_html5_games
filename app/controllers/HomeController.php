@@ -69,9 +69,7 @@ class HomeController extends BaseController {
                           return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2fcqupt-group-photo&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
                       }
                       Session::put('code', $code);
-                      $info = $this->getOpenId();
-                      var_dump($info);
-                      return;
+                      $info = json_decode($this->getOpenId());
                       Session::put('img', $info['data']['headimgurl']);
                   }
                   return $img;
