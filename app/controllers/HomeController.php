@@ -70,7 +70,8 @@ class HomeController extends BaseController {
                       }
                       Session::put('code', $code);
                       $info = $this->getOpenId();
-                      return $info;
+                      var_dump($info);
+                      return;
                       Session::put('img', $info['data']['headimgurl']);
                   }
                   return $img;
