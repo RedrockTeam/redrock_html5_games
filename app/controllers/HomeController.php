@@ -70,8 +70,10 @@ class HomeController extends BaseController {
                       }
                       Session::put('code', $code);
                       $info = $this->getOpenId();
+                      Session::put('img', $info['data']['headimgurl']);
                   }
-                  return View::make('cqupt-group-photo.index')->with('avatar', $info['data']['headimgurl']);
+                  return $img;
+//                  return View::make('cqupt-group-photo.index')->with('avatar', $info['data']['headimgurl']);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
