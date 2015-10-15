@@ -82,8 +82,8 @@
 }
 .container .mask .guide {
   width: 82.1875%;
-  height: 27.29%;
-  margin: 100px auto;
+  height: 40%;
+  margin: 0 auto;
   position: relative;
 }
 .container .mask .guide .guide-img {
@@ -166,19 +166,14 @@
   text-align: center;
   color: #cccccc;
   position: relative;
-  top: 75%;
+  top: 73%;
 }
 .container .beginPage .play {
-  height: 18%;
+  height: 20%;
   margin: 0 auto;
   display: block;
   position: relative;
   top: 55%;
-  background: url("../../images/cqupt/play.png");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
 }
 .container .gamePage {
   background: url("../../images/cqupt/game-bg.jpg");
@@ -194,6 +189,16 @@
   width: 72.5%;
   height: 41%;
   z-index: 90;
+}
+.container .gamePage .cross .personPhoto{
+  border-radius: 50%;
+  border: 1px solid #ec9960;
+  background-color: #ffffff;
+  -webkit-background-size: 100% 100%;
+  -ms-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  position: absolute;
+  background-size: 100% 100%;
 }
 .container .gamePage .cross .cross-photos {
   display: none;
@@ -211,11 +216,7 @@
   background-size: 100% 100%;
 }
 .container .gamePage .photo-box {
-  transition: border 1s;
-  -moz-transition: border 1s;
-  -ms-transition: border 1s;
-  -webkit-transition: border 1s;
-  border: 10px solid #ffffff;
+  box-shadow:  0 0 0 10px #333333;
 }
 .container .gamePage .logoTuan {
   margin: 0 auto;
@@ -226,18 +227,12 @@
 }
 .container .gamePage .shutBox {
   position: relative;
-  top: 69%;
+  top: 62%;
   width: 45%;
   height: 11%;
   margin: 0 auto;
 }
 .container .gamePage .shutBox .shut {
-  width: 100%;
-  height: 100%;
-  background: url("../../images/cqupt/shut.png");
-  -webkit-background-size: 100% 100%;
-  -ms-background-size: 100% 100%;
-  -moz-background-size: 100% 100%;
-  background-size: 100% 100%;
+  width: 90%;
   position: absolute;
 }
