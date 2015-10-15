@@ -61,6 +61,8 @@ class HomeController extends BaseController {
               case 'takephotos':
                   DB::table('view')->where('id', '=', 1)->increment('view');
                   return View::make('takephotos.index');
+              case 'cqupt-group-photo':
+                  return View::make('cqupt-group-photo.index');
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
