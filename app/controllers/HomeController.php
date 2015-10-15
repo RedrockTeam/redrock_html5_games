@@ -62,19 +62,19 @@ class HomeController extends BaseController {
                   DB::table('view')->where('id', '=', 1)->increment('view');
                   return View::make('takephotos.index');
               case 'cqupt-group-photo':
-                  $img = Session::get('img');
-                  if(!$img) {
-                      $code = Input::get('code');
-                      if(!$code) {
-                          $qs = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING']:$_SERVER['QUERY_STRING'];
-                          $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].$qs);
-                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=$baseUrl&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
-                      }
-                      Session::put('code', $code);
-                      $info = $this->getOpenId();
-                  }
-                  return $info;
-                  return View::make('cqupt-group-photo.index');
+              //    $img = Session::get('img');
+              //    if(!$img) {
+              //        $code = Input::get('code');
+              //        if(!$code) {
+              //            $qs = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING']:$_SERVER['QUERY_STRING'];
+              //            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].$qs);
+              //            return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=$baseUrl&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+              //        }
+              //        Session::put('code', $code);
+              //        $info = $this->getOpenId();
+              //    }
+              //    return $info;
+                    return View::make('cqupt-group-photo.index');
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
