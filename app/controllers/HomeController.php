@@ -61,6 +61,10 @@ class HomeController extends BaseController {
                   return View::make('takephotos.index');
                   break;
               case 'cqupt-group-photo':
+                  if(!Session::get('openid')) {
+                      $this->getOpenId();
+                  }
+
                   return View::make('takephotos.index');
                   break;
               case 'goodcitizen':
@@ -282,28 +286,45 @@ class HomeController extends BaseController {
             return Goodcitizen::where('id', '=', Session::get('id'))->update(array('telephone'=>$input['phone']));
         }
 
-//        private function getOpenId () {
-//            $code = Session::get('code');
-//
-//            $time=time();
-//            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
-//            $string='';
-//            for($i=0;$i<16;$i++){
-//                $num = mt_rand(0,61);
-//                $string .= $str[$num];
-//            }
-//            $secret =sha1(sha1($time).md5($string)."redrock");
-//            $t2 = array(
-//                'timestamp'=>$time,
-//                'string'=>$string,
-//                'secret'=>$secret,
-//                'token'=>$this->acess_token,
-//                'code' => $code,
-//            );
-//
-//            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
-//            return json_encode($this->curl_api($url, $t2));
-//        }
+        //
+        public function groupPhoto() {
+            if(!Session::get('openid')) {
+                //todo 获取openid
+                $code = I('get.code');
+                if($code == null){
+                    $qs = $_SERVER['QUERY_STRING'] ? '?'.$_SERVER['QUERY_STRING']:$_SERVER['QUERY_STRING'];
+                    $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].$qs);
+                    return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=$baseUrl&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+                }else {
+                    $userinfo = $this->getOpenId();
+                }
+                $img = $userinfo['headimg'];
+            }
+            return View::make('cqupt-group-photo.index')->with('img', $img);
+        }
+
+
+        public function getOpenId () {
+            $code = Session::get('code');
+            $time = time();
+            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+            $string='';
+            for($i=0;$i<16;$i++){
+                $num = mt_rand(0,61);
+                $string .= $str[$num];
+            }
+            $secret =sha1(sha1($time).md5($string)."redrock");
+            $t2 = array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+                'code' => $code,
+            );
+
+            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/webOauth";
+            return json_encode($this->curl_api($url, $t2));
+        }
 //
 //
 //
