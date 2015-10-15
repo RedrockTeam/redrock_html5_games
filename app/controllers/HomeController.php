@@ -70,7 +70,7 @@ class HomeController extends BaseController {
                       }
                       Session::put('code', $code);
                       $info = json_decode($this->getOpenId());
-                      Session::put('img', $info['data']['headimgurl']);
+                      Session::put('img', $info->data->headimgurl);
                   }
                   return $img;
 //                  return View::make('cqupt-group-photo.index')->with('avatar', $info['data']['headimgurl']);
