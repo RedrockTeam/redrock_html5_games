@@ -13,7 +13,7 @@ $(function(){
 	//	window.location.href='http://hongyan.cqupt.edu.cn/';
 	//}
 	var oC=$('.container');
-	var aPages=$('.container li');ß
+	var aPages=$('.container li');
 	var oHolder=$('.container>ul');
 	var oPlay=$('.play');
 	var oCross=$('.cross');
@@ -103,18 +103,21 @@ $(function(){
 	var center=($(window).height()*0.315);
 });
 function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
-	var r=2*Math.random();
+	//var r=2*Math.random();
 	var take=true;
-	if(r<=1){
-		r='tuanqi';
-		deg=7;
-		speed=3;
-	}
-	else{
-		r='tuanhui';
-		deg=9;
-		speed=5;
-	}
+	//if(r<=1){
+	//	r='tuanqi';
+	//	deg=7;
+	//	speed=3;
+	//}
+	//else{
+	//	r='tuanhui';
+	//	deg=9;
+	//	speed=5;
+	//}
+	var r = 'xiaohui';
+	deg=9;
+	speed=5;
 	function draw(){
 		var time=1000/60;
 		n+=deg;
@@ -134,7 +137,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 	}
 	$('<img />',{
 		class:'logoTuan',
-		src:'./images/takephotos/'+r+'.png'
+		src:'./images/cqupt/'+r+'.png'
 	}).appendTo(obj);
 	var ogoal=$('.logoTuan');
 	var oShut=$('.shut');
@@ -165,9 +168,6 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		b=130/180*(180-b);
 		p=(center-Math.abs(m-center+25))*70/center;
 		sum=b+p;
-		if(r=='tuanhui'){
-			sum*=1.1;
-		}
 		sum=Math.round(sum*1000)/1000;
 		if(!take){
 			sum=0;

@@ -11,7 +11,6 @@
 	<link rel="stylesheet" href="{{URL::asset('css/cqupt/style.css')}}"/>
 </head>
 <body>
-	<img src="images/takephotos/begin-bg.jpg" style="position: absolute;top: -1000px">
 	<div class="container">
 		<ul>
 			<li class="mask">
@@ -34,12 +33,10 @@
 				</div>
 			</li>
 			<li class="beginPage">
-				<div class="slogan">
-				</div>
-				<div class="play">
+				<img src="{{URL::asset('images/cqupt/play.png')}}" class="play">
 
-				</div>
-				<p class="copyright">© 重庆团市委-学载青春梦</p>
+				</img>
+				<p class="copyright">© 红岩网校工作站</p>
 			</li>
 			<li class="gamePage">
 				<div class="cross cross-bg">
