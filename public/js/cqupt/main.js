@@ -145,6 +145,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		_data.score = sum;
 		$.post(rank_path,_data,function(data){
 			if(data.status == 200){
+				alert(data[0].list);
 				$('.score-rank').html(data[0].list);
 			}else{
 				alert(data.info);
