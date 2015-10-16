@@ -72,7 +72,8 @@ class HomeController extends BaseController {
                       $info = json_decode($this->getOpenId());
                       Session::put('img', $info->data->headimgurl);
                   }
-                  return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'));
+                  $ticket = $this->JSSDKSignature();
+                  return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
@@ -350,6 +351,57 @@ class HomeController extends BaseController {
         $real = substr($real, $len);
         Session::put('real', $real);
         return $str;
+    }
+
+    /**
+     * 生成JSSDK签名
+     * @retrun array $data JSSDK签名所需参数
+     */
+    public function JSSDKSignature(){
+        $jsapi_ticket =  $this->getTicket();
+        $data['jsapi_ticket'] = $jsapi_ticket;
+        $data['noncestr'] = str_random(32);;
+        $data['timestamp'] = time();
+        $data['url'] = URL::full();//生成当前页面url
+        $data['signature'] = sha1($this->ToUrlParams($data));
+        return $data;
+    }
+
+    /**
+     *
+     * 拼接签名字符串
+     * @param array $urlObj
+     * @return 返回已经拼接好的字符串
+     */
+    private function ToUrlParams($urlObj){
+        $buff = "";
+        foreach ($urlObj as $k => $v) {
+            if($k != "signature") {
+                $buff .= $k . "=" . $v . "&";
+            }
+        }
+        $buff = trim($buff, "&");
+        return $buff;
+    }
+
+    //获取js_ticket凭据
+    private function getTicket() {
+        $time=time();
+        $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+        $string='';
+        for($i=0;$i<16;$i++){
+            $num = mt_rand(0,61);
+            $string .= $str[$num];
+        }
+        $secret =sha1(sha1($time).md5($string)."redrock");
+        $t2 = array(
+            'timestamp'=>$time,
+            'string'=>$string,
+            'secret'=>$secret,
+            'token'=>$this->acess_token,
+        );
+        $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/apiJsTicket";
+        return $this->curl_api($url, $t2);
     }
 
 }
