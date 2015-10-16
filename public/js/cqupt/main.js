@@ -109,7 +109,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		_data.score = sum;
 		$.post(rank_path,_data,function(data){
 				$('.score-rank').html(data[0].list);
-				document.title = '庆祝建校65周年，我和重邮合个影！我排在第'+data[0].list+'名，快来挑战我！';
+				title = '庆祝建校65周年，我和重邮合个影！我排在第'+data[0].list+'名，快来挑战我！';
 		});
 		setTimeout(function(){
 			$('.score-num').html(sum);
