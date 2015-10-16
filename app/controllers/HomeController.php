@@ -328,8 +328,7 @@ class HomeController extends BaseController {
                         $id = Cqupt::create($save);
                         $uid = $id['id'];
                         $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `cqupt`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
-                        var_dump($paiming);
-                        return;
+                        $paiming[0]->list = $paiming[0]->list+3;
                         Cqupt::destroy($uid);
                         return $paiming;
                     }
@@ -343,6 +342,7 @@ class HomeController extends BaseController {
             }
             $uid = $id['id'];
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `cqupt`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
+            $paiming[0]->list = $paiming[0]->list+3;
             return $paiming;
         }
         //获取openid
