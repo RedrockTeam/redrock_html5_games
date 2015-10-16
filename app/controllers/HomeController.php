@@ -303,6 +303,44 @@ class HomeController extends BaseController {
             return Goodcitizen::where('id', '=', Session::get('id'))->update(array('telephone'=>$input['phone']));
         }
 
+        //我和重邮合个影
+        public function cqupt() {
+            $data = Input::all();
+            $save = array(
+                'openid' => trim($data['phone']),
+                'score' => $data['score'],
+            );
+            if($data['phone'] != null){
+                $num = Cqupt::where('openid', '=', $data['phone'])->count();
+                if($num != 0){
+                    $info = Cqupt::where('openid', '=', $data['phone'])->first();
+                    if($save['score'] > $info['score']) {
+                        Cqupt::where('openid', '=', $data['phone'])->update($save);
+                        $id = Cqupt::where('openid', '=', $data['phone'])->first();
+                    }
+                    elseif($save['score'] == $info['score']){
+                        Cqupt::where('openid', '=', $data['phone'])->update($save);
+                        $id = Cqupt::where('openid', '=', $data['phone'])->first();
+                    }
+                    else{
+                        $id = Cqupt::create($save);
+                        $uid = $id['id'];
+                        $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `cqupt`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
+                        Cqupt::destroy($uid);
+                        return $paiming;
+                    }
+                }
+                else {
+                    $id = Cqupt::create($save);
+                }
+            }
+            else{
+                $id = Cqupt::create($save);
+            }
+            $uid = $id['id'];
+            $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `cqupt`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
+            return $paiming;
+        }
         //获取openid
         public function getOpenId () {
             $code = Session::get('code');
@@ -341,67 +379,67 @@ class HomeController extends BaseController {
             curl_close($ch);
             return $contents;
         }
-    private function encrypt()
-    {
-        $time = microtime();
-        $str = Hash::make($time);
-        $salt = base64_encode('baidu.com');
-        $real = $salt.$str;
-        $len = floor(0.7*strlen($real));
-        $real = substr($real, $len);
-        Session::put('real', $real);
-        return $str;
-    }
+        private function encrypt()
+        {
+            $time = microtime();
+            $str = Hash::make($time);
+            $salt = base64_encode('baidu.com');
+            $real = $salt.$str;
+            $len = floor(0.7*strlen($real));
+            $real = substr($real, $len);
+            Session::put('real', $real);
+            return $str;
+        }
 
-    /**
-     * 生成JSSDK签名
-     * @retrun array $data JSSDK签名所需参数
-     */
-    public function JSSDKSignature(){
-        $jsapi_ticket =  $this->getTicket();
-        $data['jsapi_ticket'] = $jsapi_ticket->data;
-        $data['noncestr'] = str_random(32);;
-        $data['timestamp'] = time();
-        $data['url'] = URL::full();//生成当前页面url
-        $data['signature'] = sha1($this->ToUrlParams($data));
-        return $data;
-    }
+        /**
+         * 生成JSSDK签名
+         * @retrun array $data JSSDK签名所需参数
+         */
+        public function JSSDKSignature(){
+            $jsapi_ticket =  $this->getTicket();
+            $data['jsapi_ticket'] = $jsapi_ticket->data;
+            $data['noncestr'] = str_random(32);;
+            $data['timestamp'] = time();
+            $data['url'] = URL::full();//生成当前页面url
+            $data['signature'] = sha1($this->ToUrlParams($data));
+            return $data;
+        }
 
-    /**
-     *
-     * 拼接签名字符串
-     * @param array $urlObj
-     * @return 返回已经拼接好的字符串
-     */
-    private function ToUrlParams($urlObj){
-        $buff = "";
-        foreach ($urlObj as $k => $v) {
-            if($k != "signature") {
-                $buff .= $k . "=" . $v . "&";
+        /**
+         *
+         * 拼接签名字符串
+         * @param array $urlObj
+         * @return 返回已经拼接好的字符串
+         */
+        private function ToUrlParams($urlObj){
+            $buff = "";
+            foreach ($urlObj as $k => $v) {
+                if($k != "signature") {
+                    $buff .= $k . "=" . $v . "&";
+                }
             }
+            $buff = trim($buff, "&");
+            return $buff;
         }
-        $buff = trim($buff, "&");
-        return $buff;
-    }
 
-    //获取js_ticket凭据
-    private function getTicket() {
-        $time=time();
-        $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
-        $string='';
-        for($i=0;$i<16;$i++){
-            $num = mt_rand(0,61);
-            $string .= $str[$num];
+        //获取js_ticket凭据
+        private function getTicket() {
+            $time=time();
+            $str = 'abcdefghijklnmopqrstwvuxyz1234567890ABCDEFGHIJKLNMOPQRSTWVUXYZ';
+            $string='';
+            for($i=0;$i<16;$i++){
+                $num = mt_rand(0,61);
+                $string .= $str[$num];
+            }
+            $secret =sha1(sha1($time).md5($string)."redrock");
+            $t2 = array(
+                'timestamp'=>$time,
+                'string'=>$string,
+                'secret'=>$secret,
+                'token'=>$this->acess_token,
+            );
+            $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/apiJsTicket";
+            return $this->curl_api($url, $t2);
         }
-        $secret =sha1(sha1($time).md5($string)."redrock");
-        $t2 = array(
-            'timestamp'=>$time,
-            'string'=>$string,
-            'secret'=>$secret,
-            'token'=>$this->acess_token,
-        );
-        $url = "http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/apiJsTicket";
-        return $this->curl_api($url, $t2);
-    }
 
 }
