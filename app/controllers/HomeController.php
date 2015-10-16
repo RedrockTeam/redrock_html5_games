@@ -73,8 +73,8 @@ class HomeController extends BaseController {
                       Session::put('openid', $info->data->openid);
                       Session::put('img', $info->data->headimgurl);
                   }
-                  $ticket = $this->JSSDKSignature();
-                  return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
+                    $ticket = $this->JSSDKSignature();
+                    return View::make('cqupt-group-photo.index')->with('avatar', '')->with('ticket', [])->with('appid', $this->appid);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
