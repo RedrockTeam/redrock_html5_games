@@ -30,7 +30,7 @@
 				<div class="score-board">
 					<div class="score-img">
 						<p class="rank">
-							<span class="score-rank" style = "font-weight:700;">200</span> <span style = "font-weight:700;font-size:20px;">名</span>
+							<span class="score-rank" style = "font-weight:700;">1</span> <span style = "font-weight:700;font-size:20px;">名</span>
 						</p>
 						<p class="score-num">
 
