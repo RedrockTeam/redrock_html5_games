@@ -63,31 +63,17 @@ $(function(){
 		}
 		else{
             token=false;
-			//$.ajax({
-			//	url: "takephotos",
-			//	type: "post",
-			//	dataType: 'json',
-			//	contentType: "application/json",
-			//	data: JSON.stringify({
-			//		phone:phone,
-			//		score:sum
-			//	})
-			//}).fail(function () {
-			//	alert("与服务器连接错误!");
-			//}).complete(function (data) {
-             //   token=true;
-			//	alert('提交成功！分享到朋友圈看看自己的排名吧！')
-			//	data = data.responseJSON;
-			//	var rank = data[0].list;
-			//	document.title = '我在《我给团团拍张照》中获得了' + sum + '分,排名为第' + rank + '名，快来一起参加吧！'
-			//	oPhone.val('');
-			//
-			//});
 			var _data = {};
 			_data.phone = phone;
 			_data.score = sum;
 			$.post('url',_data,function(data){
-
+				token=true;
+				if(data.status == 200){
+					alert('提交成功！分享到朋友圈看看自己的排名吧！');
+					oPhone.val('');
+				}else{
+					alert(data.info);
+				}
 			});
 		}
 	}
