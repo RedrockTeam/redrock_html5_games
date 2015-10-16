@@ -105,8 +105,8 @@
 }
 .container .mask .score-board {
   width: 88.75%;
-  height: 73%;
-  margin: 60px auto;
+  height: 88%;
+  margin: 14px auto;
   position: relative;
   display: none;
 }
@@ -123,32 +123,42 @@
   background-size: 100% 100%;
 }
 .container .mask .score-board .score-img * {
-  font-size: 28px;
   color: #ff4200;
 }
-.container .mask .score-board .score-img p {
+.container .mask .score-board .score-img .rank {
   width: 100%;
   position: absolute;
-  top: 30%;
+  top: 25%;
 }
 .container .mask .score-board .score-img .phone-box {
   width: 70%;
   display: block;
   margin: 0 auto;
-  margin-top: 60%;
+  position: relative;
+  top: 50%;
   height: 20px;
   padding: 12px 4px;
+  background-color: #fef2b1;
   color: #999;
   font-size: 13px;
   border-radius: 8px;
   border: none;
   padding-left: 10px;
 }
+.container .mask .score-board .score-img .score-num {
+  font-size: 30px;
+  position: absolute;
+  left: 48%;
+  top: 38%;
+  z-index: 100;
+}
 .container .mask .score-board .score-img .apply-btn {
   width: 45%;
   height: 12%;
   display: block;
   margin: 12px auto;
+  position: relative;
+  top: 52%;
   background: url("../../images/cqupt/apply.png") no-repeat;
   -webkit-background-size: 100% 100%;
   -ms-background-size: 100% 100%;
@@ -215,13 +225,16 @@
   -moz-background-size: 100% 100%;
   background-size: 100% 100%;
 }
+.score-rank{
+  font-size: 45px;
+}
 .container .gamePage .photo-box {
   box-shadow:  0 0 0 10px #333333;
 }
 .container .gamePage .logoTuan {
   margin: 0 auto;
   position: absolute;
-  width: 25.25%;
+  width: 20%;
   left: 0;
   top: -320px;
 }
@@ -235,4 +248,13 @@
 .container .gamePage .shutBox .shut {
   width: 90%;
   position: absolute;
+}
+@media (max-height:470px) {
+  .container .mask .score-board .score-img .score-num {
+    font-size: 22px;
+    top: 39%;
+  }
+  .score-rank{
+    font-size: 30px;
+  }
 }
