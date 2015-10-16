@@ -66,7 +66,7 @@ $(function(){
 			var _data = {};
 			_data.phone = phone;
 			_data.score = sum;
-			$.post('url',_data,function(data){
+			$.post(rank_path,_data,function(data){
 				token=true;
 				if(data.status == 200){
 					alert('提交成功！分享到朋友圈看看自己的排名吧！');
