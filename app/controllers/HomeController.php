@@ -336,7 +336,7 @@ class HomeController extends BaseController {
             curl_setopt ( $ch, CURLOPT_RETURNTRANSFER, 1 );
             curl_setopt ( $ch, CURLOPT_POSTFIELDS, $data );
             // 运行curl，获取网页。
-            $contents = json_decode(curl_exec($ch), true);
+            $contents = json_decode(curl_exec($ch));
             // 关闭请求
             curl_close($ch);
             return $contents;
@@ -359,7 +359,7 @@ class HomeController extends BaseController {
      */
     public function JSSDKSignature(){
         $jsapi_ticket =  $this->getTicket();
-        $data['jsapi_ticket'] = $jsapi_ticket;
+        $data['jsapi_ticket'] = $jsapi_ticket['data'];
         $data['noncestr'] = str_random(32);;
         $data['timestamp'] = time();
         $data['url'] = URL::full();//生成当前页面url
