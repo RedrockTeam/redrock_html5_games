@@ -72,7 +72,7 @@
             wx.ready(function(){
                 wx.onMenuShareTimeline({
                     title: title, // 分享标题
-                    link: "{{URL::full()}}", // 分享链接
+                    link: "http://hongyan.cqupt.edu.cn/game/public/cqupt-group-photo", // 分享链接
                     imgUrl: "{{URL::asset('images/cqupt/share.jpg')}}", // 分享图标
                     success: function () {
                         // 用户确认分享后执行的回调函数
