@@ -155,6 +155,15 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		if(!take){
 			sum=0;
 		}
+		var _data = {};
+		_data.score = sum;
+		$.post(rank_path,_data,function(data){
+			if(data.status == 200){
+				$('.score-rank').html(data.rank);
+			}else{
+				alert(data.info);
+			}
+		});
 		setTimeout(function(){
 			$('.score-num').html(sum);
 			oCross.css({'-webkit-animation':'null','-ms-animation':'null','-moz-animation':'null','animation':'null'});
