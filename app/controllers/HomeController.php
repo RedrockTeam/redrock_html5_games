@@ -359,7 +359,7 @@ class HomeController extends BaseController {
      */
     public function JSSDKSignature(){
         $jsapi_ticket =  $this->getTicket();
-        $data['jsapi_ticket'] = $jsapi_ticket['data'];
+        $data['jsapi_ticket'] = $jsapi_ticket->data;
         $data['noncestr'] = str_random(32);;
         $data['timestamp'] = time();
         $data['url'] = URL::full();//生成当前页面url
