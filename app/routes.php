@@ -36,3 +36,4 @@ Route::get("/{game}/2048_index", 'HomeController@start');
 Route::get('/game/rank', 'RankController@index');
 
 Route::post('takephotos', 'HomeController@takephotos');
+Route::post('cqupt', array('as' => 'cqupt', 'HomeController@cqupt'));
