@@ -55,6 +55,7 @@
         </ul>
     </div>
 	<script>
+        var title = "我正在参与《我和重邮合个影》65周年校庆游戏";
     //        jssdk
             wx.config({
                 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -68,6 +69,7 @@
             });
             wx.ready(function(){
                 wx.onMenuShareTimeline({
+                    title: title, // 分享标题
                     link: "{{URL::full()}}", // 分享链接
                     imgUrl: "{{URL::asset('images/cqupt/share.jpg')}}", // 分享图标
                     success: function () {
