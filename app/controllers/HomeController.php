@@ -341,6 +341,7 @@ class HomeController extends BaseController {
             }
             $uid = $id['id'];
             $paiming = DB::select("SELECT rowno as list FROM (SELECT id,score,(@rowno:=@rowno+1) as rowno FROM `cqupt`, (SELECT (@rowno:=0)) a ORDER BY score DESC)b WHERE id = $uid limit 1");
+            $paiming[0]['status'] = 200;
             return $paiming;
         }
         //获取openid
