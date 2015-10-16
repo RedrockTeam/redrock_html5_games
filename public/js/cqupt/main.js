@@ -27,10 +27,6 @@ $(function(){
 			ogoal.remove();
 			oCross[0].className='cross-bg cross';
 			gameInit(oGame,center,oMask,oScoreBoard,oGuide,oCross);
-			oApply.bind('click',function(){
-					if (true) {};
-					sendAjax();
-			});
 			oMask.unbind("click");
 			oOpacity.click(function(){
 				// oApply.bind('click',function(){
@@ -144,12 +140,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		var _data = {};
 		_data.score = sum;
 		$.post(rank_path,_data,function(data){
-			if(data.status == 200){
-				alert(data[0].list);
 				$('.score-rank').html(data[0].list);
-			}else{
-				alert(data.info);
-			}
 		});
 		setTimeout(function(){
 			$('.score-num').html(sum);
