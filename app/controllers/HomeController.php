@@ -307,8 +307,9 @@ class HomeController extends BaseController {
         //我和重邮合个影
         public function cqupt() {
             $data = Input::all();
+            $data['phone'] = Session::get('openid');
             $save = array(
-                'openid' => Session::get('openid'),
+                'openid' => trim($data['phone']),
                 'score' => $data['score'],
             );
             if($data['phone'] != null){
