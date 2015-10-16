@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<title>我和重邮合个影</title>
+	<title>我正在参与《我和重邮合个影》65周年校庆游戏</title>
 	<script>
 		var avatar = "{{$avatar}}";//头像地址
         var rank_path = "{{route('cqupt')}}"//获取排名的地址
@@ -68,9 +68,9 @@
             });
             wx.ready(function(){
                 wx.onMenuShareTimeline({
-                    title: "我和重邮合个影", // 分享标题
+                    title: "", // 分享标题
                     link: "{{URL::full()}}", // 分享链接
-                    imgUrl: '', // 分享图标
+                    imgUrl: "{{URL::asset('images/cqupt/share.jpg')}}", // 分享图标
                     success: function () {
                         // 用户确认分享后执行的回调函数
                         alert('分享成功');

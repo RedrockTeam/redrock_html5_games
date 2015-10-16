@@ -41,38 +41,6 @@ $(function(){
 			});
 		});
 	});
-	function sendAjax(){
-        if(!token){
-            return;
-        }
-		if (phone) {
-			if (phone!=parseInt(oPhone.val())){
-				alert('为防止同一分数多次提交不同手机号，请输入与此前一致的手机号！')
-				return;
-			};
-		}
-		else{
-			phone=oPhone.val();
-		}
-		if(phone.length!=11||isNaN(phone)){
-			alert('请输入正确的手机号码！');
-		}
-		else{
-            token=false;
-			var _data = {};
-			_data.phone = phone;
-			_data.score = sum;
-			$.post(rank_path,_data,function(data){
-				token=true;
-				if(data.status == 200){
-					alert('提交成功！分享到朋友圈看看自己的排名吧！');
-					oPhone.val('');
-				}else{
-					alert(data.info);
-				}
-			});
-		}
-	}
 	oHolder.css('width',$(window).width()*2);
 	aPages.css('height',$(window).height());
 	oC.css('height',$(window).height());
@@ -141,6 +109,7 @@ function gameInit(obj,center,oMask,oScoreBoard,oGuide,oCross){
 		_data.score = sum;
 		$.post(rank_path,_data,function(data){
 				$('.score-rank').html(data[0].list);
+				document.title = '庆祝建校65周年，我和重邮合个影！我排在第'+data[0].list+'名，快来挑战我！';
 		});
 		setTimeout(function(){
 			$('.score-num').html(sum);
