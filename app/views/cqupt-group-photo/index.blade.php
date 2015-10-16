@@ -30,13 +30,11 @@
 				<div class="score-board">
 					<div class="score-img">
 						<p class="rank">
-							<span class="score-rank" style = "font-weight:700;">200</span> <span style = "font-size:20px;">名</span>
+							<span class="score-rank" style = "font-weight:700;">200</span> <span style = "font-weight:700;font-size:20px;">名</span>
 						</p>
 						<p class="score-num">
 
 						</p>
-						<input type="text" placeholder="输入您的手机号码" class="phone-box">
-						<div class="apply-btn"></div>
 					</div>
 				</div>
 			</li>
@@ -56,32 +54,32 @@
             </li>
         </ul>
     </div>
-    <script>
-//        jssdk
-        wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: "{{$appid}}", // 必填，公众号的唯一标识
-            timestamp: "{{$ticket['timestamp']}}", // 必填，生成签名的时间戳
-            nonceStr: "{{$ticket['noncestr']}}", // 必填，生成签名的随机串
-            signature: "{{$ticket['signature']}}",// 必填，签名，见附录1
-            jsApiList: [
-                'onMenuShareTimeline'
-            ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        });
-        wx.ready(function(){
-            wx.onMenuShareTimeline({
-                title: "我和重邮合个影", // 分享标题
-                link: "{{URL::full()}}", // 分享链接
-                imgUrl: '', // 分享图标
-                success: function () {
-                    // 用户确认分享后执行的回调函数
-                    alert('分享成功');
-                },
-                cancel: function () {
-                    // 用户取消分享后执行的回调函数
-                }
+	<script>
+    //        jssdk
+            wx.config({
+                debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: "{{$appid}}", // 必填，公众号的唯一标识
+                timestamp: "{{$ticket['timestamp']}}", // 必填，生成签名的时间戳
+                nonceStr: "{{$ticket['noncestr']}}", // 必填，生成签名的随机串
+                signature: "{{$ticket['signature']}}",// 必填，签名，见附录1
+                jsApiList: [
+                    'onMenuShareTimeline'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
-        });
-    </script>
+            wx.ready(function(){
+                wx.onMenuShareTimeline({
+                    title: "我和重邮合个影", // 分享标题
+                    link: "{{URL::full()}}", // 分享链接
+                    imgUrl: '', // 分享图标
+                    success: function () {
+                        // 用户确认分享后执行的回调函数
+                        alert('分享成功');
+                    },
+                    cancel: function () {
+                        // 用户取消分享后执行的回调函数
+                    }
+                });
+            });
+        </script>
 </body>
 </html>
