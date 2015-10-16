@@ -70,6 +70,7 @@ class HomeController extends BaseController {
                       }
                       Session::put('code', $code);
                       $info = json_decode($this->getOpenId());
+                      Session::put('openid', $info->data->openid);
                       Session::put('img', $info->data->headimgurl);
                   }
                     $ticket = $this->JSSDKSignature();
@@ -306,7 +307,7 @@ class HomeController extends BaseController {
         //我和重邮合个影
         public function cqupt() {
             $data = Input::all();
-            $data['phone'] = isset($data['phone'])? $data['phone']:null;
+            $data['phone'] = Session::get('openid');
             $save = array(
                 'openid' => trim($data['phone']),
                 'score' => $data['score'],
