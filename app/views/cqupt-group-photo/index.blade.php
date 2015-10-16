@@ -68,7 +68,6 @@
             });
             wx.ready(function(){
                 wx.onMenuShareTimeline({
-//                    title: "", // 分享标题
                     link: "{{URL::full()}}", // 分享链接
                     imgUrl: "{{URL::asset('images/cqupt/share.jpg')}}", // 分享图标
                     success: function () {
