@@ -54,7 +54,9 @@
             </li>
         </ul>
     </div>
-	<script>
+	
+</body>
+<script>
         var title = "我正在参与《我和重邮合个影》65周年校庆游戏";
     //        jssdk
             wx.config({
@@ -82,5 +84,4 @@
                 });
             });
     </script>
-</body>
 </html>

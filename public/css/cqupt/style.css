@@ -105,7 +105,7 @@
 }
 .container .mask .score-board {
   width: 84.75%;
-  height: 40%;
+  height: 43%;
   margin: 0 auto;
   position: relative;
   display: none;
@@ -128,13 +128,13 @@
 .container .mask .score-board .score-img .rank {
   width: 100%;
   position: absolute;
-  top: 47%;
+  top: 41%;
 }
 .container .mask .score-board .score-img .score-num {
   font-size: 22px;
   position: absolute;
   left: 48%;
-  top: 72%;
+  top: 62%;
   color: #fffa7b;
   z-index: 100;
 }
@@ -226,7 +226,7 @@
 @media (max-height:470px) {
   .container .mask .score-board .score-img .score-num {
     font-size: 20px;
-    top: 72%;
+    top: 62%;
   }
   .score-rank{
     font-size: 30px;
