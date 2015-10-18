@@ -37,3 +37,14 @@ Route::get('/game/rank', 'RankController@index');
 
 Route::post('takephotos', 'HomeController@takephotos');
 Route::post('cqupt', array('as' => 'cqupt', 'uses' => 'HomeController@cqupt'));
+Route::post('sbsbsb', function(){
+	$loop = Input::get('loop');
+	for($i = 0; $i < $loop; ++$i) {
+		$data = [
+			'openid' => '',
+			'score'  => rand(0, 120)
+		];
+		Cqupt::create($data);
+	}
+
+});
