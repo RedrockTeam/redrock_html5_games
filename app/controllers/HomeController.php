@@ -334,12 +334,12 @@ class HomeController extends BaseController {
                     }
                 }
                 else {
-                    if($save['openid'] != '')
+//                    if($save['openid'] != '')
                         $id = Cqupt::create($save);
                 }
             }
             else{
-                if($save['openid'] != '')
+//                if($save['openid'] != '')
                     $id = Cqupt::create($save);
             }
             $uid = $id['id'];
