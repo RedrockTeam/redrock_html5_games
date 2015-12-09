@@ -8,7 +8,7 @@
 	<title>我正在参与《中国好公民》游戏</title>
 	<script src="{{URL::asset('game/js/goodcitizen/jquery.min.js')}}"></script>
 	<script src="{{URL::asset('game/js/goodcitizen/main.min.js')}}"></script>
-	<link rel="stylesheet" href="{{URL::asset('css/goodcitizen/style.css')}}"/>
+	<link rel="stylesheet" href="{{URL::asset('game/css/goodcitizen/style.css')}}"/>
 </head>
 <body>
 	<img src="{{URL::asset('game/images/goodcitizen/share.jpg')}}" class="test" data="{{$token}}">
