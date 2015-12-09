@@ -68,7 +68,7 @@
 				</div>
 			</div>
 			<div class="score" style="display: none">
-				<img src="'{{URL::asset('game/images/sharePage.png')}}" class="share_tips">
+				<img src="{{URL::asset('game/images/sharePage.png')}}" class="share_tips">
 				<img src="{{URL::asset('game/images/over.png')}}" class="over_star">
 				<p>您在<span class="score_num">50</span>秒内</p><br>
 				<p>答对了<span class="sub_num">8</span>道题</p><br>
