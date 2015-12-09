@@ -72,6 +72,6 @@
 	</div>
 </body>
 <script>
-    var publicPath = "{{URL::asset('')}}";
+    var publicPath = "{{URL::asset('game')}}";
 </script>
 </html>
