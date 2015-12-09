@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>拼拼价值观</title>
-    {{HTML::style("game/css/2048/style/index.css")}}
+    {{HTML::style("game/css/2048/style/index.css?v=fvtdysuhkjnc")}}
     {{HTML::my("game/favicon/2048/favicon.ico","shortcut icon")}}
     {{HTML::my("game/meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
     {{ HTML::my("game/meta/2048/meta/apple-touch-startup-image-640x1096.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)") }}<!-- iPhone 5+ -->
@@ -140,20 +140,20 @@
           <p id="Txtinput"><input type="text" placeholder="请输入手机号" id="phone_input"><span id="reply">提交</span></p>
           <p class="copyright" style="margin-top: 280px;color: #333;">© 2014 红岩网校</p>
   </div>
-  {{HTML::script("game/js/2048/js/jquery.min.js")}}
-  {{HTML::script("game/js/2048/js/underscore-min.js")}}
-  {{HTML::script("game/js/2048/js/WeixinApi.js")}}
-  {{HTML::script("game/js/2048/js/timer.js")}}
-  {{HTML::script("game/js/2048/js/bind_polyfill.js")}}
-  {{HTML::script("game/js/2048/js/classlist_polyfill.js")}}
-  {{HTML::script("game/js/2048/js/animframe_polyfill.js")}}
-  {{HTML::script("game/js/2048/js/keyboard_input_manager.js")}}
-  {{HTML::script("game/js/2048/js/html_actuator.js")}}
-  {{HTML::script("game/js/2048/js/grid.js")}}
-  {{HTML::script("game/js/2048/js/tile.js")}}
-  {{HTML::script("game/js/2048/js/local_storage_manager.js")}}
-  {{HTML::script("game/js/2048/js/game_manager.js")}}
-  {{HTML::script("game/js/2048/js/application.js")}}
+  {{HTML::script("game/js/2048/js/jquery.min.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/underscore-min.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/WeixinApi.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/timer.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/bind_polyfill.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/classlist_polyfill.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/animframe_polyfill.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/keyboard_input_manager.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/html_actuator.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/grid.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/tile.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/local_storage_manager.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/game_manager.js?v=fvtdysuhkjnc")}}
+  {{HTML::script("game/js/2048/js/application.js?v=fvtdysuhkjnc")}}
 </body>
 <script>
 
