@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<script src="{{URL::asset('game/js/praise-xi/ajax.js')}}"></script>
-		<script src="{{URL::asset('game/js/praise-xi/main.js')}}"></script>
-		<script src="{{URL::asset('game/js/praise-xi/API.js')}}"></script>
+		<script src="{{URL::asset('game/js/praise-xi/ajax.js?d=vds')}}"></script>
+		<script src="{{URL::asset('game/js/praise-xi/main.js?d=vds')}}"></script>
+		<script src="{{URL::asset('game/js/praise-xi/API.js?d=vds')}}"></script>
 		<link rel='stylesheet' type="text/css" href="{{URL::asset('game/css/praise-xi/style.css')}}">
 	</head>
 	<body>
