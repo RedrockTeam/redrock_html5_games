@@ -14,7 +14,7 @@
         <div class="data" data="{{$token}}"></div>
 		<div class="game-back">
 			<div class="beginPage">
-				<img src="game/images/Xi-logo.png" class="logo">
+				<img src="{{URL::asset('game/images/Xi-logo.png')}}" class="logo">
 				<div class="slogan">
 					<p>&nbsp;&nbsp;&nbsp;古典名句，是中华文化长河中历经砥砺的智慧结晶。习大大在讲话中多处引经据典，生动传神，寓意深邃，极具启迪意义。作为青年大学生应积极学习习大大的这些用典。
                     </p>
@@ -68,8 +68,8 @@
 				</div>
 			</div>
 			<div class="score" style="display: none">
-				<img src="game/images/sharePage.png" class="share_tips">
-				<img src="game/images/over.png" class="over_star">
+				<img src="'{{URL::asset('game/images/sharePage.png')}}" class="share_tips">
+				<img src="{{URL::asset('game/images/over.png')}}" class="over_star">
 				<p>您在<span class="score_num">50</span>秒内</p><br>
 				<p>答对了<span class="sub_num">8</span>道题</p><br>
 				<p>排名第<span class="rank_num">1</span></p><br>
