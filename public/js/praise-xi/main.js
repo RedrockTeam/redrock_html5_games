@@ -42,7 +42,7 @@ function subOut(objs,ali,oS,jsons){
 		}
 	}
 	var X=document.querySelector('.Xi-titile');
-	X.style.backgroundImage='url(./images/'+objs[0].src+'.png)';
+	X.style.backgroundImage='url(./game/images/'+objs[0].src+'.png)';
 	return l;
 }
 function sendPhone(phoneInput){
