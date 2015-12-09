@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>拼拼价值观</title>
-    {{HTML::style("css/2048/style/index.css")}}
-    {{HTML::my("favicon/2048/favicon.ico","shortcut icon")}}
-    {{HTML::my("meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
-    {{ HTML::my("meta/2048/meta/apple-touch-startup-image-640x1096.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)") }}<!-- iPhone 5+ -->
-    {{HTML::my("meta/2048/meta/apple-touch-startup-image-640x920.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")}}
+    {{HTML::style("game/css/2048/style/index.css")}}
+    {{HTML::my("game/favicon/2048/favicon.ico","shortcut icon")}}
+    {{HTML::my("game/meta/2048/meta/apple-touch-icon.png","apple-touch-icon")}}
+    {{ HTML::my("game/meta/2048/meta/apple-touch-startup-image-640x1096.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)") }}<!-- iPhone 5+ -->
+    {{HTML::my("game/meta/2048/meta/apple-touch-startup-image-640x920.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")}}
  <!-- iPhone, retina -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -21,7 +21,7 @@
                 text-align: center;
             }
              #phone_input{
-                background: url("st.png")left center no-repeat #ffffff;
+                background: url("game/st.png")left center no-repeat #ffffff;
                 display: inline-block;
                 padding-left: 25px;
                 box-shadow: 0 0 0 -5px #cccccc;
@@ -46,7 +46,7 @@
             }
             #share{
                 margin: 0 auto;
-                background: url("{{url("/images/share.jpg")}}") center;
+                background: url("{{url("game/images/share.jpg")}}") center;
                 width: 320px;
                 height: 480px;
                 /*display: none;*/
@@ -140,20 +140,20 @@
           <p id="Txtinput"><input type="text" placeholder="请输入手机号" id="phone_input"><span id="reply">提交</span></p>
           <p class="copyright" style="margin-top: 280px;color: #333;">© 2014 红岩网校</p>
   </div>
-  {{HTML::script("js/2048/js/jquery.min.js")}}
-  {{HTML::script("js/2048/js/underscore-min.js")}}
-  {{HTML::script("js/2048/js/WeixinApi.js")}}
-  {{HTML::script("js/2048/js/timer.js")}}
-  {{HTML::script("js/2048/js/bind_polyfill.js")}}
-  {{HTML::script("js/2048/js/classlist_polyfill.js")}}
-  {{HTML::script("js/2048/js/animframe_polyfill.js")}}
-  {{HTML::script("js/2048/js/keyboard_input_manager.js")}}
-  {{HTML::script("js/2048/js/html_actuator.js")}}
-  {{HTML::script("js/2048/js/grid.js")}}
-  {{HTML::script("js/2048/js/tile.js")}}
-  {{HTML::script("js/2048/js/local_storage_manager.js")}}
-  {{HTML::script("js/2048/js/game_manager.js")}}
-  {{HTML::script("js/2048/js/application.js")}}
+  {{HTML::script("game/js/2048/js/jquery.min.js")}}
+  {{HTML::script("game/js/2048/js/underscore-min.js")}}
+  {{HTML::script("game/js/2048/js/WeixinApi.js")}}
+  {{HTML::script("game/js/2048/js/timer.js")}}
+  {{HTML::script("game/js/2048/js/bind_polyfill.js")}}
+  {{HTML::script("game/js/2048/js/classlist_polyfill.js")}}
+  {{HTML::script("game/js/2048/js/animframe_polyfill.js")}}
+  {{HTML::script("game/js/2048/js/keyboard_input_manager.js")}}
+  {{HTML::script("game/js/2048/js/html_actuator.js")}}
+  {{HTML::script("game/js/2048/js/grid.js")}}
+  {{HTML::script("game/js/2048/js/tile.js")}}
+  {{HTML::script("game/js/2048/js/local_storage_manager.js")}}
+  {{HTML::script("game/js/2048/js/game_manager.js")}}
+  {{HTML::script("game/js/2048/js/application.js")}}
 </body>
 <script>
 
