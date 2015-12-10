@@ -8,7 +8,7 @@
 		<script src="{{URL::asset('js/praise-xi/ajax.js?d=vdds')}}"></script>
 		<script src="{{URL::asset('js/praise-xi/main.js?d=vdds')}}"></script>
 		<script src="{{URL::asset('js/praise-xi/API.js?d=vdsf')}}"></script>
-		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css')}}">
+		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css?v=v')}}">
 	</head>
 	<body>
         <div class="data" data="{{$token}}"></div>
