@@ -6,12 +6,12 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<title>我正在参与《中国好公民》游戏</title>
-	<script src="{{URL::asset('game/js/goodcitizen/jquery.min.js')}}"></script>
-	<script src="{{URL::asset('game/js/goodcitizen/main.min.js')}}"></script>
-	<link rel="stylesheet" href="{{URL::asset('game/css/goodcitizen/style.css')}}"/>
+	<script src="{{URL::asset('js/goodcitizen/jquery.min.js')}}"></script>
+	<script src="{{URL::asset('js/goodcitizen/main.min.js')}}"></script>
+	<link rel="stylesheet" href="{{URL::asset('css/goodcitizen/style.css')}}"/>
 </head>
 <body>
-	<img src="{{URL::asset('game/images/goodcitizen/share.jpg')}}" class="test" data="{{$token}}">
+	<img src="{{URL::asset('images/goodcitizen/share.jpg')}}" class="test" data="{{$token}}">
 	<div class="container">
 		<span class="test">1234567890Go第!</span>
 		<ul class="game_holder">
@@ -53,7 +53,7 @@
 			</li>
 		</ul>
 		<div class='loading_page' style="z-index:9999">
-			<img src='{{URL::asset('game/images/goodcitizen/loading.jpg')}}' class='load'>
+			<img src='{{URL::asset('images/goodcitizen/loading.jpg')}}' class='load'>
 		</div>
 		<div class="share_page">
 			<div class="score_bg back_size">
@@ -72,6 +72,6 @@
 	</div>
 </body>
 <script>
-    var publicPath = "{{URL::asset('game')}}/";
+    var publicPath = "{{URL::asset('')}}";
 </script>
 </html>
