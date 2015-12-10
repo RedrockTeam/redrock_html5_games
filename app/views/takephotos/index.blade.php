@@ -6,9 +6,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<title>我正在参与《我给团团拍张照》游戏</title>
-	<script src="{{URL::asset('game/js/takephotos/jquery.min.js')}}"></script>
-	<script src="{{URL::asset('game/js/takephotos/main.js')}}"></script>
-	<link rel="stylesheet" href="{{URL::asset('game/css/takephotos/style.css')}}"/>
+	<script src="{{URL::asset('js/takephotos/jquery.min.js')}}"></script>
+	<script src="{{URL::asset('js/takephotos/main.js')}}"></script>
+	<link rel="stylesheet" href="{{URL::asset('css/takephotos/style.css')}}"/>
 </head>
 <body>
 	<img src="images/takephotos/begin-bg.jpg" style="position: absolute;top: -1000px">

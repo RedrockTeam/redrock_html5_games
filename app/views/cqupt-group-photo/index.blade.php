@@ -10,10 +10,10 @@
 		var avatar = "{{$avatar}}";//头像地址
         var rank_path = "{{route('cqupt')}}"//获取排名的地址
 	</script>
-	<script src="{{URL::asset('game/js/cqupt/jquery.min.js')}}"></script>
-	<script src="{{URL::asset('game/js/cqupt/main.js')}}"></script>
+	<script src="{{URL::asset('js/cqupt/jquery.min.js')}}"></script>
+	<script src="{{URL::asset('js/cqupt/main.js')}}"></script>
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<link rel="stylesheet" href="{{URL::asset('game/css/cqupt/style.css')}}"/>
+	<link rel="stylesheet" href="{{URL::asset('css/cqupt/style.css')}}"/>
 </head>
 <body>
 	<div class="container">
@@ -39,7 +39,7 @@
 				</div>
 			</li>
 			<li class="beginPage">
-				<img src="{{URL::asset('game/images/cqupt/play.png')}}" class="play">
+				<img src="{{URL::asset('images/cqupt/play.png')}}" class="play">
                 </img>
                 <p class="copyright">© 红岩网校工作站</p>
             </li>
@@ -48,7 +48,7 @@
                     <div class="personPhoto"></div>
                 </div>
                 <div class="shutBox">
-                    <img src="{{URL::asset('game/images/cqupt/shut.png')}}" class="shut">
+                    <img src="{{URL::asset('images/cqupt/shut.png')}}" class="shut">
                     </img>
                 </div>
             </li>
