@@ -11,6 +11,7 @@
 |
 */
 
+Route::group(array('https'), function() {
 Route::get('/{game}', 'HomeController@start');
 
 
@@ -37,3 +38,4 @@ Route::get('/game/rank', 'RankController@index');
 
 Route::post('takephotos', 'HomeController@takephotos');
 Route::post('cqupt', array('as' => 'cqupt', 'uses' => 'HomeController@cqupt'));
+});
