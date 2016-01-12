@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => '192.168.122.41',
 			'database'  => 'game',
 			'username'  => 'redrock',
-			'password'  => 'hongyanredrock',
+			'password'  => 'Redr0ck;D0nt;Fuck;Me;',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
