@@ -13,6 +13,7 @@ use Illuminate\Http\Response as IlluminateResponse;
 
 App::before(function($request)
 {
+    \Symfony\Component\Routing\Generator\UrlGenerator::f
     URL::forceSchema("https");
 	//
 });
