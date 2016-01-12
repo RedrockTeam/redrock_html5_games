@@ -89,7 +89,7 @@ class UrlGenerator {
 	 * @param  bool  $secure
 	 * @return string
 	 */
-	public function to($path, $extra = array(), $secure = null)
+	public function to($path, $extra = array(), $secure = true)
 	{
 		// First we will check if the URL is already a valid URL. If it is we will not
 		// try to generate a new one but will simply return the URL as is, which is
@@ -129,7 +129,7 @@ class UrlGenerator {
 	 * @param  bool    $secure
 	 * @return string
 	 */
-	public function asset($path, $secure = null)
+	public function asset($path, $secure = true)
 	{
 		if ($this->isValidUrl($path)) return $path;
 
