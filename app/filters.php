@@ -13,6 +13,7 @@ use Illuminate\Http\Response as IlluminateResponse;
 
 App::before(function($request)
 {
+    URL::forceSchema("https");
 	//
 });
 
