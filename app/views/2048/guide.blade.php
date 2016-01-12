@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div class="logo_container">
-            <img src="{{url_("/images/redrock.png")}}" alt=""/>
+            <img src="{{secure_url("/images/redrock.png")}}" alt=""/>
         </div>
 
         <div class="guide_container">
