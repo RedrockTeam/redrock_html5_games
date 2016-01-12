@@ -13,6 +13,13 @@
 
 App::before(function($request)
 {
+    $generator = new \Symfony\Component\Routing\Generator\UrlGenerator(
+        App::make('router')->getRoutes(),
+        App::make('request')
+    );
+    $generator->forceSchema('https');
+
+    return $generator;
 	//
 });
 
