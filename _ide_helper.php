@@ -4906,7 +4906,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function script($url, $attributes = array(), $secure = null){
+        public static function script($url, $attributes = array(), $secure = true){
             return \Illuminate\Html\HtmlBuilder::script($url, $attributes, $secure);
         }
         
@@ -4919,7 +4919,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function style($url, $attributes = array(), $secure = null){
+        public static function style($url, $attributes = array(), $secure = true){
             return \Illuminate\Html\HtmlBuilder::style($url, $attributes, $secure);
         }
         
@@ -4933,7 +4933,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function image($url, $alt = null, $attributes = array(), $secure = null){
+        public static function image($url, $alt = null, $attributes = array(), $secure = true){
             return \Illuminate\Html\HtmlBuilder::image($url, $alt, $attributes, $secure);
         }
         
@@ -4947,7 +4947,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function link($url, $title = null, $attributes = array(), $secure = null){
+        public static function link($url, $title = null, $attributes = array(), $secure = true){
             return \Illuminate\Html\HtmlBuilder::link($url, $title, $attributes, $secure);
         }
         
@@ -4974,7 +4974,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function linkAsset($url, $title = null, $attributes = array(), $secure = null){
+        public static function linkAsset($url, $title = null, $attributes = array(), $secure = true){
             return \Illuminate\Html\HtmlBuilder::linkAsset($url, $title, $attributes, $secure);
         }
         
@@ -7434,7 +7434,7 @@ namespace {
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */
-        public static function guest($path, $status = 302, $headers = array(), $secure = null){
+        public static function guest($path, $status = 302, $headers = array(), $secure = true){
             return \Illuminate\Routing\Redirector::guest($path, $status, $headers, $secure);
         }
         
@@ -7448,7 +7448,7 @@ namespace {
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */
-        public static function intended($default = '/', $status = 302, $headers = array(), $secure = null){
+        public static function intended($default = '/', $status = 302, $headers = array(), $secure = true){
             return \Illuminate\Routing\Redirector::intended($default, $status, $headers, $secure);
         }
         
@@ -7462,7 +7462,7 @@ namespace {
          * @return \Illuminate\Http\RedirectResponse 
          * @static 
          */
-        public static function to($path, $status = 302, $headers = array(), $secure = null){
+        public static function to($path, $status = 302, $headers = array(), $secure = true){
             return \Illuminate\Routing\Redirector::to($path, $status, $headers, $secure);
         }
         
@@ -10243,7 +10243,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function to($path, $extra = array(), $secure = null){
+        public static function to($path, $extra = array(), $secure = true){
             return \Illuminate\Routing\UrlGenerator::to($path, $extra, $secure);
         }
         
@@ -10267,7 +10267,7 @@ namespace {
          * @return string 
          * @static 
          */
-        public static function asset($path, $secure = null){
+        public static function asset($path, $secure = true){
             return \Illuminate\Routing\UrlGenerator::asset($path, $secure);
         }
         
