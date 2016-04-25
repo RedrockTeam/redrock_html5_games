@@ -57,6 +57,7 @@ function loadImgs(b, g) {
     return f
 }
 $(function () {
+	var a = $("#a");
     var z = $("#canvas");
     var s = z[0].getContext("2d");
     var C = 0;
@@ -94,15 +95,16 @@ $(function () {
             alert("请输入正确的手机号！");
             return
         }
-        var x = a.getAttribute("data");
-        $.ajax({
-            url: "/game/public/post",
+        var x = a.attr("data");
+        //alert(x);
+	$.ajax({
+            url: "/game/post",
             type: "post",
             dataType: "json",
             contentType: "application/json",
             data: JSON.stringify({_token: x, score:C, phone: v, time: l, type: "run"})
         }).fail(function () {
-            alert("与服务器连接错误!")
+            alert("与服务器连接错误！");
         }).complete(function (y) {
             y = y.responseJSON;
             var E = y.rank;

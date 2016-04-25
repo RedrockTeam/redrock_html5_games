@@ -29,8 +29,9 @@ class HomeController extends BaseController {
 //                return Response::make('请使用微信浏览器~', 403);
 //            }
           //_token验证
-          $_token = csrf_token();
-          Session::put('_token',$_token);
+          //$_token = csrf_token();
+        $_token = "ddddddddddssss";  
+	Session::put('_token',$_token);
 
            //分享数据和验证_token
           $arr = array(
@@ -94,7 +95,9 @@ class HomeController extends BaseController {
                return Response::make('...', 403);
            }
 
-                $arr = Input::all();
+                //$arr = Input::all();
+		$arr = @file_get_contents('php://input');
+		$arr = json_decode($arr,true);
             $session_token = Session::get('_token');
                 //$session_token = Session::get('real');
                 $_token = $arr['_token'];
