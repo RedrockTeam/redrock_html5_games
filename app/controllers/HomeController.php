@@ -75,7 +75,13 @@ class HomeController extends BaseController {
                       Session::put('img', $info->data->headimgurl);
                   }
                     $ticket = $this->JSSDKSignature();
-                    return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
+                  return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
+              case 'twolearnonedo':
+                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+                  if(Input::get('openid')) {
+                      return View::make('twolearnonedo.index')->with('openid', Input::get('openid'));
+                  }
+                  return http_redirect($uri);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
