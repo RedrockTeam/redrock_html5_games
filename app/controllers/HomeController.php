@@ -81,7 +81,7 @@ class HomeController extends BaseController {
                   if(Input::get('openid')) {
                       return View::make('twolearnonedo.index')->with('openid', Input::get('openid'));
                   }
-                  return http_redirect($uri);
+                  return Redirect::to($uri);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
                   $token = sha1(time().sha1('redrock'));
