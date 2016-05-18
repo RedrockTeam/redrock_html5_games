@@ -523,7 +523,7 @@ GameManager.prototype.share = function(){
 		}
 		else{
 			$.ajax({
-				url : "/game/public/post",
+				url : "/game/post",
 				type : "post",
 				dataType : 'json',
 				contentType : "application/json",
@@ -541,6 +541,7 @@ GameManager.prototype.share = function(){
 			}).complete(function (data) {
 				console.log(data);
 				data = data.responseJSON;
+                                alert('你的排名是'+data[0]);
 				var myPlace;
 //
 //			data.forEach(function(value, index){
