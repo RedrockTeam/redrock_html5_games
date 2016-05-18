@@ -5,15 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<script src="{{URL::asset('js/praise-xi/ajax.js')}}"></script>
-		<script src="{{URL::asset('js/praise-xi/main.js')}}"></script>
-		<script src="{{URL::asset('js/praise-xi/API.js')}}"></script>
-		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css')}}">
+		<script src="{{URL::asset('js/praise-xi/ajax.js?d=vdds')}}"></script>
+		<script src="{{URL::asset('js/praise-xi/main.js?d=vdds')}}"></script>
+		<script src="{{URL::asset('js/praise-xi/API.js?d=vdsf')}}"></script>
+		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css?v=v')}}">
 	</head>
 	<body>
+        <div class="data" data="{{$token}}"></div>
 		<div class="game-back">
 			<div class="beginPage">
-				<img src="images/Xi-logo.png" class="logo">
+				<img src="{{URL::asset('images/Xi-logo.png')}}" class="logo">
 				<div class="slogan">
 					<p>&nbsp;&nbsp;&nbsp;古典名句，是中华文化长河中历经砥砺的智慧结晶。习大大在讲话中多处引经据典，生动传神，寓意深邃，极具启迪意义。作为青年大学生应积极学习习大大的这些用典。
                     </p>
@@ -67,12 +68,14 @@
 				</div>
 			</div>
 			<div class="score" style="display: none">
-				<img src="images/sharePage.png" class="share_tips">
-				<img src="images/over.png" class="over_star">
+				<img src="{{URL::asset('images/sharePage.png')}}" class="share_tips">
+				<img src="{{URL::asset('images/over.png')}}" class="over_star">
 				<p>您在<span class="score_num">50</span>秒内</p><br>
 				<p>答对了<span class="sub_num">8</span>道题</p><br>
 				<p>排名第<span class="rank_num">1</span></p><br>
-				<span class="share">分享</span>
+                <input type="text" placeholder="请输入手机号参与比赛" class="phone_input">
+                <span class="apply share_btn">提交</span>
+				<span class="share share_btn">分享</span>
 				<div class="sharePage"></div>
 			</div>
 		</div>

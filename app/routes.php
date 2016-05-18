@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,6 +15,7 @@ Route::get('/{game}', 'HomeController@start');
 
 Route::post('/post', 'HomeController@verify');
 Route::post('praise-xi-post', 'HomeController@savexi');
+Route::post('praise-xi-telephone-post', 'HomeController@clickTelephone');
 Route::post('goodcitizen', 'HomeController@goodcitizen');
 Route::post('goodcitizenphone', 'HomeController@goodcitizenTelephone');
 
@@ -30,8 +30,12 @@ Route::get("/{game}/2048_guide", function(){
 
 Route::get("/{game}/2048_index", 'HomeController@start');
 
+Route::get('/{game}/twolearnonedo', 'HomeController@twolearnonedo');
+Route::post('getquestionfortlod', 'HomeController@tlodquestion');
+
 
 //view rank
-Route::get('/game/rank', 'RankController@index');
+//Route::get('/game/rank', 'RankController@index');
 
 Route::post('takephotos', 'HomeController@takephotos');
+Route::post('cqupt', array('as' => 'cqupt', 'uses' => 'HomeController@cqupt'));

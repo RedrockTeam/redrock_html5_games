@@ -71,7 +71,7 @@ class HtmlBuilder {
 	 * @param  bool    $secure
 	 * @return string
 	 */
-	public function script($url, $attributes = array(), $secure = null)
+	public function script($url, $attributes = array(), $secure = true)
 	{
 		$attributes['src'] = $this->url->asset($url, $secure);
 
@@ -86,7 +86,7 @@ class HtmlBuilder {
 	 * @param  bool    $secure
 	 * @return string
 	 */
-	public function style($url, $attributes = array(), $secure = null)
+	public function style($url, $attributes = array(), $secure = true)
 	{
 		$defaults = array('media' => 'all', 'type' => 'text/css', 'rel' => 'stylesheet');
 
@@ -98,7 +98,7 @@ class HtmlBuilder {
 	}
 
     //by Lich ,支持个性化rel,media
-    public function my($url, $myrel, $media = null, $attributes = array(), $secure = null)
+    public function my($url, $myrel, $media = null, $attributes = array(), $secure = true)
     {
 
         $defaults = array('media' => 'all', 'rel' => $myrel, 'media'=>$media,);
@@ -118,7 +118,7 @@ class HtmlBuilder {
 	 * @param  bool    $secure
 	 * @return string
 	 */
-	public function image($url, $alt = null, $attributes = array(), $secure = null)
+	public function image($url, $alt = null, $attributes = array(), $secure = true)
 	{
 		$attributes['alt'] = $alt;
 
@@ -134,7 +134,7 @@ class HtmlBuilder {
 	 * @param  bool    $secure
 	 * @return string
 	 */
-	public function link($url, $title = null, $attributes = array(), $secure = null)
+	public function link($url, $title = null, $attributes = array(), $secure = true)
 	{
 		$url = $this->url->to($url, array(), $secure);
 
@@ -165,7 +165,7 @@ class HtmlBuilder {
 	 * @param  bool    $secure
 	 * @return string
 	 */
-	public function linkAsset($url, $title = null, $attributes = array(), $secure = null)
+	public function linkAsset($url, $title = null, $attributes = array(), $secure = true)
 	{
 		$url = $this->url->asset($url, $secure);
 

@@ -1,3 +1,5 @@
+window.phone=0;
+window.token=true;
 var objQ=function(){
 	this.question=[];
 	this.fpal;
@@ -8,6 +10,10 @@ var objQ=function(){
 	this.src;
 	this.w=[];
 };
+function resetToken(){
+    token=true;
+    alert('提交成功！转发到朋友圈和大家一起分享吧！');
+}
 function isWeiXin(){
 	var ua = window.navigator.userAgent.toLowerCase();
 	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
@@ -38,6 +44,28 @@ function subOut(objs,ali,oS,jsons){
 	var X=document.querySelector('.Xi-titile');
 	X.style.backgroundImage='url(./images/'+objs[0].src+'.png)';
 	return l;
+}
+function sendPhone(phoneInput){
+    if(!token){
+        return;
+    }
+    if (phone) {
+        if (phone!=parseInt(phoneInput.value)){
+            alert('为防止同一分数多次提交不同手机号，请输入与此前一致的手机号！');
+            return;
+        }
+    }
+    else{
+        phone=phoneInput.value;
+    }
+    if(phone.length!=11||isNaN(phone)){
+        alert('请输入正确的手机号码！');
+    }
+    else{
+        token=false;
+        var data=document.querySelector('.data').getAttribute('data');
+        ajax('praise-xi-telephone-post','phone='+phone+'&click_token='+data,resetToken);
+    }
 }
 function showTips(obj,em,l){
 	var R=obj.querySelector('.wordsR');
@@ -80,6 +108,9 @@ function GameInit(arr,aw){
 	return GamesObjs;
 }
 window.onload= function () {
+	if(!isWeiXin()){
+		window.location.href='http://hongyan.cqupt.edu.cn/';
+	}
 	var oLogo=document.querySelector('.logo');
 	var oBack=document.querySelector('.game-back');
 	var oFrontpage=document.querySelector('.beginPage');
@@ -98,6 +129,8 @@ window.onload= function () {
 	var time=0;
 	var timer;
 	var sub_show=0;
+    var oApply=document.querySelector('.apply');
+    var phoneInput=document.querySelector('.phone_input');
 	var oShare=document.querySelector('.share');
 	var oScore_back=document.querySelector('.score');
 	var g=(oSeletor.offsetWidth-aWords[0].offsetWidth*5)/4-1;
@@ -106,10 +139,6 @@ window.onload= function () {
 	var rank = '';
 	function fnsuccess(b) {
 		rank = b;
-		console.log(rank);
-	}
-	if(!isWeiXin()){
-		document.body.innerHTML='';
 	}
 	reBegin.addEventListener('click',function(){
 		timer=setInterval(function(){
@@ -300,6 +329,9 @@ window.onload= function () {
 								oSharePage.style.display='block';
 								oShareTip.style.zIndex=100000;
 							})
+                            oApply.addEventListener('click',function(){
+                                sendPhone(phoneInput);
+                            })
 						});
 					}
 					else{

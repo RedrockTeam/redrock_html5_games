@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <title>拼拼价值观</title>
     {{HTML::style("css/2048/style/guide.css")}}
-  <link rel="shortcut icon" href="{{url("/favicon/2048/favicon.ico")}}">
-  <link rel="apple-touch-icon" href="{{url("/meta/2048/meta/apple-touch-icon.png")}}">
+  <link rel="shortcut icon" href="{{secure_url("/favicon/2048/favicon.ico")}}">
+  <link rel="apple-touch-icon" href="{{secure_url("/meta/2048/meta/apple-touch-icon.png")}}">
   <link rel="apple-touch-startup-image" href="{{public_path()}}/meta/2048/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone 5+ -->
   <link rel="apple-touch-startup-image" href="{{public_path()}}/meta/2048/meta/apple-touch-startup-image-640x920.png"  media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)"> <!-- iPhone, retina -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div class="logo_container">
-            <img src="{{url("/images/redrock.png")}}" alt=""/>
+            <img src="{{secure_url("/images/redrock.png")}}" alt=""/>
         </div>
 
         <div class="guide_container">

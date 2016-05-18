@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Response as IlluminateResponse;
 /*
 |--------------------------------------------------------------------------
 | Application & Route Filters
@@ -13,7 +13,6 @@
 
 App::before(function($request)
 {
-	//
 });
 
 
@@ -77,4 +76,17 @@ Route::filter('csrf', function()
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+Route::filter('secure', function ()
+{
+    if ( ! Request::secure() && Request::getPort() != 443)
+    {
+        return Redirect::secure(
+            Request::path(),
+            in_array(Request::getMethod(), ['POST', 'PUT', 'DELETE'])
+                ? IlluminateResponse::HTTP_TEMPORARY_REDIRECT
+                : IlluminateResponse::HTTP_FOUND
+        );
+    }
 });
