@@ -77,7 +77,7 @@ class HomeController extends BaseController {
                     $ticket = $this->JSSDKSignature();
                   return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
               case 'twolearnonedo':
-                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
                   if(Input::get('openid')) {
                       return View::make('twolearnonedo.index')->with('openid', Input::get('openid'));
                   }
