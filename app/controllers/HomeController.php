@@ -356,6 +356,17 @@ class HomeController extends BaseController {
             $paiming[0]->list = $paiming[0]->list+3;
             return $paiming;
         }
+
+        //两学一做
+        public function tlodquestion(){
+            $question = DB::table('twolearnonedo_question')->orderBy(DB::raw('RAND()'))->take(8)->get();
+            foreach ($question as &$value){
+                $value->pic = 'image/twolearnonedo/'.$value->pic;
+                $value->nameLength = mb_strlen($value->answer, 'utf-8');
+            }
+            return $question;
+        }
+
         //获取openid
         public function getOpenId () {
             $code = Session::get('code');
