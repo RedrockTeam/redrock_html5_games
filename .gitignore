@@ -9,4 +9,3 @@ Thumbs.db
 app/config/database.php
 app/config/app.php
 /vendor
-database.php
