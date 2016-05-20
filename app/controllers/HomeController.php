@@ -77,10 +77,11 @@ class HomeController extends BaseController {
                     $ticket = $this->JSSDKSignature();
                   return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
               case 'twolearnonedo':
-                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-                  if(Input::get('openid')) {
+                  if(Session::get('openid') || Input::get('openid') && Request::server('HTTP_REFERER')) {
+                      Session::put('openid', Input::get('openid'));
                       return View::make('twolearnonedo.index')->with('openid', Input::get('openid'));
                   }
+                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
                   return Redirect::to($uri);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
@@ -357,7 +358,7 @@ class HomeController extends BaseController {
             return $paiming;
         }
 
-        //两学一做
+        //两学一做随机问题24选8
         public function tlodquestion(){
             $question = DB::table('twolearnonedo_question')->orderBy(DB::raw('RAND()'))->take(8)->get();
             foreach ($question as &$value){
@@ -365,6 +366,11 @@ class HomeController extends BaseController {
                 $value->nameLength = mb_strlen($value->answer, 'utf-8');
             }
             return $question;
+        }
+        //两学一做计分
+        public function tlodRecord(){
+            $data = Input::all();
+            $openid = Session::get('openid');
         }
 
         //获取openid
