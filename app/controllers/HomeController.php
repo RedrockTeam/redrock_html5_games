@@ -77,7 +77,7 @@ class HomeController extends BaseController {
                     $ticket = $this->JSSDKSignature();
                   return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
               case 'twolearnonedo':
-                  if(Session::get('openid') || Input::get('openid') && Request::server('HTTP_REFERER')) {
+                  if(Session::get('openid') || Input::get('openid')) {
                       Session::put('openid', Input::get('openid'));
                       return View::make('twolearnonedo.index')->with('openid', Input::get('openid'));
                   }
