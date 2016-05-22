@@ -365,12 +365,41 @@ class HomeController extends BaseController {
                 $value->pic = 'image/twolearnonedo/'.$value->pic;
                 $value->nameLength = mb_strlen($value->answer, 'utf-8');
             }
-            return $question;
+            return [
+                'status' => 200,
+                'info'   => '成功',
+                'data'   => $question
+            ];
         }
         //两学一做计分
         public function tlodRecord(){
             $data = Input::all();
-            $openid = Session::get('openid');
+            $openid = 'asdf';//Session::get('openid');
+            if(!$openid) {
+                return ['status' => 403, 'info' => '非法id'];
+            }
+            $table = DB::table('twolearnonedo_score');
+            $row = $table->where('openid', '=', $openid)->first();
+            if (!$row) {
+                $table->insert(['openid' => $openid]);
+                $row = $table->where('openid', '=', $openid)->first();
+            }
+            if ($data['right'] > $row->right) {
+                $table->where('openid', '=', $openid)->update(['right' => $data['right'], 'time' => $data['time']]);
+            } else{
+                if ($data['right'] == $row->right) {
+                    if ($data['time'] < $row->time){
+                        $table->where('openid', '=', $openid)->update(['time' => $data['time']]);
+                    }
+                }
+            }
+            $result = DB::select(DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.$data['time'].' or `right` > 2'));
+            $rank = $result[0]->rank + 1;
+            return [
+                'status' => 200,
+                'info' => '成功',
+                'data' => $rank
+            ];
         }
 
         //获取openid
