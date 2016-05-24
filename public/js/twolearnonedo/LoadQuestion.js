@@ -39,7 +39,7 @@ function isSame(x,s){
     return 0;
 }
 $(function(){
-    var imgs = ["images/twolearnonedo/lead_back.png","images/twolearnonedo/begin-btn.png","images/nextBtn.png"];
+    var imgs = ["images/twolearnonedo/lead_back.png","images/twolearnonedo/begin-btn.png","images/twolearnonedo/nextBtn.png"];
     //虚拟测试
     for(var i = 0,len = _data.length; i<len; i++){
         imgs.push(_data[i].pic);
