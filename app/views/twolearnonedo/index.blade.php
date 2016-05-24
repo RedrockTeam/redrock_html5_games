@@ -89,7 +89,7 @@
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var title = "我正在参与时代先锋问问答, 你也加入吧, 有大奖哟！";
-        var link = "";
+        var link = "{{$ticket['url']}}";
         var imgUrl = "https://redrock.cqupt.edu.cn/game/images/twolearnonedo/lead_back.png";
         var desc = "";
         //        jssdk
