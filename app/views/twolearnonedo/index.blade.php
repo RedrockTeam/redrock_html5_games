@@ -90,7 +90,8 @@
     <script>
         var title = "我正在参与时代先锋问问答, 你也加入吧, 有大奖哟！";
         var link = "";
-        var imgUrl = "https://redrock.cqupt.edu.cn/game/images/twolearnonedo/lead_back.png"
+        var imgUrl = "https://redrock.cqupt.edu.cn/game/images/twolearnonedo/lead_back.png";
+        var desc = "";
         //        jssdk
         wx.config({
             debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
