@@ -362,7 +362,7 @@ class HomeController extends BaseController {
         public function tlodquestion(){
             $question = DB::table('twolearnonedo_question')->orderBy(DB::raw('RAND()'))->take(8)->get();
             foreach ($question as &$value){
-                $value->pic = 'image/twolearnonedo/'.$value->pic;
+                $value->pic = 'images/twolearnonedo/'.$value->pic;
                 $value->nameLength = mb_strlen($value->answer, 'utf-8');
             }
             return [
