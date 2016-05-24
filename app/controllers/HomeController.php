@@ -483,7 +483,7 @@ class HomeController extends BaseController {
             $data['jsapi_ticket'] = $jsapi_ticket->data;
             $data['noncestr'] = str_random(32);;
             $data['timestamp'] = time();
-            $data['url'] = URL::full();//生成当前页面url
+            $data['url'] = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];//生成当前页面url
             $data['signature'] = sha1($this->ToUrlParams($data));
             return $data;
         }
