@@ -11,7 +11,8 @@ var timerMin = null;
 var max = 0;
 var mid = 0;
 var min = 0;
-function tapFn(_data,q,_this,aLi,obj){
+function tapFn(_data,q,_this,aLi){
+        disable = 1;
         aLi.eq(flag).html(_this.html());
         r += _this.html();
         flag++;
@@ -20,7 +21,6 @@ function tapFn(_data,q,_this,aLi,obj){
                 clearInterval(timerMAX);
                 clearInterval(timerMid);
                 clearInterval(timerMin);
-                disable = 1;
                 if(r == _data.answer){
                     aLi.css('color','#14c724');
                     rightN++;
@@ -64,6 +64,7 @@ function tapFn(_data,q,_this,aLi,obj){
                 return ++q;
             }
         }
+        disable = 0;
 }
 $(function(){
     var playGame = $('.beginBtn');
