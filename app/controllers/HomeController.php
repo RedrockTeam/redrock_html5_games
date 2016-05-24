@@ -385,15 +385,15 @@ class HomeController extends BaseController {
                 $row = $table->where('openid', '=', $openid)->first();
             }
             if ($data['right'] > $row->right) {
-                $table->where('openid', '=', $openid)->update(['right' => $data['right'], 'time' => $data['time']]);
+                $table->where('openid', '=', $openid)->update(['right' => $data['right'], 'time' => ($data['time']*1000)]);
             } else{
                 if ($data['right'] == $row->right) {
-                    if ($data['time'] < $row->time){
-                        $table->where('openid', '=', $openid)->update(['time' => $data['time']]);
+                    if ($data['time']*1000 < $row->time){
+                        $table->where('openid', '=', $openid)->update(['time' => ($data['time']*1000)]);
                     }
                 }
             }
-            $result = DB::select(DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.$data['time'].' or `right` > 2'));
+            $result = DB::select(DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.($data['time']*1000).' or `right` > '.$data['right']));
             $rank = $result[0]->rank + 1;
             return [
                 'status' => 200,
@@ -410,7 +410,7 @@ class HomeController extends BaseController {
                     'info'   => '非法id'
                 ];
             }
-            if(!is_numeric($data['phone']) || strlen($data['phone']) == 11){
+            if(!is_numeric($data['phone']) || strlen($data['phone']) != 11){
                 return [
                     'status' => 403,
                     'info'   => '非法电话'
