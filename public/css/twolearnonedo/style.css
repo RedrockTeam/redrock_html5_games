@@ -16,7 +16,9 @@ html {
   background: #fe9037;
 }
 #LeadPage .game-title {
-  width: 100%;
+  width: 96%;
+  display: block !important;
+  margin: 0 auto;
   margin-top: 5.5%;
 }
 #LeadPage .gameBack {
@@ -176,10 +178,11 @@ html {
 }
 @media (max-width: 320px) {
   .game-title {
-    width: 90% !important;
-    display: block !important;
-    margin: 0 auto !important;
+    width: 87% !important;
     margin-top: 4.5% !important;
+  }
+  #LeadPage .gameBack {
+    font-size: 10px !important;
   }
   .avatar {
     width: 40% !important;

@@ -11,60 +11,53 @@ var timerMin = null;
 var max = 0;
 var mid = 0;
 var min = 0;
-function tapFn(_data,q,_this,aLi){
-        disable = 1;
-        aLi.eq(flag).html(_this.html());
-        r += _this.html();
-        flag++;
-        if(parseInt(_data.nameLength) == 3){
-            if(flag == 3){
-                clearInterval(timerMAX);
-                clearInterval(timerMid);
-                clearInterval(timerMin);
-                if(r == _data.answer){
-                    aLi.css('color','#14c724');
-                    rightN++;
-                }else {
-                    aLi.css('color','#f03c45');
-                }
-                r = "";
-                flag = 0;
-                setTimeout(function(){
-                    $.mobile.changePage('#Introduce',{
-                        "transition":"slide"
-                    });
-                    disable = 0;
-                    aLi.html("");
-                    aLi.css('color','#333');
-                },200);
-                return ++q;
+function tapFn(_data,q,_this,aLi,obj){
+    aLi.eq(flag).html(_this.html());
+    r += _this.html();
+    flag++;
+    if(parseInt(_data.nameLength) == 3){
+        if(flag == 3){
+            clearInterval(timerMAX);
+            clearInterval(timerMid);
+            clearInterval(timerMin);
+            disable = 1;
+            if(r == _data.answer){
+                aLi.css('color','#14c724');
+                rightN++;
+            }else {
+                aLi.css('color','#f03c45');
             }
-        }else {
-            if(flag == 2){
-                clearInterval(timerMAX);
-                clearInterval(timerMid);
-                clearInterval(timerMin);
-                disable = 1;
-                if(r == _data.answer){
-                    aLi.css('color','#14c724');
-                    rightN++;
-                }else {
-                    aLi.css('color','#f03c45');
-                }
-                r = "";
-                flag = 0;
-                setTimeout(function(){
-                    $.mobile.changePage('#Introduce',{
-                        "transition":"slide"
-                    });
-                    aLi.html("");
-                    aLi.css('color','#333');
-                    disable = 0;
-                },200);
-                return ++q;
-            }
+            setTimeout(function(){
+                $.mobile.changePage('#Introduce',{
+                    "transition":"slide"
+                });
+                disable = 0;
+                aLi.html("");
+                aLi.css('color','#333');
+            },200);
+            return ++q;
         }
-        disable = 0;
+    }else {
+        if(flag == 2){
+            clearInterval(timerMAX);
+            clearInterval(timerMid);
+            clearInterval(timerMin);
+            disable = 1;
+            if(r == _data.answer){
+                aLi.css('color','#14c724');
+                rightN++;
+            }else {
+                aLi.css('color','#f03c45');
+            }
+            setTimeout(function(){
+                $.mobile.changePage('#Introduce',{
+                    "transition":"slide"
+                });
+                disable = 0;
+            },200);
+            return ++q;
+        }
+    }
 }
 $(function(){
     var playGame = $('.beginBtn');
@@ -95,6 +88,12 @@ $(function(){
         });
     });
     nextBtn.on('tap',function(){
+        aLiThree.html("");
+        aLiThree.css('color','#333');
+        aLiTwo.html("");
+        aLiTwo.css('color','#333');
+        r = "";
+        flag = 0;
         if(Qn == 8){
             var time = max+'.'+mid+""+min;
             $('.time').html(time);
@@ -105,7 +104,7 @@ $(function(){
             data_.time = time;
             $.post("https://redrock.cqupt.edu.cn/game/recordscorefortlod",data_,function(data){
                 if(data.status == 200){
-                    $('.rank').html(data.data);
+                    $('.rank').html(data.rank);
                     $.mobile.loading('hide');
                     $.mobile.changePage('#rankPage',{
                         "transition":"turn"
@@ -114,7 +113,6 @@ $(function(){
                     alert(data.info);
                 }
             });
-            nextBtn.off('tap');
             return 0;
         }
         ChangeQuestion(_data[Qn],selectors);
