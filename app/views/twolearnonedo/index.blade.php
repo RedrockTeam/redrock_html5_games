@@ -22,8 +22,7 @@
     <div data-role="page" id="LeadPage">
         <img src="images/twolearnonedo/lead_back.png" class="game-title">
         <div class="gameBack">
-            “两学一做”学习教育，指的是“学党章党规、学系列讲话，做合格党员”学习教育。2016年2月，中共中央办公厅印发了《关于在全体党员中开展“学党章党规、学系列讲话，做合格党员”学习教育方案》，并发出通知，要求各地区各部门认真贯彻执行。开展“两学一做”学习教育，是面向全体党员深化党内教育的重要实践，是推动党内教育从“关键少数”向广大党员拓展、从集中性教育向经常性教育延伸的重要举措。
-        </div>
+            “两学一做”学习教育，指的是“学党章党规、学系列讲话，做合格党员”学习教育。开展“两学一做”学习教育，是面向全体党员深化党内教育的重要实践，是推动党内教育从“关键少数”向广大党员拓展、从集中性教育向经常性教育延伸的重要举措。        </div>
         <div class="beginBtn">
             <img src="images/twolearnonedo/begin-btn.png" class="imgBtn">
         </div>
