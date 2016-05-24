@@ -393,11 +393,11 @@ class HomeController extends BaseController {
                     }
                 }
             }
-            $result = DB::select(DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.$data['time'].' or `right` > 2'));
+            $result = DB::select(DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.$data['time'].' or `right` > '.$data['right']));
             $rank = $result[0]->rank + 1;
             return [
                 'status' => 200,
-                'info' => '成功'.DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.$data['time'].' or `right` > 2'),
+                'info' => '成功',
                 'data' => $rank
             ];
         }
@@ -410,7 +410,7 @@ class HomeController extends BaseController {
                     'info'   => '非法id'
                 ];
             }
-            if(!is_numeric($data['phone']) || strlen($data['phone']) == 11){
+            if(!is_numeric($data['phone']) || strlen($data['phone']) != 11){
                 return [
                     'status' => 403,
                     'info'   => '非法电话'
