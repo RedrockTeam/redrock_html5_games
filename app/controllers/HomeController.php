@@ -397,7 +397,7 @@ class HomeController extends BaseController {
             $rank = $result[0]->rank + 1;
             return [
                 'status' => 200,
-                'info' => '成功',
+                'info' => '成功'.DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.$data['time'].' or `right` > 2'),
                 'data' => $rank
             ];
         }
