@@ -84,7 +84,7 @@ $(function(){
         var data_ = {};
         data_.phone = phone;
         $.mobile.loading('show');
-        $.post("https://redrock.cqupt.edu.cn/game/recordphone",data_,function(){
+        $.post("https://redrock.cqupt.edu.cn/game/recordphone",data_,function(data){
             $.mobile.loading('hide');
             if(data.status == 200){
                 alert('提交成功,欢迎参与比赛!');
