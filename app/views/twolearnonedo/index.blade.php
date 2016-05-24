@@ -88,10 +88,10 @@
     </div>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
-        var title = "我正在参与时代先锋问问答, 你也加入吧, 有大奖哟！";
+        var title = "我正在参加“两学一做——时代先锋问问答”活动，你也加入吧！";
         var link = "https://redrock.cqupt.edu.cn/game/twolearnonedo";
         var imgUrl = "https://redrock.cqupt.edu.cn/game/images/twolearnonedo/lead_back.png";
-        var desc = "";
+        var desc = "追寻先锋足迹，做勇挑重担的共产党人";
         //        jssdk
         wx.config({
             debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
