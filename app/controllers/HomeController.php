@@ -374,7 +374,7 @@ class HomeController extends BaseController {
         //两学一做计分
         public function tlodRecord(){
             $data = Input::all();
-            $openid = 'asdf';//Session::get('openid');
+            $openid = Session::get('openid');
             if(!$openid) {
                 return ['status' => 403, 'info' => '非法id'];
             }
@@ -399,6 +399,27 @@ class HomeController extends BaseController {
                 'status' => 200,
                 'info' => '成功',
                 'data' => $rank
+            ];
+        }
+        //两学一做手机号提交
+        public function tlodPhone(){
+            $data = Input::all();
+            if(!Session::get('openid')){
+                return [
+                    'status' => 403,
+                    'info'   => '非法id'
+                ];
+            }
+            if(!is_numeric($data['phone']) || strlen($data['phone']) == 11){
+                return [
+                    'status' => 403,
+                    'info'   => '非法电话'
+                ];
+            }
+            DB::table('twolearnonedo_score')->where('openid', '=', Session::get('openid'))->update(['phone' => $data['phone']]);
+            return [
+                'status' => 200,
+                'info'   => '成功'
             ];
         }
 
