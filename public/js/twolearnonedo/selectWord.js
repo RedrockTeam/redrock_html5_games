@@ -11,6 +11,14 @@ var timerMin = null;
 var max = 0;
 var mid = 0;
 var min = 0;
+function Delete(_this){
+    if(flag > 0){
+        flag--;
+        r = r.substring(0,flag);
+        console.log(r);
+        _this.html("");
+    }
+}
 function tapFn(_data,q,_this,aLi,obj){
     aLi.eq(flag).html(_this.html());
     r += _this.html();
@@ -69,6 +77,15 @@ $(function(){
     var Qn = 0;
     var nextBtn = $('.nextBtn');
     var applyBtn = $('.apply');
+    aLiThree.on('tap',function(){
+        Delete($(this));
+    });
+    aLiTwo.on('tap',function(){
+        Delete($(this));
+    });
+    answerThree.on('tap',function(){
+
+    });
     applyBtn.on('tap',function(){
         var phone = $('.phoneInput').val();
         if(phone.length != 11 || isNaN(parseInt(phone))){
