@@ -81,10 +81,10 @@ $(function(){
             alert('请输入正确的手机号!');
             return 0;
         }
-        var _data = {};
-        _data.phone = phone;
+        var data_ = {};
+        data_.phone = phone;
         $.mobile.loading('show');
-        $.post("https://redrock.cqupt.edu.cn/game/recordphone",_data,function(){
+        $.post("https://redrock.cqupt.edu.cn/game/recordphone",data_,function(){
             $.mobile.loading('hide');
             if(data.status == 200){
                 alert('提交成功,欢迎参与比赛!');
@@ -99,10 +99,10 @@ $(function(){
             $('.time').html(time);
             $('.rightN').html(rightN);
             $.mobile.loading('show');
-            var _data = {};
-            _data.right = rightN;
-            _data.time = time;
-            $.post("https://redrock.cqupt.edu.cn/game/recordscorefortlod",_data,function(data){
+            var data_ = {};
+            data_.right = rightN;
+            data_.time = time;
+            $.post("https://redrock.cqupt.edu.cn/game/recordscorefortlod",data_,function(data){
                 if(data.status == 200){
                     $('.rank').html(data.rank);
                     $.mobile.loading('hide');
