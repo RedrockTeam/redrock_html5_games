@@ -104,7 +104,7 @@ $(function(){
             data_.time = time;
             $.post("https://redrock.cqupt.edu.cn/game/recordscorefortlod",data_,function(data){
                 if(data.status == 200){
-                    $('.rank').html(data.rank);
+                    $('.rank').html(data.data.rank);
                     $.mobile.loading('hide');
                     $.mobile.changePage('#rankPage',{
                         "transition":"turn"
@@ -113,6 +113,7 @@ $(function(){
                     alert(data.info);
                 }
             });
+            nextBtn.off('tap');
             return 0;
         }
         ChangeQuestion(_data[Qn],selectors);
