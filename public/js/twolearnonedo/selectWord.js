@@ -74,13 +74,44 @@ $(function(){
     var aLiThree = answerThree.find('li');
     var Qn = 0;
     var nextBtn = $('.nextBtn');
+    var applyBtn = $('.apply');
+    applyBtn.on('tap',function(){
+        var phone = parseInt($('.phoneInput').val());
+        if(phone.toString().length != 11 || !isNaN(phone)){
+            alert('请输入正确的手机号!');
+            return 0;
+        }
+        var _data = {};
+        _data.phone = phone;
+        $.mobile.loading('show');
+        $.post("https://redrock.cqupt.edu.cn/game/recordphone",_data,function(){
+            $.mobile.loading('hide');
+            if(data.status == 200){
+                alert('提交成功,欢迎参与比赛!');
+            }else {
+                alert(data.info);
+            }
+        });
+    });
     nextBtn.on('tap',function(){
         if(Qn == 8){
             var time = max+'.'+mid+""+min;
             $('.time').html(time);
             $('.rightN').html(rightN);
-            $.mobile.changePage('#rankPage',{
-                "transition":"turn"
+            $.mobile.loading('show');
+            var _data = {};
+            _data.right = rightN;
+            _data.time = time;
+            $.post("https://redrock.cqupt.edu.cn/game/recordscorefortlod",_data,function(data){
+                if(data.status == 200){
+                    $('.rank').html(data.rank);
+                    $.mobile.loading('hide');
+                    $.mobile.changePage('#rankPage',{
+                        "transition":"turn"
+                    });
+                }else {
+                    alert(data.info);
+                }
             });
             return 0;
         }
