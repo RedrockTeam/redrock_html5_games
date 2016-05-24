@@ -40,25 +40,25 @@ function isSame(x,s){
 }
 $(function(){
     var imgs = ["images/twolearnonedo/lead_back.png","images/twolearnonedo/begin-btn.png","images/twolearnonedo/nextBtn.png"];
-    //虚拟测试
-    for(var i = 0,len = _data.length; i<len; i++){
-        imgs.push(_data[i].pic);
-        initConfusion(i);
-    }
-    loadImg(imgs);
+    // //虚拟测试
+    // for(var i = 0,len = _data.length; i<len; i++){
+    //     imgs.push(_data[i].pic);
+    //     initConfusion(i);
+    // }
+    // loadImg(imgs);
     //注释到此
 
-    //$.post("url",1,function(data){
-    //    $.mobile.loading('show');
-    //    if(data.status == 200){
-    //        _data = data.data;
-    //    for(var i = 0,len = _data.length; i<len; i++){
-    //        imgs.push(_data[i].pic);
-    //        initConfusion(i);
-    //    }
-    //        loadImg(imgs);
-    //    }else {
-    //        alert(data.info);
-    //    }
-    //});
+    $.post("https://redrock.cqupt.edu.cn/game/getquestionfortlod",1,function(data){
+       $.mobile.loading('show');
+       if(data.status == 200){
+           _data = data.data;
+       for(var i = 0,len = _data.length; i<len; i++){
+           imgs.push(_data[i].pic);
+           initConfusion(i);
+       }
+           loadImg(imgs);
+       }else {
+           alert(data.info);
+       }
+    });
 });
