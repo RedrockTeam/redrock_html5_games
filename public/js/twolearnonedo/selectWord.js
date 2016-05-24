@@ -121,7 +121,7 @@ $(function(){
             data_.time = time;
             $.post("https://redrock.cqupt.edu.cn/game/recordscorefortlod",data_,function(data){
                 if(data.status == 200){
-                    $('.rank').html(data.rank);
+                    $('.rank').html(data.data);
                     $.mobile.loading('hide');
                     $.mobile.changePage('#rankPage',{
                         "transition":"turn"
