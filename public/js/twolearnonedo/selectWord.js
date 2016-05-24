@@ -76,11 +76,7 @@ $(function(){
     var nextBtn = $('.nextBtn');
     var applyBtn = $('.apply');
     applyBtn.on('tap',function(){
-        var phone = parseInt($('.phoneInput').val());
-        if(phone.toString().length != 11 || !isNaN(phone)){
-            alert('请输入正确的手机号!');
-            return 0;
-        }
+        var phone = $('.phoneInput').val();
         var data_ = {};
         data_.phone = phone;
         $.mobile.loading('show');
