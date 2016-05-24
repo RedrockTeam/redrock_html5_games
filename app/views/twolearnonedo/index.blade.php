@@ -22,8 +22,12 @@
     <div data-role="page" id="LeadPage">
         <img src="images/twolearnonedo/lead_back.png" class="game-title">
         <div class="gameBack">
+<<<<<<< HEAD
             “两学一做”学习教育，指的是“学党章党规、学系列讲话，做合格党员”学习教育。开展“两学一做”学习教育，是面向全体党员深化党内教育的重要实践，是推动党内教育从“关键少数”向广大党员拓展、从集中性教育向经常性教育延伸的重要举措。
         </div>
+=======
+            “两学一做”学习教育，指的是“学党章党规、学系列讲话，做合格党员”学习教育。开展“两学一做”学习教育，是面向全体党员深化党内教育的重要实践，是推动党内教育从“关键少数”向广大党员拓展、从集中性教育向经常性教育延伸的重要举措。        </div>
+>>>>>>> 91893a49bb9ddb5728ffdfec26b9346c2fdfa660
         <div class="beginBtn">
             <img src="images/twolearnonedo/begin-btn.png" class="imgBtn">
         </div>
@@ -88,13 +92,13 @@
     </div>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
-        var title = "我正在参与时代先锋问问答, 你也加入吧, 有大奖哟！";
-        var link = "";
+        var title = "我正在参加“两学一做——时代先锋问问答”活动，你也加入吧！";
+        var link = "https://redrock.cqupt.edu.cn/game/twolearnonedo";
         var imgUrl = "https://redrock.cqupt.edu.cn/game/images/twolearnonedo/lead_back.png";
-        var desc = "";
+        var desc = "追寻先锋足迹，做勇挑重担的共产党人";
         //        jssdk
         wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: "{{$appid}}", // 必填，公众号的唯一标识
             timestamp: "{{$ticket['timestamp']}}", // 必填，生成签名的时间戳
             nonceStr: "{{$ticket['noncestr']}}", // 必填，生成签名的随机串
