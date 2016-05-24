@@ -67,7 +67,7 @@ class HomeController extends BaseController {
                   if(!$img) {
                       $code = Input::get('code');
                       if(!$code) {
-                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2fcqupt-group-photo&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fcqupt-group-photo&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
                       }
                       Session::put('code', $code);
                       $info = json_decode($this->getOpenId());
@@ -483,7 +483,7 @@ class HomeController extends BaseController {
             $data['jsapi_ticket'] = $jsapi_ticket->data;
             $data['noncestr'] = str_random(32);;
             $data['timestamp'] = time();
-            $data['url'] = URL::full();//生成当前页面url
+            $data['url'] = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];//生成当前页面url
             $data['signature'] = sha1($this->ToUrlParams($data));
             return $data;
         }
