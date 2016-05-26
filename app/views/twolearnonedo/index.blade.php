@@ -82,7 +82,7 @@
             <img src="images/twolearnonedo/apply.png" class="applyImg">
         </div>
         <div class="share">
-            <img src="images/twolearnonedo/share.png" class="shareImg">
+            <img src="images/twolearnonedo/replay.png" class="shareImg">
         </div>
         <p class="copyright">©红岩网校工作站</p>
     </div>
