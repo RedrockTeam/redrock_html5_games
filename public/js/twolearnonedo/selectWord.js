@@ -28,6 +28,9 @@ function tapFn(_data,q,_this,aLi,obj){
             clearInterval(timerMAX);
             clearInterval(timerMid);
             clearInterval(timerMin);
+            if(q == 7){
+                obj.src = "images/twolearnonedo/seeResult.png";
+            }
             disable = 1;
             if(r == _data.answer){
                 aLi.css('color','#14c724');
@@ -50,6 +53,9 @@ function tapFn(_data,q,_this,aLi,obj){
             clearInterval(timerMAX);
             clearInterval(timerMid);
             clearInterval(timerMin);
+            if(q == 7){
+                obj.src = "images/twolearnonedo/seeResult.png";
+            }
             disable = 1;
             if(r == _data.answer){
                 aLi.css('color','#14c724');
@@ -74,9 +80,14 @@ $(function(){
     var answerThree = $('.answer3');
     var aLiTwo = answerTwo.find('li');
     var aLiThree = answerThree.find('li');
+    var nextImg = $('.imgBtn');
     var Qn = 0;
     var nextBtn = $('.nextBtn');
     var applyBtn = $('.apply');
+    var replyBtn = $('.shareImg');
+    replyBtn.on('tap',function(){
+        location.reload();
+    });
     aLiThree.on('tap',function(){
         Delete($(this));
     });
