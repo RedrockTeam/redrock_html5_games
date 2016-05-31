@@ -67,7 +67,7 @@ class HomeController extends BaseController {
                   if(!$img) {
                       $code = Input::get('code');
                       if(!$code) {
-                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fpublic%2fcqupt-group-photo&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
+                          return Redirect::to("https://open.weixin.qq.com/connect/oauth2/authorize?appid=$this->appid&redirect_uri=http%3a%2f%2fhongyan.cqupt.edu.cn%2fgame%2fcqupt-group-photo&response_type=code&scope=snsapi_userinfo&state=sfasdfasdfefvee#wechat_redirect");
                       }
                       Session::put('code', $code);
                       $info = json_decode($this->getOpenId());
@@ -77,10 +77,12 @@ class HomeController extends BaseController {
                     $ticket = $this->JSSDKSignature();
                   return View::make('cqupt-group-photo.index')->with('avatar', Session::get('img'))->with('ticket', $ticket)->with('appid', $this->appid);
               case 'twolearnonedo':
-                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-                  if(Input::get('openid')) {
-                      return View::make('twolearnonedo.index')->with('openid', Input::get('openid'));
+                  if(Session::get('openid') || Input::get('openid')) {
+                      Session::put('openid', Input::get('openid'));
+                      $ticket = $this->JSSDKSignature();
+                      return View::make('twolearnonedo.index')->with('openid', Input::get('openid'))->with('ticket', $ticket)->with('appid', $this->appid);
                   }
+                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
                   return Redirect::to($uri);
               case 'goodcitizen':
                   DB::table('view')->where('id', '=', 2)->increment('view');
@@ -356,6 +358,72 @@ class HomeController extends BaseController {
             $paiming[0]->list = $paiming[0]->list+3;
             return $paiming;
         }
+
+        //两学一做随机问题24选8
+        public function tlodquestion(){
+            $question = DB::table('twolearnonedo_question')->orderBy(DB::raw('RAND()'))->take(8)->get();
+            foreach ($question as &$value){
+                $value->pic = 'images/twolearnonedo/'.$value->pic;
+                $value->nameLength = mb_strlen($value->answer, 'utf-8');
+            }
+            return [
+                'status' => 200,
+                'info'   => '成功',
+                'data'   => $question
+            ];
+        }
+        //两学一做计分
+        public function tlodRecord(){
+            $data = Input::all();
+            $openid = Session::get('openid');
+            if(!$openid) {
+                return ['status' => 403, 'info' => '非法id'];
+            }
+            $table = DB::table('twolearnonedo_score');
+            $row = $table->where('openid', '=', $openid)->first();
+            if (!$row) {
+                $table->insert(['openid' => $openid]);
+                $row = $table->where('openid', '=', $openid)->first();
+            }
+            if ($data['right'] > $row->right) {
+                $table->where('openid', '=', $openid)->update(['right' => $data['right'], 'time' => ($data['time']*1000)]);
+            } else{
+                if ($data['right'] == $row->right) {
+                    if ($data['time']*1000 < $row->time){
+                        $table->where('openid', '=', $openid)->update(['time' => ($data['time']*1000)]);
+                    }
+                }
+            }
+            $result = DB::select(DB::raw('SELECT count(*) as rank FROM twolearnonedo_score WHERE `right` = '.$data['right'].' and `time` < '.($data['time']*1000).' or `right` > '.$data['right']));
+            $rank = $result[0]->rank + 1;
+            return [
+                'status' => 200,
+                'info' => '成功',
+                'data' => $rank
+            ];
+        }
+        //两学一做手机号提交
+        public function tlodPhone(){
+            $data = Input::all();
+            if(!Session::get('openid')){
+                return [
+                    'status' => 403,
+                    'info'   => '非法id'
+                ];
+            }
+            if(!is_numeric($data['phone']) || strlen($data['phone']) != 11){
+                return [
+                    'status' => 403,
+                    'info'   => '非法电话'
+                ];
+            }
+            DB::table('twolearnonedo_score')->where('openid', '=', Session::get('openid'))->update(['phone' => $data['phone']]);
+            return [
+                'status' => 200,
+                'info'   => '成功'
+            ];
+        }
+
         //获取openid
         public function getOpenId () {
             $code = Session::get('code');
@@ -415,7 +483,7 @@ class HomeController extends BaseController {
             $data['jsapi_ticket'] = $jsapi_ticket->data;
             $data['noncestr'] = str_random(32);;
             $data['timestamp'] = time();
-            $data['url'] = URL::full();//生成当前页面url
+            $data['url'] = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];//生成当前页面url
             $data['signature'] = sha1($this->ToUrlParams($data));
             return $data;
         }

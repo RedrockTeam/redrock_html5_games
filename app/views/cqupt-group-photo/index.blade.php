@@ -12,7 +12,7 @@
 	</script>
 	<script src="{{URL::asset('js/cqupt/jquery.min.js')}}"></script>
 	<script src="{{URL::asset('js/cqupt/main.js')}}"></script>
-	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<link rel="stylesheet" href="{{URL::asset('css/cqupt/style.css')}}"/>
 </head>
 <body>

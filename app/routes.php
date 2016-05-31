@@ -32,6 +32,8 @@ Route::get("/{game}/2048_index", 'HomeController@start');
 
 Route::get('/{game}/twolearnonedo', 'HomeController@twolearnonedo');
 Route::post('getquestionfortlod', 'HomeController@tlodquestion');
+Route::post('recordscorefortlod', 'HomeController@tlodRecord');
+Route::post('recordphone', 'HomeController@tlodPhone');
 
 
 //view rank
