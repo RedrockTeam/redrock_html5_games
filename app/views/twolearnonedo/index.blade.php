@@ -89,7 +89,7 @@
 <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var title = "我正在参加 “两学一做——时代先锋问问答”微信游戏争霸赛，你也加入吧！";
-        var link = "https://redrock.cqupt.edu.cn/game/twolearnonedo";
+        var link = "http://mp.weixin.qq.com/s?__biz=MjM5NDAzNDM2MQ==&mid=2653740852&idx=1&sn=bffbcfed9389a83c778da91e0280020f";
         var imgUrl = "https://redrock.cqupt.edu.cn/game/images/twolearnonedo/lead_back.png";
         var desc = "追寻先锋足迹，做勇挑重担的共产党人";
         //        jssdk
