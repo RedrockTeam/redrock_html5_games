@@ -43,6 +43,7 @@
         <p class="copyright" style="color: #333;">© 2014 红岩网校</p>
     </div>
 </body>
+<<<<<<< HEAD
 <!-- Piwik -->
 <script type="text/javascript">
   var _paq = _paq || [];
@@ -58,4 +59,6 @@
 							  })();
 							  </script>
 							  <!-- End Piwik Code -->
+=======
+>>>>>>> c307c69f36394a8471c343e8c42ca19057dc15ee
 </html>
