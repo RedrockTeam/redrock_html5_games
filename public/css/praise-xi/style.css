@@ -66,8 +66,9 @@
 }
 .Xi-titile{
 	background:center no-repeat #ffffff;
-	width: 180px;
-	height: 180px;
+    background-size: 100% 100%;
+	width: 205px;
+	height: 205px;
 	margin: 7% auto;
 }
 .holder>p{
@@ -250,5 +251,9 @@
         height: 40px;
         line-height: 40px;
         font-size: 20px;
+    }
+    .Xi-titile{
+        width: 155px;
+        height: 155px;
     }
 }
