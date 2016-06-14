@@ -43,22 +43,4 @@
         <p class="copyright" style="color: #333;">© 2014 红岩网校</p>
     </div>
 </body>
-<<<<<<< HEAD
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-    _paq.push(["trackPageView"]);
-	  _paq.push(["enableLinkTracking"]);
-
-	    (function() {
-		    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://202.202.43.41/piwik/";
-			    _paq.push(["setTrackerUrl", u+"piwik.php"]);
-				    _paq.push(["setSiteId", "12"]);
-					    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
-						    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
-							  })();
-							  </script>
-							  <!-- End Piwik Code -->
-=======
->>>>>>> c307c69f36394a8471c343e8c42ca19057dc15ee
 </html>

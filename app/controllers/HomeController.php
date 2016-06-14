@@ -89,6 +89,14 @@ class HomeController extends BaseController {
                   $token = sha1(time().sha1('redrock'));
                   Session::put('token', $token);
                   return View::make('goodcitizen.index')->with('token', $token);
+              case 'learnpartyconstitution':
+                  if(Session::get('openid') || Input::get('openid')) {
+                      Session::put('openid', Input::get('openid'));
+                      $ticket = $this->JSSDKSignature();
+                      return View::make('learnpartyconstitution.index')->with('openid', Input::get('openid'))->with('ticket', $ticket)->with('appid', $this->appid);
+                  }
+                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+                  return Redirect::to($uri);
               default:
                   return Response::make("Page not found", 404);
                   break;
@@ -422,6 +430,40 @@ class HomeController extends BaseController {
                 'status' => 200,
                 'info'   => '成功'
             ];
+        }
+
+        public function getPartyQuestion(){
+            $level = Input::get('level');
+            switch($level) {
+                case 1:
+                    $data = [
+                        '______',//中国共产党
+                        '______',//党的纲领
+                        '______',//党的章程
+                        '______',//党员义务
+                        '______',//党的决定
+                        '______',//党的纪律
+                        '______',//党的秘密
+                        '______',//对党忠诚
+                        '______',//积极工作
+                        '______',//共产主义奋斗终身
+                        '______',//党和人民
+                        '______',//永不叛党
+                    ];
+                    $answer = DB::table('partyanswer')->where('level', '=', 1)->orderBy(DB::raw('RAND()'))->take(7)->get();
+                    foreach ($answer as $key => $value) {
+                        $data[$value->key] = $value->answer;
+                        unset($answer[$key]);
+                    }
+                    $question = '我志愿加入'.$data[0].'，拥护'.$data[1].'，遵守'.$data[2].'，履行'.$data[3].'，执行'.$data[4].'，严守'.$data[5].'，保守'.$data[6].'，'.$data[7].'，'.$data[8].'，'.$data[9].'为，随时准备为'.$data[10].'牺牲一切，'.$data[11].'。';
+                    dd($answer);
+                    dd($question);
+                    break;
+                case 2:
+                    break;
+                default:
+                    return ['status' => 404, 'info' => 'no this question'];
+            }
         }
 
         //获取openid

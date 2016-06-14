@@ -29,10 +29,6 @@
 				</div>
 				<div class="score-board">
 					<div class="score-img">
-<<<<<<< HEAD
-						<p class="rank">
-=======
->>>>>>> c307c69f36394a8471c343e8c42ca19057dc15ee
 							<span class="score-rank" style = "font-weight:700;">1</span> <span style = "font-weight:700;font-size:20px;">名</span>
 						</p>
 						<p class="score-num">
@@ -87,8 +83,5 @@
                 });
             });
     </script>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> c307c69f36394a8471c343e8c42ca19057dc15ee
+
