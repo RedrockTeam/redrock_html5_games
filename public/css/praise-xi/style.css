@@ -239,3 +239,16 @@
 	top: 15px;
 	left: 10px;
 }
+@media (max-width: 330px) {
+    .slogan{
+        width: 80% !important;
+        line-height: 22px;
+        font-size: 10px;
+    }
+    .begin_btn{
+        width: 50%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 20px;
+    }
+}
