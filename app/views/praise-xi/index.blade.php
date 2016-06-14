@@ -16,7 +16,7 @@
 			<div class="beginPage">
 				<img src="{{URL::asset('images/Xi-logo.png')}}" class="logo">
 				<div class="slogan">
-					&nbsp;&nbsp;&nbsp;古典名句，是中华文化长河中历经砥砺的智慧结晶。习大大在讲话中多处引经据典，生动传神，寓意深邃，极具启迪意义。作为青年大学生应积极学习习大大的这些用典。
+					古典名句，是中华文化长河中历经砥砺的智慧结晶。习大大在讲话中多处引经据典，生动传神，寓意深邃，极具启迪意义。作为青年大学生应积极学习习大大的这些用典。
 				</div>
 				<div class="begin_btn" id="begin">开始游戏</div>
 				<p class="copyright">©重庆邮电大学红岩网校工作站</p>
