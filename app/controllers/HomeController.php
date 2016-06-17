@@ -559,7 +559,8 @@ class HomeController extends BaseController {
                         'info'   => '成功',
                         'data'   => [
                             'question' => $question,
-                            'answer'   => array_flatten($answer)
+                            'answer'   => array_flatten($answer),
+                            'select'   => $select
                         ]
                     ];
                     break;
