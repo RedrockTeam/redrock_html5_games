@@ -90,13 +90,13 @@ class HomeController extends BaseController {
                   Session::put('token', $token);
                   return View::make('goodcitizen.index')->with('token', $token);
               case 'learnpartyconstitution':
-                  if(Session::get('openid') || Input::get('openid')) {
-                      Session::put('openid', Input::get('openid'));
-                      $ticket = $this->JSSDKSignature();
-                      return View::make('learnpartyconstitution.index')->with('openid', Input::get('openid'))->with('ticket', $ticket)->with('appid', $this->appid);
-                  }
-                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-                  return Redirect::to($uri);
+//                  if(Session::get('openid') || Input::get('openid')) {
+//                      Session::put('openid', Input::get('openid'));
+//                      $ticket = $this->JSSDKSignature();
+                      return View::make('party.index');//->with('openid', Input::get('openid'))->with('ticket', $ticket)->with('appid', $this->appid);
+//                  }
+//                  $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+//                  return Redirect::to($uri);
               default:
                   return Response::make("Page not found", 404);
                   break;
