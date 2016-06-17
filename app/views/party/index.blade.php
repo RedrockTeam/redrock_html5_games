@@ -52,6 +52,9 @@
     </div>
     <div data-role="page" id="GamePage">
         <img src="images/party/level0.png" alt="" class="level0Title">
+        <div class = >
+
+        </div>
         <div class="questionHolder">
             我志愿加入___________，拥护党的纲领，
             遵守__________，履行__________，执行党
