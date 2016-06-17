@@ -36,7 +36,7 @@ Route::post('recordscorefortlod', 'HomeController@tlodRecord');
 Route::post('recordphone', 'HomeController@tlodPhone');
 
 
-Route::post('getquestionforparty', array( 'as' => 'party', 'use' => 'HomeController@getPartyQuestion'));
+Route::post('getquestionforparty', array( 'as' => 'party', 'uses' => 'HomeController@getPartyQuestion'));
 
 
 //view rank
