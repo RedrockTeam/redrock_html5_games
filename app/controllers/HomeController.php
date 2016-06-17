@@ -502,7 +502,7 @@ class HomeController extends BaseController {
                         'data'   => [
                             'question' => $question,
                             'answer'   => $answer,
-                            'select'   => $select
+                            'select'   => array_flatten($select)
 
                         ]
                     ];
@@ -562,7 +562,7 @@ class HomeController extends BaseController {
                         'data'   => [
                             'question' => $question,
                             'answer'   => array_flatten($answer),
-                            'select'   => $select
+                            'select'   => array_flatten($select)
                         ]
                     ];
                     break;
@@ -620,7 +620,7 @@ class HomeController extends BaseController {
                         'data'   => [
                             'question' => $question,
                             'answer'   => array_flatten($answer),
-                            'select'   => $select
+                            'select'   => array_flatten($select)
                         ]
                     ];
                     break;
