@@ -434,6 +434,7 @@ class HomeController extends BaseController {
 
         public function getPartyQuestion(){
             $level = Input::get('level');
+            header('Access-Control-Allow-Origin:*');
             switch($level) {
                 case 1:
                     $data = [
