@@ -482,7 +482,7 @@ class HomeController extends BaseController {
                     $result = DB::table('partyanswer')->where('level', '=', 1)->whereNotIn('key', $exsit)->select('answer')->take(7)->get();
                     $question = '我志愿加入'.$data[0].'，拥护'.$data[1].'，遵守'.$data[2].'，履行'.$data[3].'，执行'.$data[4].'，严守'.$data[5].'，保守'.$data[6].'，'.$data[7].'，'.$data[8].'，为'.$data[9].'奋斗终身，随时准备为'.$data[10].'牺牲一切，'.$data[11].'。';
                     $answer = array_pluck($result, 'answer');
-                    $confound = shuffle($confound);
+                    shuffle($confound);
                     foreach ($answer as $value) {
                         if (rand(0,10)%2 == 0) {
                             $select[] = [
@@ -535,7 +535,7 @@ class HomeController extends BaseController {
                             '&'
                         ];
                         $num = rand(0,10)%2;
-                        $confound = shuffle($confound);
+                        shuffle($confound);
                         if ($num == 0) {
                             $select[] = [
                                 $answer[$key][($num+1)%2],
@@ -597,7 +597,7 @@ class HomeController extends BaseController {
                         $num = rand(0,10)%2;
                         $data[$num] = $answer[$key][$num];
                         $data[($num+1)%2] = '<span class="answer"> </span>';
-                        $confound = shuffle($confound);
+                        shuffle($confound);
                         if ($num == 0) {
                             $select[] = [
                                 $answer[$key][($num+1)%2],
