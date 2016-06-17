@@ -434,6 +434,7 @@ class HomeController extends BaseController {
 
         public function getPartyQuestion(){ //太丑恶了
             $level = Input::get('level');
+            header('Access-Control-Allow-Origin: *');
             $confound = [
                 '商品经济','市场经济',
                 '贪污腐败','脱离群众',
