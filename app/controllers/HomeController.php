@@ -533,19 +533,20 @@ class HomeController extends BaseController {
                             '&'
                         ];
                         $num = rand(0,10)%2;
-                        $data[$num] = $answer[$key][$num];
-                        $data[($num+1)%2] = '<span class="answer"> </span>';
                         if ($num == 0) {
                             $select[] = [
-                                $answer[$key][$num],
+                                $answer[$key][($num+1)%2],
                                 $confound[rand(0, count($confound)-1)]
                             ];
                         } else {
                             $select[] = [
                                 $confound[rand(0, count($confound)-1)],
-                                $answer[$key][$num]
+                                $answer[$key][($num+1)%2]
                             ];
                         }
+                        $data[$num] = $answer[$key][$num];
+                        $data[($num+1)%2] = '<span class="answer"> </span>';
+
                         $value = str_replace(
                             [
                                 '#',
@@ -595,13 +596,13 @@ class HomeController extends BaseController {
                         $data[($num+1)%2] = '<span class="answer"> </span>';
                         if ($num == 0) {
                             $select[] = [
-                                $answer[$key][$num],
+                                $answer[$key][($num+1)%2],
                                 $confound[rand(0, count($confound)-1)]
                             ];
                         } else {
                             $select[] = [
                                 $confound[rand(0, count($confound)-1)],
-                                $answer[$key][$num]
+                                $answer[$key][($num+1)%2]
                             ];
                         }
                         $value = str_replace(
