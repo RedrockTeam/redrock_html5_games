@@ -432,9 +432,30 @@ class HomeController extends BaseController {
             ];
         }
 
-        public function getPartyQuestion(){
+        public function getPartyQuestion(){ //太丑恶了
             $level = Input::get('level');
-            header('Access-Control-Allow-Origin:*');
+            $confound = [
+                '商品经济','市场经济',
+                '贪污腐败','脱离群众',
+                '加强党的执政能力建设','执政能力建设、先进性和纯洁性建设',
+                '依法执政和民主执政','拒腐防变和抵御风险',
+                '政治灵魂','精神支柱',
+                '执政为民','依靠人民',
+                '监督','民主',
+                '民主生活','组织生活',
+                '政治纪律','组织纪律',
+                '多党合作制','民主集中制',
+                '领导决策','德才兼备、以德为先',
+                '中国各族人民的先锋队','中国人民和中华民族',
+                '实现共产主义','建设中国特色社会主义',
+                '科学发展观','中国特色社会主义',
+                '人民的利益高于一切','全心全意为人民服务',
+                '政治、经济和文化','政治、思想和组织',
+                '实事求是','开拓创新',
+                '三个月','六个月',
+                '三人以上的','五人以上的',
+                '行为规范','行为规则',
+            ];
             switch($level) {
                 case 1:
                     $data = [
@@ -459,12 +480,28 @@ class HomeController extends BaseController {
                     }
                     $result = DB::table('partyanswer')->where('level', '=', 1)->whereNotIn('key', $exsit)->select('answer')->take(7)->get();
                     $question = '我志愿加入'.$data[0].'，拥护'.$data[1].'，遵守'.$data[2].'，履行'.$data[3].'，执行'.$data[4].'，严守'.$data[5].'，保守'.$data[6].'，'.$data[7].'，'.$data[8].'，为'.$data[9].'奋斗终身，随时准备为'.$data[10].'牺牲一切，'.$data[11].'。';
+                    $answer = array_pluck($result, 'answer');
+                    foreach ($answer as $value) {
+                        if (rand(0,10)%2 == 0) {
+                            $select[] = [
+                                $value,
+                                $confound[rand(0, count($confound)-1)],
+                            ];
+                        } else {
+                            $select[] = [
+                                $confound[rand(0, count($confound)-1)],
+                                $value
+                            ];
+                        }
+                        
+                    }
                     return [
                         'status' => 200,
                         'info'   => '成功',
                         'data'   => [
                             'question' => $question,
-                            'answer'   => array_pluck($result, 'answer')
+                            'answer'   => $answer,
+                            'select'   => $select
 
                         ]
                     ];
@@ -498,6 +535,17 @@ class HomeController extends BaseController {
                         $num = rand(0,10)%2;
                         $data[$num] = $answer[$key][$num];
                         $data[($num+1)%2] = '<span class="answer"> </span>';
+                        if ($num == 0) {
+                            $select[] = [
+                                $answer[$key][$num],
+                                $confound[rand(0, count($confound)-1)]
+                            ];
+                        } else {
+                            $select[] = [
+                                $confound[rand(0, count($confound)-1)],
+                                $answer[$key][$num]
+                            ];
+                        }
                         $value = str_replace(
                             [
                                 '#',
@@ -544,6 +592,17 @@ class HomeController extends BaseController {
                         $num = rand(0,10)%2;
                         $data[$num] = $answer[$key][$num];
                         $data[($num+1)%2] = '<span class="answer"> </span>';
+                        if ($num == 0) {
+                            $select[] = [
+                                $answer[$key][$num],
+                                $confound[rand(0, count($confound)-1)]
+                            ];
+                        } else {
+                            $select[] = [
+                                $confound[rand(0, count($confound)-1)],
+                                $answer[$key][$num]
+                            ];
+                        }
                         $value = str_replace(
                             [
                                 '#',
@@ -557,7 +616,8 @@ class HomeController extends BaseController {
                         'info'   => '成功',
                         'data'   => [
                             'question' => $question,
-                            'answer'   => array_flatten($answer)
+                            'answer'   => array_flatten($answer),
+                            'select'   => $select
                         ]
                     ];
                     break;
