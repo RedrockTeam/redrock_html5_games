@@ -233,6 +233,13 @@ $(function(){
                             l = "20%"
                         }
                         obj.css({"top": -100 * (i + 1), "left": l});
+                        if(level == 2){
+                            $('.sAnswer').css('background-color',"rgba(51,82,236,0.7)");
+                        }else if(level == 3){
+                            $('.sAnswer').css('background-color',"rgba(0,0,0,0.7)");
+                        }else {
+                            $('.sAnswer').css('background-color',"rgba(120,195,48,0.7)");
+                        }
                         obj.on('tap', function () {
                             if(disable){
                                 return false;
