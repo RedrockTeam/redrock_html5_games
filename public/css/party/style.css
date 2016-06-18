@@ -129,6 +129,41 @@
   font-weight: 500;
   margin: 10px auto;
 }
+#RankPage {
+  background: url("../../images/party/sBack.jpg") center no-repeat;
+  background-size: 100% 100%;
+}
+#RankPage .overImg {
+  display: block;
+  margin: 8% auto;
+  width: 75%;
+}
+#RankPage p {
+  font-size: 18px;
+  text-align: center;
+  line-height: 35px;
+}
+#RankPage p span {
+  font-size: 20px;
+  padding: 6px;
+}
+#RankPage .phoneInput {
+  display: block;
+  padding: 6px;
+  margin: 6% auto;
+  width: 55%;
+}
+#RankPage div {
+  margin: 0 auto;
+  margin-bottom: 8%;
+  width: 65%;
+}
+#RankPage .copyright {
+  font-size: 10px;
+  position: fixed;
+  top: 95%;
+  width: 100%;
+}
 @media (min-width: 390px) {
   .GameBack {
     width: 79% !important;

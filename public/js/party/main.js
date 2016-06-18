@@ -47,8 +47,6 @@ function answerObj(y,obj){
 $(function(){
     var GamePage = $('#GamePage');
     $.mobile.loading('show');
-    $.mobile.loading('hide');
-    $.mobile.changePage('#LeadPage');
     $('.beginBtn').on('tap',function(){
         $.mobile.changePage('#SelectPage',{
             'transition':'flow'
