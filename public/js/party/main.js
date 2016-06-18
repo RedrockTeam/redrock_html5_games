@@ -64,7 +64,7 @@ $(function(){
             }else {
                 applyed = 1;
             }
-            $.post('',{"phone":$('.phoneInput').val()},function(data){
+            $.post('https://redrock.cqupt.edu.cn/game/partyphone',{"phone":$('.phoneInput').val()},function(data){
                 if(data.status == 200){
                     alert("提交成功!");
                 }else {
@@ -161,7 +161,7 @@ $(function(){
                                 $.post("https://redrock.cqupt.edu.cn/game/partyscore", {"level":level,"right":right,"time":time},function(data){
                                     if(data.status == 200){
                                         $('.time').html(time);
-                                        $('.right').html(right);
+                                        $('.rightN').html(right);
                                         $('.rank').html(data.data);
                                         $.mobile.changePage('#RankPage',{
                                             "transition":'slide'
@@ -259,7 +259,7 @@ $(function(){
                                 $.post("https://redrock.cqupt.edu.cn/game/partyscore", {"level":level,"right":right,"time":time},function(data){
                                     if(data.status == 200){
                                         $('.time').html(time);
-                                        $('.right').html(right);
+                                        $('.rightN').html(right);
                                         $('.rank').html(data.data);
                                         $.mobile.changePage('#RankPage',{
                                             "transition":'slide'
