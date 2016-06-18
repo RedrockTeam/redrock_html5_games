@@ -15,7 +15,8 @@ var Max = 0;
 var Mid = 0;
 var Min = 0;
 var time = "";
-function draw(arr){
+var disable = 0;
+function draw(arr,m){
     for(var i=0,len = arr.length; i<len; i++){
         arr[i].y += 1;
         if(arr[i].y > (h+30)){
@@ -30,7 +31,7 @@ function draw(arr){
             arr[i].obj.css('top',arr[i].y);
         }
     }
-    if(order != 5){
+    if(order != m){
         setTimeout(function(){
             draw(arr);
         },1000/60);
@@ -147,7 +148,7 @@ $(function(){
                         selectorsObj.push(x);
                     }
                     setTimeout(function () {
-                        draw(selectorsObj);
+                        draw(selectorsObj,answers.length);
                     }, 50);
                     $.mobile.loading('hide');
                     $.mobile.changePage('#GamePage', {
@@ -203,6 +204,45 @@ $(function(){
                             l = "20%"
                         }
                         obj.css({"top": -100 * (i + 1), "left": l});
+                        obj.on('tap', function () {
+                            if(disable){
+                                return false;
+                            }
+                            $(this).css('display', 'none');
+                            var html_ = $(this).html();
+                            answerSpan.eq(order).html(html_);
+                            if (html_ == answers[order]) {
+                                score += 100;
+                                answerSpan.eq(order).addClass("right");
+                                console.log(score);
+                            }
+                            order++;
+                            if (order == answers.length) {
+                                for (var i = 0, len = timers.length; i < len; i++) {
+                                    clearInterval(timers[i]);
+                                }
+                                for (var i = 0, len = selectorsObj.length; i < len; i++) {
+                                    selectorsObj[i].obj.remove();
+                                }
+                                $('.answer').css('color', '#fe200f');
+                                $('.right').css('color', '#6ffe0f');
+                                time = Max + "." + Mid + Min;
+                                return false;
+                            }
+                            if(order%2 == 0){
+                                disable = 1;
+                                $('.answer').css('color', '#fe200f');
+                                $('.right').css('color', '#6ffe0f');
+                                setTimeout(function(){
+                                    $('.answer').css('color', '#000');
+                                    for(var i = order - 2; i< order ; i++){
+                                        qList.eq(i).css('display','none');
+                                        qList.eq(i+2).css('display','inline-block');
+                                    }
+                                    disable = 0;
+                                },1000);
+                            }
+                        });
                         var x = new answerObj(-100 * (i + 1), obj);
                         selectorsObj.push(x);
                     }

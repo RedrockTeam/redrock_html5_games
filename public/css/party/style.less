@@ -20,18 +20,19 @@
         .slogan{
             display: block;
             margin: 0 auto;
-            width: 93.15%;
+            width: 90.15%;
         }
     }
     .GameBack{
-        width: 86.7185%;
+        width: 84.7185%;
         margin: 0 auto;
         font-size: 14px;
         line-height: 18px;
     }
     .beginBtn{
         width: 62.5%;
-        margin: 15px auto;
+        margin: 5px auto;
+        margin-top: 6%;
         .beginImg{
             width: 100%;
         }
@@ -118,5 +119,49 @@
         line-height: 30px;
         font-weight: 500;
         margin: 10px auto;
+    }
+}
+@media (min-width: 390px) {
+    .GameBack{
+        width: 79% !important;
+        font-size: 16px !important;
+    }
+    .slogan{
+        width: 95.5% !important;
+    }
+    .level0Title{
+        width: 45% !important;
+    }
+    .questionHolder{
+        line-height: 45px !important;
+    }
+}
+@media (max-width: 340px) {
+    .slogan{
+        width: 82% !important;
+    }
+    .GameBack{
+        font-size: 12px !important;
+    }
+    .sSlogan{
+        margin: 5% auto !important;
+    }
+    .questionHolder{
+        font-size: 14px !important;
+        .answer{
+            font-size: 15px !important;
+            span{
+                font-size: 15px !important;
+            }
+        }
+    }
+    .qList{
+        font-size: 13px !important;
+        .answer{
+            font-size: 14px !important;
+            span{
+                font-size: 14px !important;
+            }
+        }
     }
 }
