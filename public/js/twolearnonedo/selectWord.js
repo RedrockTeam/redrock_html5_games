@@ -94,9 +94,6 @@ $(function(){
     aLiTwo.on('tap',function(){
         Delete($(this));
     });
-    answerThree.on('tap',function(){
-
-    });
     applyBtn.on('tap',function(){
         var phone = $('.phoneInput').val();
         if(phone.length != 11 || isNaN(parseInt(phone))){
@@ -145,7 +142,7 @@ $(function(){
         }
         ChangeQuestion(_data[Qn],selectors);
     });
-    selectors.on('tap',function(){
+    selectors.on('click',function(){
         if(disable){
             return 0;
         }
