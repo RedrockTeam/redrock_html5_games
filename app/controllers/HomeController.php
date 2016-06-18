@@ -431,32 +431,71 @@ class HomeController extends BaseController {
                 'info'   => '成功'
             ];
         }
-
+        //学党章计分
+        public function partyRecord(){
+            $data = Input::all();
+            if(!$data['level']) {
+                return [
+                    'status' => 403,
+                    'info'   => '参数不完整'
+                ];
+            }
+            $openid = Session::get('openid');
+            if(!$openid) {
+                return ['status' => 403, 'info' => '非法id'];
+            }
+            $table = DB::table('partyscore');
+            $row = $table->where('openid', '=', $openid)->first();
+            if (!$row) {
+                $table->insert(['openid' => $openid]);
+                $row = $table->where('openid', '=', $openid)->first();
+            }
+            $key_right = 'level'.$data['level'].'_right';
+            $key_time = 'level'.$data['level'].'_time';
+            if ($data['right'] > $row->$key_right) {
+                $table->where('openid', '=', $openid)->update(['level'.$data['level'].'_right' => $data['right'], 'level'.$data['level'].'_time' => ($data['time']*1000)]);
+            } else{
+                if ($data['right'] == $row->$key_right) {
+                    if ($data['time']*1000 < $row->$key_time){
+                        $table->where('openid', '=', $openid)->update(['level'.$data['level'].'_time' => ($data['time']*1000)]);
+                    }
+                }
+            }
+            $result = DB::select(DB::raw('SELECT count(*) as rank FROM partyscore WHERE `level'.$data['level'].'_right` = '.$data['right'].' and `level'.$data['level'].'_time` < '.($data['time']*1000).' or `level'.$data['level'].'_right` > '.$data['right']));
+            $rank = $result[0]->rank + 1;
+            //todo total score
+            return [
+                'status' => 200,
+                'info' => '成功',
+                'data' => $rank
+            ];
+        }
+        //学党章手机号提交
+        public function partyPhone(){
+            $data = Input::all();
+            if(!Session::get('openid')){
+                return [
+                    'status' => 403,
+                    'info'   => '非法id'
+                ];
+            }
+            if(!is_numeric($data['phone']) || strlen($data['phone']) != 11){
+                return [
+                    'status' => 403,
+                    'info'   => '非法电话'
+                ];
+            }
+            DB::table('partyscore')->where('openid', '=', Session::get('openid'))->update(['phone' => $data['phone']]);
+            return [
+                'status' => 200,
+                'info'   => '成功'
+            ];
+        }
+    //
+        //学党章获取问题
         public function getPartyQuestion(){ //太丑恶了
             $level = Input::get('level');
             header('Access-Control-Allow-Origin: *');
-            $confound = [
-                '商品经济','市场经济',
-                '贪污腐败','脱离群众',
-                '组织建设','执政能力建设',
-                '依法执政和民主执政','拒腐防变和抵御风险',
-                '政治灵魂','精神支柱',
-                '执政为民','依靠人民',
-                '监督','民主',
-                '民主生活','组织生活',
-                '政治纪律','组织纪律',
-                '多党合作制','民主集中制',
-                '领导决策','德才兼备、以德为先',
-                '中国各族人民的先锋队','中国人民和中华民族',
-                '实现共产主义','建设中国特色社会主义',
-                '科学发展观','中国特色社会主义',
-                '人民的利益高于一切','全心全意为人民服务',
-                '政治、经济和文化','政治、思想和组织',
-                '实事求是','开拓创新',
-                '三个月','六个月',
-                '三人以上的','五人以上的',
-                '行为规范','行为规则',
-            ];
             switch($level) {
                 case 1:
                     $data = [
@@ -473,6 +512,7 @@ class HomeController extends BaseController {
                         '<span class="answer"> </span>',//党和人民
                         '<span class="answer"> </span>',//永不叛党
                     ];
+                    $confound = ['党的政策', '党的制度', '党员权力', '党的机密', '党的规定', '永远爱党', '对党忠心', '努力工作', '社会主义', '党的事业', '党和国家', '永远爱党'];
                     $answer = DB::table('partyanswer')->where('level', '=', 1)->orderBy(DB::raw('RAND()'))->take(7)->get();
                     $exsit = [];
                     foreach ($answer as $key => $value) {
@@ -529,6 +569,7 @@ class HomeController extends BaseController {
                         ['密切联系群众', '意见和要求'],
                         ['共产主义道德', '挺身而出'],
                     ];
+                    $confound = ['政策和制度', '为国家服务', '政策路线', '示范带头', '党和国家', '奋斗在前', '党的章程', '服从组织', '权力和利益', '知行合一', '总结和自我反省', '消极负面现象', '密切联系人民', '意见和建议', '社会主义道德', '勇于奉献'];
                     foreach ($question as $key => &$value) {
                         $data = [
                             '#',
@@ -589,6 +630,7 @@ class HomeController extends BaseController {
                         ['坚决执行','党的上级组织'],
                         ['请求、申诉和控告','负责的答复'],
                     ];
+                    $confound = ['各项会议', '教育和培养', '媒体刊物', '问题决议', '党的事业', '建议和意见', '有针对的', '负责地反映、报告', '选举权、允许本人参加、坚决拥护、党的上级机构、申请、诉求和意见、权威的答复'];
                     foreach ($question as $key => &$value) {
                         $data = [
                             '#',
