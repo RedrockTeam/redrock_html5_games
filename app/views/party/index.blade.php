@@ -50,13 +50,12 @@
         <p class="copyright">©红岩网校工作站</p>
     </div>
     <div data-role="page" id="GamePage">
-        <img src="images/party/level0.png" alt="" class="level0Title">
+        <img src="" alt="" class="le">
 
         <div class="questionHolder">
 
         </div>
         <div class="footer">
-            <img src="images/party/seeRank.png" alt="" class="seeRank">
             <p class="copyright">©红岩网校工作站</p>
         </div>
     </div>

@@ -87,31 +87,33 @@
 }
 #GamePage .answer {
   border-bottom: 1px solid #000000;
-  font-size: 15px;
+  font-size: 17px;
   line-height: 30px;
   font-weight: 500;
+  padding: 1px;
 }
 #GamePage .answer span {
-  font-size: 15px;
+  font-size: 17px;
   line-height: 30px;
   font-weight: 500;
   visibility: hidden;
 }
 #GamePage .levelTitle {
   display: block;
-  margin: 6% auto;
+  margin: 8% auto;
+  margin-top: 10%;
   width: 26.25%;
+}
+#GamePage .qList {
+  display: none;
+  margin-bottom: 15px;
+  font-size: 15px;
 }
 #GamePage .footer {
   position: fixed;
   width: 100%;
-  top: 85%;
-  height: 15%;
-}
-#GamePage .footer .seeRank {
-  display: block;
-  width: 61.71%;
-  margin: 5px auto;
+  top: 96%;
+  height: 4%;
 }
 #GamePage .level0Title {
   display: block;
@@ -120,8 +122,8 @@
   margin-top: 28%;
 }
 #GamePage .questionHolder {
-  width: 75.625%;
-  font-size: 15px;
+  width: 76%;
+  font-size: 16px;
   line-height: 30px;
   font-weight: 500;
   margin: 10px auto;
