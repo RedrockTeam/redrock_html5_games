@@ -9,9 +9,7 @@
     <script src="js/party/jquery-2.1.4.min.js"></script>
     <script src="js/party/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <link rel="stylesheet" href="js/party/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
-    <script src="js/party/setStyle.js"></script>
-    <script src="js/party/common.js"></script>
-    <script src="js/party/GameLoad.js"></script>
+    <script src="js/party/ImgLoad.js"></script>
     <script src="js/party/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/party/style.css">
 </head>
@@ -50,22 +48,28 @@
         <p class="copyright">©红岩网校工作站</p>
     </div>
     <div data-role="page" id="GamePage">
-        <img src="images/party/level0.png" alt="" class="level0Title">
-        <div class = >
+        <img src="" alt="" class="le">
+
+        <div class="questionHolder">
 
         </div>
-        <div class="questionHolder">
-            我志愿加入___________，拥护党的纲领，
-            遵守__________，履行__________，执行党
-            的决定，严守__________，保守党的秘密，
-            对党忠诚，积极工作，为共产主义奋斗终
-            身，随时准备为党和人民牺牲一切，____
-            __________。
-        </div>
         <div class="footer">
-            <img src="images/party/seeRank.png" alt="" class="seeRank">
             <p class="copyright">©红岩网校工作站</p>
         </div>
+    </div>
+    <div data-role = "page" id = "RankPage">
+        <img src="images/party/overImg.png" alt="" class="overImg">
+        <p>您在<span class = "time">20.23</span>秒内</p>
+        <p>答对<span class = "right">8</span>道题</p>
+        <p>排名第<span class = "rank">1000</span>位</p>
+        <input data-role = "none" type = "text" placeholder = "欢迎提交手机号参与比赛" class = "phoneInput">
+        <div class = 'apply'>
+            <img src="images/party/apply.png" alt="" class="overImg">
+        </div>
+        <div class = 'reload'>
+            <img src="images/party/again.png" alt="" class="overImg">
+        </div>
+        <p class="copyright">©红岩网校工作站</p>
     </div>
 </body>
 </html>

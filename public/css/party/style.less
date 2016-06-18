@@ -3,6 +3,7 @@
     margin: 0;
     font-size: 12px;
     text-shadow: none;
+    font-family: "Microsoft Yahei", sans-serif;
 }
 .ui-loader-default{ display:none}
 .ui-mobile-viewport{ border:none;}
@@ -19,25 +20,26 @@
         .slogan{
             display: block;
             margin: 0 auto;
-            width: 93.15%;
+            width: 90.15%;
         }
     }
     .GameBack{
-        width: 86.7185%;
+        width: 84.7185%;
         margin: 0 auto;
         font-size: 14px;
         line-height: 18px;
     }
     .beginBtn{
         width: 62.5%;
-        margin: 15px auto;
+        margin: 5px auto;
+        margin-top: 6%;
         .beginImg{
             width: 100%;
         }
     }
 }
 #SelectPage{
-    background: url("../images/sBack.jpg")center no-repeat;
+    background: url("../../images/party/sBack.jpg")center no-repeat;
     background-size: 100% 100%;
     .sSlogan{
         width: 100%;
@@ -61,23 +63,49 @@
     }
 }
 #GamePage{
-    background: url("../images/sBack.jpg")center no-repeat;
+    background: url("../../images/party/sBack.jpg")center no-repeat;
     background-size: 100% 100%;
+    position: relative;
+    .sAnswer{
+        position: absolute;
+        top:0;
+        width: 40%;
+        padding: 8px 4px;
+        background-color: rgba(248,85,23,0.7);
+        color: #fff;
+        text-align: center;
+        font-size: 15px;
+        text-shadow: 1px 1px #333;
+    }
+    .answer{
+        border-bottom: 1px solid #000000;
+        font-size: 17px;
+        line-height: 30px;
+        font-weight: 500;
+        padding: 1px;
+        span{
+            font-size: 17px;
+            line-height: 30px;
+            font-weight: 500;
+            visibility: hidden;
+        }
+    }
     .levelTitle{
         display: block;
-        margin: 6% auto;
+        margin: 8% auto;
+        margin-top: 10%;
         width: 26.25%;
+    }
+    .qList{
+        display: none;
+        margin-bottom: 15px;
+        font-size: 15px;
     }
     .footer{
         position: fixed;
         width: 100%;
-        top: 85%;
-        height: 15%;
-        .seeRank{
-            display: block;
-            width: 61.71%;
-            margin: 5px auto;
-        }
+        top: 96%;
+        height: 4%;
     }
     .level0Title{
         display: block;
@@ -86,10 +114,89 @@
         margin-top: 28%;
     }
     .questionHolder{
-        width: 75.625%;
-        font-size: 15px;
+        width: 76%;
+        font-size: 16px;
         line-height: 30px;
         font-weight: 500;
         margin: 10px auto;
+    }
+}
+#RankPage{
+    background: url("../../images/party/sBack.jpg")center no-repeat;
+    background-size: 100% 100%;
+    .overImg{
+        display: block;
+        margin: 8% auto;
+        width: 75%;
+    }
+    p{
+        font-size: 18px;
+        span{
+            font-size: 20px;
+            padding: 6px;
+        }
+        text-align: center;
+        line-height: 35px;
+    }
+    .phoneInput{
+        display: block;
+        padding: 6px;
+        margin: 6% auto;
+        width: 55%;
+    }
+    div{
+        margin: 0 auto;
+        margin-bottom: 8%;
+        width: 65%;
+    }
+    .copyright{
+        font-size: 10px;
+        position: fixed;
+        top: 95%;
+        width: 100%;
+    }
+}
+@media (min-width: 390px) {
+    .GameBack{
+        width: 79% !important;
+        font-size: 16px !important;
+    }
+    .slogan{
+        width: 95.5% !important;
+    }
+    .level0Title{
+        width: 45% !important;
+    }
+    .questionHolder{
+        line-height: 45px !important;
+    }
+}
+@media (max-width: 340px) {
+    .slogan{
+        width: 82% !important;
+    }
+    .GameBack{
+        font-size: 12px !important;
+    }
+    .sSlogan{
+        margin: 5% auto !important;
+    }
+    .questionHolder{
+        font-size: 14px !important;
+        .answer{
+            font-size: 15px !important;
+            span{
+                font-size: 15px !important;
+            }
+        }
+    }
+    .qList{
+        font-size: 13px !important;
+        .answer{
+            font-size: 14px !important;
+            span{
+                font-size: 14px !important;
+            }
+        }
     }
 }
