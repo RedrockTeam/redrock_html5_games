@@ -52,16 +52,9 @@
     </div>
     <div data-role="page" id="GamePage">
         <img src="images/party/level0.png" alt="" class="level0Title">
-        <div class = >
 
-        </div>
         <div class="questionHolder">
-            我志愿加入___________，拥护党的纲领，
-            遵守__________，履行__________，执行党
-            的决定，严守__________，保守党的秘密，
-            对党忠诚，积极工作，为共产主义奋斗终
-            身，随时准备为党和人民牺牲一切，____
-            __________。
+
         </div>
         <div class="footer">
             <img src="images/party/seeRank.png" alt="" class="seeRank">
