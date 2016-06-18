@@ -93,7 +93,7 @@ class HomeController extends BaseController {
                   if(Session::get('openid') || Input::get('openid')) {
                       Session::put('openid', Input::get('openid'));
                       $ticket = $this->JSSDKSignature();
-                      return Response::make(View::make('party.index'))->header('Access-Control-Allow-Origin', '*')->with('openid', Input::get('openid'))->with('ticket', $ticket)->with('appid', $this->appid);
+                      return View::make('party.index')->with('openid', Input::get('openid'))->with('ticket', $ticket)->with('appid', $this->appid);
                   }
                   $uri = 'http://hongyan.cqupt.edu.cn/MagicLoop/index.php?s=/addon/Api/Api/oauth&redirect='.urlencode('https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
                   return Redirect::to($uri);
