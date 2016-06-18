@@ -6,7 +6,7 @@ var h = $(window).height();
 var selectorsObj = [];
 var answers = [];
 var order = 0;
-var score = 0;
+var right = 0;
 var MaxTimer;
 var MidTimer;
 var MinTimer;
@@ -16,6 +16,7 @@ var Mid = 0;
 var Min = 0;
 var time = "";
 var disable = 0;
+var applyed = 0;
 function draw(arr,m){
     for(var i=0,len = arr.length; i<len; i++){
         arr[i].y += 1;
@@ -52,8 +53,25 @@ $(function(){
             'transition':'flow'
         })
     });
+    $('.reload').on('tap',function(){
+        location.reload();
+    });
     $('.selector').find('li').on('tap',function(){
         var level = parseInt($(this).attr('level'));
+        $('.apply').on('tap',function(){
+            if(applyed){
+                return false;
+            }else {
+                applyed = 1;
+            }
+            $.post('',{"phone":$('.phoneInput').val()},function(data){
+                if(data.status == 200){
+                    alert("提交成功!");
+                }else {
+                    alert(data.info);
+                }
+            })
+        });
         $.mobile.loading('show');
         $.post("https://redrock.cqupt.edu.cn/game/getquestionforparty",{'level':level},function(data){
 
@@ -125,9 +143,8 @@ $(function(){
                             var html_ = $(this).html();
                             answerSpan.eq(order).html(html_);
                             if (html_ == answers[order]) {
-                                score += 100;
+                                right += 1;
                                 answerSpan.eq(order).addClass("right");
-                                console.log(score);
                             }
                             order++;
                             if (order == 5) {
@@ -140,6 +157,20 @@ $(function(){
                                 $('.answer').css('color', '#fe200f');
                                 $('.right').css('color', '#6ffe0f');
                                 time = Max + "." + Mid + Min;
+                                $.mobile.loading('show');
+                                $.post("https://redrock.cqupt.edu.cn/game/partyscore", {"level":level,"right":right,"time":time},function(data){
+                                    if(data.status == 200){
+                                        $('.time').html(time);
+                                        $('.right').html(right);
+                                        $('.rank').html(data.data);
+                                        $.mobile.changePage('#RankPage',{
+                                            "transition":'slide'
+                                        });
+                                        $.mobile.loading('hide');
+                                    }else {
+                                        alert(data.info);
+                                    }
+                                });
                             }
                         });
                         var x = new answerObj(-100 * (i + 1), obj);
@@ -210,9 +241,8 @@ $(function(){
                             var html_ = $(this).html();
                             answerSpan.eq(order).html(html_);
                             if (html_ == answers[order]) {
-                                score += 100;
+                                right += 1;
                                 answerSpan.eq(order).addClass("right");
-                                console.log(score);
                             }
                             order++;
                             if (order == answers.length) {
@@ -225,6 +255,20 @@ $(function(){
                                 $('.answer').css('color', '#fe200f');
                                 $('.right').css('color', '#6ffe0f');
                                 time = Max + "." + Mid + Min;
+                                $.mobile.loading('show');
+                                $.post("https://redrock.cqupt.edu.cn/game/partyscore", {"level":level,"right":right,"time":time},function(data){
+                                    if(data.status == 200){
+                                        $('.time').html(time);
+                                        $('.right').html(right);
+                                        $('.rank').html(data.data);
+                                        $.mobile.changePage('#RankPage',{
+                                            "transition":'slide'
+                                        });
+                                        $.mobile.loading('hide');
+                                    }else {
+                                        alert(data.info);
+                                    }
+                                });
                                 return false;
                             }
                             if(order%2 == 0){
