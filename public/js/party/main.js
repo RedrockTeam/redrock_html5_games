@@ -2,6 +2,8 @@
  * Created by truemenhale on 16/6/13.
  */
 var h = $(window).height();
+var timers = [];
+var selectorsObj = [];
 $(document).on("pagebeforeshow","#SelectPage",function(){
     disable = 0;
     _data = {};
