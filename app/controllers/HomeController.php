@@ -476,7 +476,7 @@ class HomeController extends BaseController {
             $level1_socre = $data->level1_right/5*60 + $data->level1_time/1000/300*40;
             $level2_socre = $data->level2_right/8*60 + $data->level2_time/1000/480*40;
             $level3_socre = $data->level3_right/8*60 + $data->level3_time/1000/480*40;
-            $level4_socre = $data->level4_right/6*60 + $data->level4_time/1000/300*40;
+            $level4_socre = $data->level4_right/6*60 + $data->level4_time/1000/360*40;
             $table->update([
                 'level1_rank' => $level1_socre,
                 'level2_rank' => $level2_socre,
