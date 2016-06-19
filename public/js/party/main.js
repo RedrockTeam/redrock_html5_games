@@ -113,6 +113,7 @@ $(function(){
                 }, 10);
                 timers.push(MinTimer);
                 if (level == 1) {
+                    $('.le').removeClass('levelTitle');
                     $('.le').addClass('level0Title');
                     $('.le').attr('src', 'images/party/level' + (level - 1) + ".png");
                     $('.questionHolder').html(_data.question);
@@ -203,6 +204,7 @@ $(function(){
                         'transition': 'slide'
                     });
                 } else {
+                    $('.le').removeClass('level0Title');
                     $('.le').addClass('levelTitle');
                     $('.le').attr('src', 'images/party/level' + (level - 1) + ".png");
                     var question = "";
