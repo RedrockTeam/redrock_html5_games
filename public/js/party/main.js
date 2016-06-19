@@ -1,22 +1,32 @@
 /**
  * Created by truemenhale on 16/6/13.
  */
-var _data = {};
 var h = $(window).height();
-var selectorsObj = [];
-var answers = [];
-var order = 0;
-var right = 0;
-var MaxTimer;
-var MidTimer;
-var MinTimer;
-var timers = [];
-var Max = 0;
-var Mid = 0;
-var Min = 0;
-var time = "";
-var disable = 0;
-var applyed = 0;
+$(document).on("pagebeforeshow","#SelectPage",function(){
+    disable = 0;
+    _data = {};
+    for(var i=0,len = timers.length; i<len; i++){
+        clearInterval(timers[i]);
+    }
+    timers = [];
+    for(var i=0,len = selectorsObj.length; i<len; i++){
+        selectorsObj[i].obj.remove();
+    }
+    applyed = 0;
+    selectorsObj = [];
+    timeout = 0;
+    Max = 0;
+    Mid = 0;
+    Min = 0;
+    time = "";
+    right = 0;
+    order = 0;
+    answers = [];
+    $('.phoneInput').val("");
+    MaxTimer = null;
+    MidTimer = null;
+    MinTimer = null;
+});
 function draw(arr,m){
     for(var i=0,len = arr.length; i<len; i++){
         arr[i].y += 1;
@@ -32,7 +42,7 @@ function draw(arr,m){
             arr[i].obj.css('top',arr[i].y);
         }
     }
-    if(order != m){
+    if(order != m && timeout){
         setTimeout(function(){
             draw(arr);
         },1000/60);
@@ -54,10 +64,11 @@ $(function(){
         })
     });
     $('.reload').on('tap',function(){
-        location.reload();
+        $.mobile.changePage('#SelectPage');
     });
     $('.selector').find('li').on('tap',function(){
         var level = parseInt($(this).attr('level'));
+        timeout = 1;
         $('.apply').on('tap',function(){
             if(applyed){
                 return false;
@@ -163,10 +174,12 @@ $(function(){
                                         $('.time').html(time);
                                         $('.rightN').html(right);
                                         $('.rank').html(data.data);
-                                        $.mobile.changePage('#RankPage',{
-                                            "transition":'slide'
-                                        });
-                                        $.mobile.loading('hide');
+                                        setTimeout(function(){
+                                            $.mobile.changePage('#RankPage',{
+                                                "transition":'slide'
+                                            });
+                                            $.mobile.loading('hide');
+                                        },1000);
                                     }else {
                                         alert(data.info);
                                     }
@@ -236,7 +249,7 @@ $(function(){
                         if(level == 2){
                             $('.sAnswer').css('background-color',"rgba(51,82,236,0.7)");
                         }else if(level == 3){
-                            $('.sAnswer').css('background-color',"rgba(0,0,0,0.7)");
+                            $('.sAnswer').css('background-color',"rgba(248,85,23,0.7)");
                         }else {
                             $('.sAnswer').css('background-color',"rgba(120,195,48,0.7)");
                         }
@@ -268,10 +281,12 @@ $(function(){
                                         $('.time').html(time);
                                         $('.rightN').html(right);
                                         $('.rank').html(data.data);
-                                        $.mobile.changePage('#RankPage',{
-                                            "transition":'slide'
-                                        });
-                                        $.mobile.loading('hide');
+                                        setTimeout(function(){
+                                            $.mobile.changePage('#RankPage',{
+                                                "transition":'slide'
+                                            });
+                                            $.mobile.loading('hide');
+                                        },1000);
                                     }else {
                                         alert(data.info);
                                     }
