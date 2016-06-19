@@ -11,8 +11,10 @@ $(document).on("pagebeforeshow","#SelectPage",function(){
         }
     }
     timers = [];
-    for(var i=0,len = selectorsObj.length; i<len; i++){
-        selectorsObj[i].obj.remove();
+    if(selectorsObj){
+        for(var i=0,len = selectorsObj.length; i<len; i++){
+            selectorsObj[i].obj.remove();
+        }
     }
     applyed = 0;
     selectorsObj = [];
