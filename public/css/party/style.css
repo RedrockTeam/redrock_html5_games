@@ -41,7 +41,7 @@
 #LeadPage .beginBtn {
   width: 62.5%;
   margin: 5px auto;
-  margin-top: 6%;
+  margin-top: 5%;
 }
 #LeadPage .beginBtn .beginImg {
   width: 100%;
@@ -80,7 +80,7 @@
   top: 0;
   width: 40%;
   padding: 8px 4px;
-  background-color: rgba(248, 85, 23, 0.7);
+  background-color: rgba(252, 13, 13, 0.7);
   color: #fff;
   text-align: center;
   font-size: 15px;
@@ -164,7 +164,7 @@
   top: 95%;
   width: 100%;
 }
-@media (min-width: 390px) {
+@media (min-width: 410px) {
   .GameBack {
     width: 79% !important;
     font-size: 16px !important;
@@ -180,6 +180,9 @@
   }
 }
 @media (max-width: 340px) {
+  .beginBtn {
+    margin-top: 3% !important;
+  }
   .slogan {
     width: 82% !important;
   }
