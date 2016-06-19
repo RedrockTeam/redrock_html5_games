@@ -5,8 +5,10 @@ var h = $(window).height();
 $(document).on("pagebeforeshow","#SelectPage",function(){
     disable = 0;
     _data = {};
-    for(var i=0,len = timers.length; i<len; i++){
-        clearInterval(timers[i]);
+    if(timers){
+        for(var i=0,len = timers.length; i<len; i++){
+            clearInterval(timers[i]);
+        }
     }
     timers = [];
     for(var i=0,len = selectorsObj.length; i<len; i++){
