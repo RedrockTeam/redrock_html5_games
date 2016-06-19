@@ -41,7 +41,7 @@
 #LeadPage .beginBtn {
   width: 62.5%;
   margin: 5px auto;
-  margin-top: 6%;
+  margin-top: 5%;
 }
 #LeadPage .beginBtn .beginImg {
   width: 100%;
@@ -180,6 +180,9 @@
   }
 }
 @media (max-width: 340px) {
+  .beginBtn {
+    margin-top: 3% !important;
+  }
   .slogan {
     width: 82% !important;
   }
