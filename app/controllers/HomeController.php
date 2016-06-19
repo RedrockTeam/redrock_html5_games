@@ -476,7 +476,7 @@ class HomeController extends BaseController {
             $level1_socre = $data->level1_right/5*60 + $data->level1_time/1000/300*40;
             $level2_socre = $data->level2_right/8*60 + $data->level2_time/1000/480*40;
             $level3_socre = $data->level3_right/8*60 + $data->level3_time/1000/480*40;
-            $level4_socre = $data->level4_right/5*60 + $data->level4_time/1000/300*40;
+            $level4_socre = $data->level4_right/6*60 + $data->level4_time/1000/300*40;
             $table->update([
                 'level1_rank' => $level1_socre,
                 'level2_rank' => $level2_socre,
@@ -645,7 +645,7 @@ class HomeController extends BaseController {
                         ['坚决执行','党的上级组织'],
                         ['请求、申诉和控告','负责的答复'],
                     ];
-                    $confound = ['各项会议', '教育和培养', '媒体刊物', '问题决议', '党的事业', '建议和意见', '有针对的', '负责地反映、报告', '选举权、允许本人参加、坚决拥护、党的上级机构、申请、诉求和意见、权威的答复'];
+                    $confound = ['各项会议', '教育和培养', '媒体刊物', '问题决议', '党的事业', '建议和意见', '有针对的', '负责地反映、报告', '选举权', '允许本人参加', '坚决拥护', '党的上级机构', '申请', '诉求和意见', '权威的答复'];
                     foreach ($question as $key => &$value) {
                         $data = [
                             '#',
@@ -753,7 +753,7 @@ class HomeController extends BaseController {
                     ];
                     $num = range(0,19);
                     shuffle($num);
-                    for($i = 0; $i<5; $i++) {
+                    for($i = 0; $i<6; $i++) {
                         $data['question'][] = $question[$num[$i]];
                         $data['select'][] = $select[$num[$i]];
                         $data['answer'][] = $answer[$num[$i]];
