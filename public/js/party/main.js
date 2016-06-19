@@ -10,12 +10,12 @@ $(document).on("pagebeforeshow","#SelectPage",function(){
             clearInterval(timers[i]);
         }
     }
-    timers = [];
     if(selectorsObj){
         for(var i=0,len = selectorsObj.length; i<len; i++){
             selectorsObj[i].obj.remove();
         }
     }
+    timers = [];
     applyed = 0;
     selectorsObj = [];
     timeout = 0;
