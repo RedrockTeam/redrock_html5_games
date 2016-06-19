@@ -69,13 +69,13 @@ $(function(){
             'transition':'flow'
         })
     });
-    $('.reload').on('tap',function(){
+    $('.reload').on('click',function(){
         $.mobile.changePage('#SelectPage');
     });
-    $('.selector').find('li').on('tap',function(){
+    $('.selector').find('li').on('click',function(){
         var level = parseInt($(this).attr('level'));
         timeout = 1;
-        $('.apply').on('tap',function(){
+        $('.apply').on('click',function(){
             if(applyed){
                 return false;
             }else {
