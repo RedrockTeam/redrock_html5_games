@@ -178,11 +178,11 @@ $(function(){
                                         $('.time').html(time);
                                         $('.rightN').html(right);
                                         $('.rank').html(data.data);
+                                        $.mobile.loading('hide');
                                         setTimeout(function(){
                                             $.mobile.changePage('#RankPage',{
                                                 "transition":'slide'
                                             });
-                                            $.mobile.loading('hide');
                                         },1000);
                                     }else {
                                         alert(data.info);
@@ -285,11 +285,11 @@ $(function(){
                                         $('.time').html(time);
                                         $('.rightN').html(right);
                                         $('.rank').html(data.data);
+                                        $.mobile.loading('hide');
                                         setTimeout(function(){
                                             $.mobile.changePage('#RankPage',{
                                                 "transition":'slide'
                                             });
-                                            $.mobile.loading('hide');
                                         },1000);
                                     }else {
                                         alert(data.info);
