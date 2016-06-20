@@ -462,13 +462,13 @@ class HomeController extends BaseController {
                 }
             }
             $result = DB::select(DB::raw('SELECT count(*) as rank FROM partyscore WHERE `level'.$data['level'].'_right` = '.$data['right'].' and `level'.$data['level'].'_time` < '.($data['time']*1000).' or `level'.$data['level'].'_right` > '.$data['right']));
-            $total_rank = $result[0]->rank + 1;
-            $this->totalscore($openid);
+            $module_rank = $result[0]->rank + 1;
+            $total_rank = $this->totalscore($openid);
             return [
                 'status' => 200,
                 'info' => '成功',
                 'data' => [
-                    'module_rank' => $result,
+                    'module_rank' => $module_rank,
                     'total_rank'  => $total_rank
                 ]
             ];
@@ -489,7 +489,7 @@ class HomeController extends BaseController {
                 'total' => $total,
             ]);
             $rank = $table->where('total', '>', $total)->count();
-            return $rank;
+            return $rank+1;
         }
         //学党章手机号提交
         public function partyPhone(){
