@@ -462,12 +462,14 @@ class HomeController extends BaseController {
                 }
             }
             $result = DB::select(DB::raw('SELECT count(*) as rank FROM partyscore WHERE `level'.$data['level'].'_right` = '.$data['right'].' and `level'.$data['level'].'_time` < '.($data['time']*1000).' or `level'.$data['level'].'_right` > '.$data['right']));
-            $rank = $result[0]->rank + 1;
+            $total_rank = $result[0]->rank + 1;
             $this->totalscore($openid);
             return [
                 'status' => 200,
                 'info' => '成功',
-                'data' => $rank
+                'data' => [
+                    'module_rank' => $result,
+                    'total_rank'  => $total_rank
             ];
         }
         private function totalscore($openid) {
@@ -477,13 +479,16 @@ class HomeController extends BaseController {
             $level2_socre = $data->level2_right/8*60 + $data->level2_time/1000/480*40;
             $level3_socre = $data->level3_right/8*60 + $data->level3_time/1000/480*40;
             $level4_socre = $data->level4_right/6*60 + $data->level4_time/1000/360*40;
+            $total = $level1_socre + $level2_socre + $level3_socre + $level4_socre;
             $table->update([
                 'level1_rank' => $level1_socre,
                 'level2_rank' => $level2_socre,
                 'level3_rank' => $level3_socre,
                 'level4_rank' => $level4_socre,
-                'total' => $level1_socre+$level2_socre+$level3_socre+$level4_socre,
+                'total' => $total,
             ]);
+            $rank = $table->where('total', '>', $total)->count();
+            return $rank;
         }
         //学党章手机号提交
         public function partyPhone(){
