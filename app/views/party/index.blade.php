@@ -73,10 +73,10 @@
     </div>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
-        var title = "我正在参加 “我爱学党章”微信游戏争霸赛，你也加入吧！";
+        var title = "我正在参加“两学一做——我爱学党章”微信游戏争霸赛，你也加入吧！";
         var link = "https://redrock.cqupt.edu.cn/game/learnpartyconstitution";
         var imgUrl = "https://redrock.cqupt.edu.cn/game/images/party/sSlogan.png";
-        var desc = "我爱学党章的描述, 还没想好填什么";
+        var desc = "“两学一做”，基础在学，关键在做。让我们一起学党章吧！";
         //        jssdk
         wx.config({
             debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
