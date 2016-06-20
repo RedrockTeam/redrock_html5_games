@@ -470,6 +470,7 @@ class HomeController extends BaseController {
                 'data' => [
                     'module_rank' => $result,
                     'total_rank'  => $total_rank
+                ]
             ];
         }
         private function totalscore($openid) {
