@@ -180,7 +180,8 @@ $(function(){
                                     if(data.status == 200){
                                         $('.time').html(time);
                                         $('.rightN').html(right);
-                                        $('.rank').html(data.data);
+                                        $('.rank').html(data.data.module_rank);
+                                        $('.trank').html(data.data.total_rank);
                                         $.mobile.loading('hide');
                                         setTimeout(function(){
                                             $.mobile.changePage('#RankPage',{

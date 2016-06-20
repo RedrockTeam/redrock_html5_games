@@ -61,7 +61,8 @@
         <img src="images/party/overImg.png" alt="" class="overImg">
         <p>您在<span class = "time">20.23</span>秒内</p>
         <p>答对<span class = "rightN">8</span>道题</p>
-        <p>排名第<span class = "rank">1000</span>位</p>
+        <p>单项排名第<span class = "rank">1000</span>位</p>
+        <p>总排名第<span class = "trank">1000</span>位</p>
         <input data-role = "none" type = "text" placeholder = "欢迎提交手机号参与比赛" class = "phoneInput">
         <div class = 'apply'>
             <img src="images/party/apply.png" alt="" class="overImg">
