@@ -35,7 +35,7 @@ $(document).on("pagebeforeshow","#SelectPage",function(){
 });
 function draw(arr,m){
     for(var i=0,len = arr.length; i<len; i++){
-        arr[i].y += 2;
+        arr[i].y += 1;
         if(arr[i].y > (h+30)){
                 arr[i].y = arr[i+arr.length-1].y - 100;
                 if(arr[i].obj.css('display') == 'none'){
