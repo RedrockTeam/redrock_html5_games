@@ -51,7 +51,7 @@ function draw(arr,m){
     if(order != m && timeout){
         setTimeout(function(){
             draw(arr);
-        },30);
+        },14);
     }else {
         return false;
     }
