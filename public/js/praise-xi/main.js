@@ -14,14 +14,6 @@ function resetToken(){
     token=true;
     alert('提交成功！转发到朋友圈和大家一起分享吧！');
 }
-function isWeiXin(){
-	var ua = window.navigator.userAgent.toLowerCase();
-	if(ua.match(/MicroMessenger/i) == 'micromessenger'){
-		return true;
-	}else{
-		return false;
-	}
-}
 function subOut(objs,ali,oS,jsons){
 	var l;
 	oS.innerHTML=objs[0].fpal+"_____"+objs[0].bpal;
@@ -108,9 +100,6 @@ function GameInit(arr,aw){
 	return GamesObjs;
 }
 window.onload= function () {
-	if(!isWeiXin()){
-		window.location.href='http://hongyan.cqupt.edu.cn/';
-	}
 	var oLogo=document.querySelector('.logo');
 	var oBack=document.querySelector('.game-back');
 	var oFrontpage=document.querySelector('.beginPage');
