@@ -129,13 +129,14 @@ window.onload= function () {
 	function fnsuccess(b) {
 		rank = b;
 	}
-	reBegin.addEventListener('click',function(){
+	function myFunc(){
 		timer=setInterval(function(){
 			time++;
 		},1000);
 		oXi.style.display='none';
 		oHolder.style.display='block';
-	});
+	}
+	reBegin.addEventListener('click',myFunc,true);
 	var em;
 	var y=0;
 	var h='';
@@ -305,7 +306,7 @@ window.onload= function () {
 						ajax('praise-xi-post','score='+time+'&sub='+sub_show, fnsuccess);
 						console.log(rank);
 						reBegin.innerHTML='查看成绩';
-						reBegin.removeEventListener('click');
+						reBegin.removeEventListener('click',myFunc,true);
 						reBegin.addEventListener('click',function(){
 							document.title="我在《学用典赞习大大》游戏中答对"+sub_show+"道题排名第"+rank+"求挑战！";
 							oXi.style.display='none';
