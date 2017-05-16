@@ -26,7 +26,11 @@
 				</div>
 				<div class="game_start game_btn back_size"></div>
 				<div class="game_guide game_btn back_size"></div>
-				<span class="copyright">©红岩网校工作站</span>
+				<p class="copyright">
+				  <span>©红岩网校工作站</span>
+				  <span> | </span>
+				  <span id="about_dev">关于开发者</span>
+				</p>
 			</li>
 			<li class="game_page back_size">
 				<ul class="heart_list">
@@ -73,5 +77,83 @@
 </body>
 <script>
     var publicPath = "{{URL::asset('')}}";
+</script>
+<script type="text/javascript">
+;(function (window, undefined) {
+	function Toast () {
+	    this.devObj = {
+	      teacher: '杨奇凡',
+	      front: '周政',
+	      back: '隆宗益',
+	      design: '刘金莉'
+	    };
+	    this.isShow = false;
+	  }
+	  Toast.prototype.getToast = function () {
+	    let toast = document.createElement('div');
+	    
+	    toast.setAttribute('id', 'toast');
+
+	    let p_teacher = document.createElement('p');
+	    let p_front = document.createElement('p');
+	    let p_back = document.createElement('p');
+	    let p_design = document.createElement('p');
+	    
+	    p_teacher.innerText = '指导老师：' + this.devObj.teacher;
+	    p_front.innerText = '前端开发：' + this.devObj.front;
+	    p_back.innerText = '后端开发：' + this.devObj.back;
+	    p_design.innerText = '视觉设计：' + this.devObj.design;
+
+	    toast.appendChild(p_teacher);
+	    toast.appendChild(p_front);
+	    toast.appendChild(p_back);
+	    toast.appendChild(p_design);
+
+	    toast.style.cssText = 'position: fixed;' +
+	      'width: 150px;' +
+	      'height: 120px;' +
+	      'font-size: 14px;' +
+	      'border-radius: 5px;' +
+	      'line-height: 30px;' +
+	      'background-color: rgba(0, 0, 0, 0.6);' +
+	      'color: #fff;' +
+	      'left: 50%;' +
+	      'margin-left: -75px;' +
+	      'top: 50%;' +
+	      'margin-top: -60px;' +
+	      'text-align: center;';
+	    
+	    this.toast = toast;
+	  }
+	Toast.prototype.show = function (delay) {
+	  let body = document.querySelector('body');
+
+	  if (!this.toast) {
+	    this.getToast();
+	  }
+
+	  if (this.isShow === false) {
+	    body.appendChild(this.toast);
+	    this.isShow = true;
+	    setTimeout(() => {
+	      this.hide();
+	    }, delay || 3000);
+	  }
+	}
+	Toast.prototype.hide = function () {
+	  let body = document.querySelector('body');
+	  let toast = document.querySelector('#toast');
+	  
+	  body.removeChild(toast);
+	  this.isShow = false;
+	}
+
+	let toast = new Toast();
+	let aboutDev = document.querySelector('#about_dev');
+
+	aboutDev.addEventListener('touchstart', function (e) {
+	  toast.show();
+	}, false);
+} (window, undefined));
 </script>
 </html>
