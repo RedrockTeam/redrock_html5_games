@@ -9,6 +9,8 @@
 		<script src="{{URL::asset('js/praise-xi/main.js?d=vdds')}}"></script>
 		<script src="{{URL::asset('js/praise-xi/API.js?d=vdsf')}}"></script>
 		<link rel='stylesheet' type="text/css" href="{{URL::asset('css/praise-xi/style.css?v=v')}}">
+		<link rel="stylesheet" href="{{URL::asset('css/copyright-toast/toast.css')}}"/>
+    <!--17-05-17 点击弹出版权信息-->
 	</head>
 	<body>
         <div class="data" data="{{$token}}"></div>
@@ -19,7 +21,11 @@
 					古典名句，是中华文化长河中历经砥砺的智慧结晶。习大大在讲话中多处引经据典，生动传神，寓意深邃，极具启迪意义。作为青年大学生应积极学习习大大的这些用典。
 				</div>
 				<div class="begin_btn" id="begin">开始游戏</div>
-				<p class="copyright">©重庆邮电大学红岩网校工作站</p>
+				<p class="copyright">
+					©重庆邮电大学红岩网校工作站
+					<span id="about-btn" class="about-btn">?</span>
+          <!--17-05-17 点击弹出版权信息-->
+				</p>
 			</div>
 			<div class="holder">
 				<div class="Xi-titile">
@@ -79,4 +85,21 @@
 			</div>
 		</div>
 	</body>
+	<script src="{{URL::asset('js/copyright-toast/toast.js')}}"></script>
+	<script>
+		;(function (window, undefined) {
+			let toast = new Toast({
+				teacher: '杨奇凡',
+				front: '周政',
+				back: '隆宗益',
+				design: '刘金莉'
+			});
+			let btn = document.querySelector('#about-btn');
+
+			btn.addEventListener('click', function () {
+				toast.show();
+			}, false);
+		} (window, undefined));
+	</script>
+	<!--17-05-17 点击弹出版权信息-->
 </html>

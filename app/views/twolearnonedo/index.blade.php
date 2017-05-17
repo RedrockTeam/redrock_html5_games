@@ -14,6 +14,8 @@
     <script src="js/twolearnonedo/main.js"></script>
     <script src="js/twolearnonedo/LoadQuestion.js"></script>
     <script src="js/twolearnonedo/selectWord.js"></script>
+    <link rel="stylesheet" href="{{URL::asset('css/copyright-toast/toast.css')}}"/>
+    <!--17-05-17 点击弹出版权信息-->
 </head>
 <body>
     <div data-role="page" id="Loading">
@@ -27,7 +29,11 @@
         <div class="beginBtn">
             <img src="images/twolearnonedo/begin-btn.png" class="imgBtn">
         </div>
-        <p class="copyright">©红岩网校工作站</p>
+        <p class="copyright">
+            ©红岩网校工作站
+            <span id="about-btn" class="about-btn">?</span>
+            <!--17-05-17 点击弹出版权信息-->
+        </p>
     </div>
     <div data-role="page" id="GamePage">
         <div class="avatar">
@@ -86,7 +92,25 @@
         </div>
         <p class="copyright">©红岩网校工作站</p>
     </div>
-<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+
+    <script src="{{URL::asset('js/copyright-toast/toast.js')}}"></script>
+    <script>
+        ;(function (window, undefined) {
+            let toast = new Toast({
+                teacher: '杨奇凡',
+                front: '周政',
+                back: '隆宗益',
+                design: '葛静'
+            });
+            let btn = document.querySelector('#about-btn');
+
+            btn.addEventListener('click', function () {
+                toast.show();
+            }, false);
+        } (window, undefined));
+    </script>
+    <!--17-05-17 点击弹出版权信息-->
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var title = "我正在参加 “两学一做——时代先锋问问答”微信游戏争霸赛，你也加入吧！";
         var link = "http://mp.weixin.qq.com/s?__biz=MjM5NDAzNDM2MQ==&mid=2653740852&idx=1&sn=bffbcfed9389a83c778da91e0280020f";

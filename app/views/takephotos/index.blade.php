@@ -9,6 +9,8 @@
 	<script src="{{URL::asset('js/takephotos/jquery.min.js')}}"></script>
 	<script src="{{URL::asset('js/takephotos/main.js')}}"></script>
 	<link rel="stylesheet" href="{{URL::asset('css/takephotos/style.css')}}"/>
+	<link rel="stylesheet" href="{{URL::asset('css/copyright-toast/toast.css')}}"/>
+	<!--17-05-17 点击弹出版权信息-->
 </head>
 <body>
 	<img src="images/takephotos/begin-bg.jpg" style="position: absolute;top: -1000px">
@@ -39,7 +41,11 @@
 				<div class="play">
 
 				</div>
-				<p class="copyright">© 重庆团市委-学载青春梦</p>
+				<p class="copyright">
+					© 重庆团市委-学载青春梦
+					<span id="about-btn" class="about-btn">?</span>
+					<!--17-05-17 点击弹出版权信息-->
+				</p>
 			</li>
 			<li class="gamePage">
 				<div class="cross cross-bg">
@@ -51,5 +57,23 @@
 			</li>
 		</ul>
 	</div>
+
+	<script src="{{URL::asset('js/copyright-toast/toast.js')}}"></script>
+	<script>
+		;(function (window, undefined) {
+			let toast = new Toast({
+				teacher: '杨奇凡',
+				front: '周政',
+				back: '隆宗益',
+				design: '葛静'
+			});
+			let btn = document.querySelector('#about-btn');
+
+			btn.addEventListener('click', function () {
+				toast.show();
+			}, false);
+		} (window, undefined));
+	</script>
+	<!--17-05-17 点击弹出版权信息-->
 </body>
 </html>

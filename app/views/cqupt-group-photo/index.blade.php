@@ -40,11 +40,13 @@
 				</div>
 			</li>
 			<li class="beginPage">
-                <span id="about-btn" class="about-btn">?</span>
-                <!--17-05-17 点击弹出版权信息-->
 				<img src="{{URL::asset('images/cqupt/play.png')}}" class="play">
                 </img>
-                <p class="copyright">© 红岩网校工作站</p>
+                <p class="copyright">
+                    © 红岩网校工作站
+                    <span id="about-btn" class="about-btn">?</span>
+                    <!--17-05-17 点击弹出版权信息-->
+                </p>
             </li>
             <li class="gamePage">
                 <div class="cross cross-bg">
@@ -56,9 +58,9 @@
                 </div>
             </li>
         </ul>
-    </div>
-	
+    </div>	
 </body>
+
 <script src="{{URL::asset('js/copyright-toast/toast.js')}}"></script>
 <script>
 	;(function (window, undefined) {

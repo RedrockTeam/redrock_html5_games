@@ -12,6 +12,8 @@
     <script src="js/party/ImgLoad.js"></script>
     <script src="js/party/main.js"></script>
     <link rel="stylesheet" type="text/css" href="css/party/style.css">
+    <link rel="stylesheet" href="{{URL::asset('css/copyright-toast/toast.css')}}"/>
+    <!--17-05-17 点击弹出版权信息-->
 </head>
 <body>
     <div data-role="page" id="LoadPage">
@@ -27,7 +29,11 @@
         <div class="beginBtn">
             <img src="images/party/beginBtn.png" alt="" class="beginImg">
         </div>
-        <p class="copyright">©红岩网校工作站</p>
+        <p class="copyright">
+            ©红岩网校工作站
+            <span id="about-btn" class="about-btn">?</span>
+            <!--17-05-17 点击弹出版权信息-->
+        </p>
     </div>
     <div data-role="page" id="SelectPage">
         <img src="images/party/sSlogan.png" alt="" class="sSlogan">
@@ -72,6 +78,23 @@
         </div>
         <p class="copyright">©红岩网校工作站</p>
     </div>
+    <script src="{{URL::asset('js/copyright-toast/toast.js')}}"></script>
+    <script>
+        ;(function (window, undefined) {
+            let toast = new Toast({
+                teacher: '杨奇凡',
+                front: '周政',
+                back: '隆宗益',
+                design: '唐荟云'
+            });
+            let btn = document.querySelector('#about-btn');
+
+            btn.addEventListener('click', function () {
+                toast.show();
+            }, false);
+        } (window, undefined));
+    </script>
+    <!--17-05-17 点击弹出版权信息-->
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var title = "我正在参加“两学一做——我爱学党章”微信游戏争霸赛，你也加入吧！";
