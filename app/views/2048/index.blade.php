@@ -52,6 +52,9 @@
       height: 480px;
       text-align: center;
     }
+    .toast {
+      top: 14px;
+    }
   </style>
 </head>
 <body>
@@ -139,6 +142,7 @@
     <p id="Txtinput"><input type="text" placeholder="请输入手机号" id="phone_input"><span id="reply">提交</span></p>
     <p class="copyright" style="margin-top: 280px;color: #333;">© 2014 红岩网校</p>
   </div>
+  <span id="about-btn" class="about-btn">?</span>
   {{HTML::script("js/2048/js/jquery.min.js?v=fvtdysuhkjnc")}}
   {{HTML::script("js/2048/js/underscore-min.js?v=fvtdysuhkjnc")}}
   {{HTML::script("js/2048/js/WeixinApi.js?v=fvtdysuhkjnc")}}
