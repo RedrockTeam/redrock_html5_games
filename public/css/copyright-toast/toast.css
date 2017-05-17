@@ -1,0 +1,29 @@
+.about-btn {
+    float: right;
+    top: 0;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: #ffa500;
+    color: #fff;
+}
+.toast {
+    position: fixed;
+    width: 150px;
+    height: 120px;
+    font-size: 16px;
+    border-radius: 5px;
+    line-height: 30px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    left: 50%;
+    margin-left: -75px;
+    top: 50%;
+    margin-top: -60px;
+    text-align: center;
+}
