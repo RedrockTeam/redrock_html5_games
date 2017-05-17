@@ -9,6 +9,7 @@
     {{ HTML::my("meta/2048/meta/apple-touch-startup-image-640x1096.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)") }}<!-- iPhone 5+ -->
     {{HTML::my("meta/2048/meta/apple-touch-startup-image-640x920.png","apple-touch-startup-image","(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)")}}
     <link rel="stylesheet" href="{{URL::asset('css/copyright-toast/toast.css')}}"/>
+    <!--17-05-17 点击弹出版权信息-->
  <!-- iPhone, retina -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -52,7 +53,7 @@
       height: 480px;
       text-align: center;
     }
-    .toast {
+    .about-btn {
       top: 14px;
     }
   </style>
@@ -143,6 +144,7 @@
     <p class="copyright" style="margin-top: 280px;color: #333;">© 2014 红岩网校</p>
   </div>
   <span id="about-btn" class="about-btn">?</span>
+  <!--17-05-17 点击弹出版权信息-->
   {{HTML::script("js/2048/js/jquery.min.js?v=fvtdysuhkjnc")}}
   {{HTML::script("js/2048/js/underscore-min.js?v=fvtdysuhkjnc")}}
   {{HTML::script("js/2048/js/WeixinApi.js?v=fvtdysuhkjnc")}}
@@ -179,4 +181,5 @@
 		}, false);
 	} (window, undefined));
 </script>
+<!--17-05-17 点击弹出版权信息-->
 </html>
